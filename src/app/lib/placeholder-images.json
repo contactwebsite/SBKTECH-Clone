@@ -1,0 +1,47 @@
+
+{
+  "placeholderImages": [
+    {
+      "id": "hero-lock",
+      "description": "Modern smart lock on a black door",
+      "imageUrl": "https://picsum.photos/seed/sbk-hero/1920/1080",
+      "imageHint": "smart lock"
+    },
+    {
+      "id": "lock-1",
+      "description": "Digital fingerprint door handle",
+      "imageUrl": "https://picsum.photos/seed/lock1/600/600",
+      "imageHint": "fingerprint lock"
+    },
+    {
+      "id": "lock-2",
+      "description": "Smart door handle with keypad",
+      "imageUrl": "https://picsum.photos/seed/lock2/600/600",
+      "imageHint": "digital lock"
+    },
+    {
+      "id": "biometric-1",
+      "description": "Biometric face recognition system",
+      "imageUrl": "https://picsum.photos/seed/bio1/600/600",
+      "imageHint": "biometric recognition"
+    },
+    {
+      "id": "biometric-2",
+      "description": "Fingerprint scanner for access control",
+      "imageUrl": "https://picsum.photos/seed/bio2/600/600",
+      "imageHint": "fingerprint scanner"
+    },
+    {
+      "id": "safe-1",
+      "description": "High-security digital safe box",
+      "imageUrl": "https://picsum.photos/seed/safe1/600/600",
+      "imageHint": "security safe"
+    },
+    {
+      "id": "safe-2",
+      "description": "Large office floor safe with biometric lock",
+      "imageUrl": "https://picsum.photos/seed/safe2/600/600",
+      "imageHint": "digital safe"
+    }
+  ]
+}
