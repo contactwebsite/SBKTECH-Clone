@@ -3,7 +3,7 @@ export interface Product {
   id: string;
   slug: string;
   name: string;
-  category: 'Serrure intelligente' | 'Pointeuse biométrique' | 'Coffre Fort';
+  category: 'Serrure intelligente' | 'Pointeuse biométrique' | 'Tourniquet tripode' | 'Coffre Fort';
   price: number;
   oldPrice: number;
   discountPercentage: string;
@@ -15,88 +15,175 @@ export interface Product {
 }
 
 export const products: Product[] = [
+  // Serrure intelligente
   {
-    id: '1',
-    slug: 'serrure-smart-pro-x1',
-    name: 'Serrure Connectée Pro X1 - Empreinte & App',
+    id: 's1',
+    slug: 'serrure-x9-2026',
+    name: 'Serrure Digitale X9 2026 - Ultra Slim',
     category: 'Serrure intelligente',
-    price: 1890,
-    oldPrice: 2700,
-    discountPercentage: 'Economisez 30%',
-    image: 'https://picsum.photos/seed/lock1/600/600',
+    price: 1790,
+    oldPrice: 3990,
+    discountPercentage: '34%',
+    image: 'https://picsum.photos/seed/lock1/600/800',
     rating: 4.8,
-    description: 'Une serrure intelligente ultra-sécurisée avec reconnaissance d\'empreintes digitales en 0.3s.',
-    features: 'Reconnaissance biométrique, Contrôle via application mobile, Clé de secours physique, Code PIN temporaire',
-    benefits: 'Accès sans clé, Sécurité maximale, Historique des entrées en temps réel'
+    description: 'Sécurité maximale avec un design ultra-fin.',
+    features: 'Empreinte, Code, Carte, App, Clé',
+    benefits: 'Design moderne, Sécurité renforcée'
   },
   {
-    id: '2',
-    slug: 'poignee-digitale-s2',
-    name: 'Poignée Digitale S2 - Clavier Tactile',
+    id: 's2',
+    slug: 'serrure-pro-v2',
+    name: 'Serrure Connectée Pro V2 - Gold Edition',
     category: 'Serrure intelligente',
-    price: 1450,
-    oldPrice: 2100,
-    discountPercentage: 'Economisez 31%',
-    image: 'https://picsum.photos/seed/lock2/600/600',
-    rating: 4.5,
-    description: 'Poignée élégante avec clavier tactile rétroéclairé et accès par carte RFID.',
-    features: 'Clavier tactile anti-espion, Lecteur de carte RFID, Installation facile sans perçage',
-    benefits: 'Design moderne, Idéal pour bureaux et chambres, Autonomie de 12 mois'
+    price: 2100,
+    oldPrice: 4500,
+    discountPercentage: '53%',
+    image: 'https://picsum.photos/seed/lock2/600/800',
+    rating: 4.9,
+    description: 'La version luxe de notre best-seller.',
+    features: 'Reconnaissance faciale, Empreinte, WiFi',
+    benefits: 'Prestige, Technologie avancée'
   },
   {
-    id: '3',
-    slug: 'pointeuse-bio-face-v5',
+    id: 's3',
+    slug: 'poignee-smart-lite',
+    name: 'Poignée Smart Lite - Minimaliste',
+    category: 'Serrure intelligente',
+    price: 1250,
+    oldPrice: 2800,
+    discountPercentage: '55%',
+    image: 'https://picsum.photos/seed/lock3/600/800',
+    rating: 4.5,
+    description: 'Idéal pour les chambres et bureaux.',
+    features: 'Empreinte, Bluetooth',
+    benefits: 'Installation facile, Prix abordable'
+  },
+  {
+    id: 's4',
+    slug: 'serrure-porte-verre',
+    name: 'Serrure Spéciale Porte en Verre G1',
+    category: 'Serrure intelligente',
+    price: 1850,
+    oldPrice: 3200,
+    discountPercentage: '42%',
+    image: 'https://picsum.photos/seed/lock4/600/800',
+    rating: 4.7,
+    description: 'Conçue spécifitiement pour le tertiaire.',
+    features: 'Badge, Code, Télécommande',
+    benefits: 'Sans perçage, Esthétique'
+  },
+  // Pointeuse biométrique
+  {
+    id: 'p1',
+    slug: 'pointeuse-bio-v5',
     name: 'Pointeuse Biométrique Face Recognition V5',
     category: 'Pointeuse biométrique',
     price: 3200,
-    oldPrice: 4500,
-    discountPercentage: 'Economisez 28%',
-    image: 'https://picsum.photos/seed/bio1/600/600',
+    oldPrice: 4800,
+    discountPercentage: '33%',
+    image: 'https://picsum.photos/seed/bio1/600/800',
     rating: 4.9,
-    description: 'Système de gestion du temps avec reconnaissance faciale et thermique avancée.',
-    features: 'Double caméra IR, Exportation USB/Réseau, Supporte 3000 visages, Ecran couleur 4.3"',
-    benefits: 'Gestion simplifiée des employés, Zéro fraude, Hygiénique (sans contact)'
+    description: 'Gestion du temps sans contact.',
+    features: 'Visage, Empreinte, Carte',
+    benefits: 'Hygiénique, Export Excel'
   },
   {
-    id: '4',
-    slug: 'scanner-empreinte-desktop',
+    id: 'p2',
+    slug: 'pointeuse-cloud-wifi',
+    name: 'Pointeuse Cloud WiFi - Gestion Mobile',
+    category: 'Pointeuse biométrique',
+    price: 2800,
+    oldPrice: 4200,
+    discountPercentage: '33%',
+    image: 'https://picsum.photos/seed/bio2/600/800',
+    rating: 4.8,
+    description: 'Synchronisation automatique sur le cloud.',
+    features: 'WiFi, Batterie intégrée',
+    benefits: 'Accès distant, Sécurité données'
+  },
+  {
+    id: 'p3',
+    slug: 'lecteur-usb-high',
     name: 'Lecteur Empreinte USB Haute Précision',
     category: 'Pointeuse biométrique',
     price: 850,
-    oldPrice: 1200,
-    discountPercentage: 'Economisez 29%',
-    image: 'https://picsum.photos/seed/bio2/600/600',
+    oldPrice: 1500,
+    discountPercentage: '43%',
+    image: 'https://picsum.photos/seed/bio3/600/800',
     rating: 4.2,
-    description: 'Petit scanner d\'empreintes digitales pour une authentification PC sécurisée.',
-    features: 'Certification Windows Hello, Lecture à 360 degrés, Design compact en aluminium',
-    benefits: 'Connexion rapide, Protection des données sensibles, Plus besoin de mots de passe'
+    description: 'Compact et puissant pour PC.',
+    features: 'USB 3.0, Scan 360°',
+    benefits: 'Portable, Plug & Play'
   },
   {
-    id: '5',
-    slug: 'coffre-fort-titan-80',
-    name: 'Coffre Fort Titan 80 - Biométrique & Feu',
-    category: 'Coffre Fort',
+    id: 'p4',
+    slug: 'pack-controle-acces',
+    name: 'Pack Contrôle d\'Accès Centralisé X4',
+    category: 'Pointeuse biométrique',
     price: 5900,
     oldPrice: 8500,
-    discountPercentage: 'Economisez 30%',
-    image: 'https://picsum.photos/seed/safe1/600/600',
+    discountPercentage: '30%',
+    image: 'https://picsum.photos/seed/bio4/600/800',
     rating: 5.0,
-    description: 'Coffre-fort blindé résistant au feu et aux effractions avec serrure biométrique.',
-    features: 'Acier massif 10mm, Résistance au feu 60min, Verrouillage par empreinte et code',
-    benefits: 'Protection ultime de vos biens, Tranquillité d\'esprit totale, Capacité 80L'
+    description: 'Solution complète pour entreprise.',
+    features: 'Logiciel inclus, 4 Lecteurs',
+    benefits: 'Centralisation, Support technique'
+  },
+  // Tourniquet tripode
+  {
+    id: 't1',
+    slug: 'tourniquet-classic-t1',
+    name: 'Tourniquet Tripode Classic T1 - Acier Inox',
+    category: 'Tourniquet tripode',
+    price: 8500,
+    oldPrice: 12000,
+    discountPercentage: '29%',
+    image: 'https://picsum.photos/seed/turn1/600/800',
+    rating: 4.9,
+    description: 'Robuste et fiable pour flux intenses.',
+    features: 'Inox 304, Bidirectionnel',
+    benefits: 'Longue durée de vie, Maintenance réduite'
   },
   {
-    id: '6',
-    slug: 'coffre-fort-compact-home',
-    name: 'Coffre Fort Compact Home - Digital',
-    category: 'Coffre Fort',
-    price: 1200,
-    oldPrice: 1800,
-    discountPercentage: 'Economisez 33%',
-    image: 'https://picsum.photos/seed/safe2/600/600',
-    rating: 4.6,
-    description: 'Coffre-fort domestique compact idéal pour les documents et petits objets de valeur.',
-    features: 'Clavier numérique, Clés d\'urgence incluses, Trous de fixation pré-percés',
-    benefits: 'Installation discrète, Facile d\'utilisation, Format optimisé pour placards'
+    id: 't2',
+    slug: 'tourniquet-slim-led',
+    name: 'Tourniquet Slim LED - Indicateur de Passage',
+    category: 'Tourniquet tripode',
+    price: 10500,
+    oldPrice: 15000,
+    discountPercentage: '30%',
+    image: 'https://picsum.photos/seed/turn2/600/800',
+    rating: 4.8,
+    description: 'Design moderne avec signalisation LED.',
+    features: 'LED RGB, Passage fluide',
+    benefits: 'Guidage visuel, Esthétique'
+  },
+  {
+    id: 't3',
+    slug: 'tripode-semi-auto',
+    name: 'Tripode Semi-Automatique Haute Sécurité',
+    category: 'Tourniquet tripode',
+    price: 9200,
+    oldPrice: 13500,
+    discountPercentage: '32%',
+    image: 'https://picsum.photos/seed/turn3/600/800',
+    rating: 4.7,
+    description: 'Mécanisme haute précision.',
+    features: 'Anti-panique, Silencieux',
+    benefits: 'Sécurité incendie, Confort'
+  },
+  {
+    id: 't4',
+    slug: 'speed-gate-pro',
+    name: 'Speed Gate Pro - Couloir Rapide',
+    category: 'Tourniquet tripode',
+    price: 18900,
+    oldPrice: 25000,
+    discountPercentage: '24%',
+    image: 'https://picsum.photos/seed/turn4/600/800',
+    rating: 5.0,
+    description: 'Le summum du contrôle d\'accès.',
+    features: 'Vantaux motorisés, Capteurs IR',
+    benefits: 'Flux ultra-rapide, Design prestigieux'
   }
 ];
