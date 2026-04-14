@@ -1,7 +1,7 @@
 "use client";
 
 import Link from 'next/link';
-import { Search, User, ShoppingCart, Menu } from 'lucide-react';
+import { Search, User, ShoppingBag, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   Sheet,
@@ -13,17 +13,17 @@ export default function Header() {
   const navLinks = [
     { name: 'ACCUEIL', href: '/' },
     { name: 'POIGNÉE DIGITAL', href: '/category/serrure-intelligente' },
-    { name: 'COFFRE-FORT', href: '/category/coffre-fort' },
-    { name: 'CATALOGUE', href: '/catalogue' },
+    { name: 'Coffre-fort', href: '/category/coffre-fort' },
+    { name: 'Catalogue', href: '/catalogue' },
     { name: 'CONTACTEZ-NOUS', href: '/contact' },
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white">
-      <div className="mx-auto px-8 flex h-20 items-center justify-between">
+    <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white h-20">
+      <div className="mx-auto px-8 h-full flex items-center justify-between">
         <div className="flex items-center">
           <Link href="/" className="flex items-center">
-            <span className="text-3xl font-bold tracking-tighter text-black">SBKTECH</span>
+            <span className="text-4xl font-black tracking-tighter text-black">SBKTECH</span>
           </Link>
         </div>
 
@@ -32,41 +32,41 @@ export default function Header() {
             <Link
               key={link.name}
               href={link.href}
-              className="text-sm font-semibold uppercase text-gray-800 hover:text-blue-600 transition-colors"
+              className="text-sm font-medium text-black hover:underline transition-all"
             >
               {link.name}
             </Link>
           ))}
         </nav>
 
-        <div className="flex items-center space-x-6">
-          <Button variant="ghost" size="icon" className="text-gray-800 hover:bg-transparent">
-            <Search className="h-6 w-6 stroke-[1.5px]" />
+        <div className="flex items-center space-x-6 text-black">
+          <Button variant="ghost" size="icon" className="hover:bg-transparent">
+            <Search className="h-6 w-6" />
             <span className="sr-only">Rechercher</span>
           </Button>
-          <Button variant="ghost" size="icon" className="text-gray-800 hover:bg-transparent">
-            <User className="h-6 w-6 stroke-[1.5px]" />
+          <Button variant="ghost" size="icon" className="hover:bg-transparent">
+            <User className="h-6 w-6" />
             <span className="sr-only">Compte</span>
           </Button>
-          <Button variant="ghost" size="icon" className="text-gray-800 hover:bg-transparent relative">
-            <ShoppingCart className="h-6 w-6 stroke-[1.5px]" />
+          <Button variant="ghost" size="icon" className="hover:bg-transparent">
+            <ShoppingBag className="h-6 w-6" />
             <span className="sr-only">Panier</span>
           </Button>
 
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="lg:hidden text-gray-800">
+              <Button variant="ghost" size="icon" className="lg:hidden">
                 <Menu className="h-6 w-6" />
                 <span className="sr-only">Menu</span>
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="bg-white">
-              <nav className="flex flex-col space-y-4 mt-12">
+              <nav className="flex flex-col space-y-6 mt-12">
                 {navLinks.map((link) => (
                   <Link
                     key={link.name}
                     href={link.href}
-                    className="text-lg font-bold uppercase text-gray-900 hover:text-blue-600"
+                    className="text-lg font-bold uppercase text-black hover:underline"
                   >
                     {link.name}
                   </Link>

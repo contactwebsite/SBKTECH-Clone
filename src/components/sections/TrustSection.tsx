@@ -11,37 +11,37 @@ export default function TrustSection() {
   ];
 
   return (
-    <section className="py-24 border-t border-gray-100 bg-white">
-      <div className="container mx-auto px-4 lg:px-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <h2 className="text-4xl lg:text-5xl font-bold leading-tight text-gray-900">
+    <section className="py-24 bg-white">
+      <div className="container mx-auto px-4 max-w-6xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+          <div className="pt-4">
+            <h2 className="text-4xl font-bold leading-tight text-black mb-6">
               Le standard du véritable haut de gamme
             </h2>
-            <p className="mt-6 text-lg text-gray-600 max-w-md">
-              Pourquoi choisir SBKTECH ? Comparez et voyez la différence par vous-même à travers nos services et la qualité de nos produits.
+            <p className="text-sm text-gray-600 max-w-sm uppercase tracking-widest font-semibold">
+              Pourquoi choisir SBKTECH ? Comparez et voyez la différence par vous-même.
             </p>
           </div>
 
-          <div className="overflow-hidden border border-gray-200">
+          <div className="border border-gray-100 shadow-none">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="bg-black text-white">
-                  <th className="p-4 text-xs font-bold uppercase tracking-wider">Caractéristiques</th>
-                  <th className="p-4 text-center text-xs font-bold uppercase tracking-wider">SBKTECH</th>
-                  <th className="p-4 text-center text-xs font-bold uppercase tracking-wider text-gray-400">Autres</th>
+                <tr>
+                  <th className="p-4 bg-gray-50 text-[10px] font-bold uppercase tracking-widest"></th>
+                  <th className="p-4 text-center bg-black text-white text-[10px] font-bold uppercase tracking-widest">SBKTECH</th>
+                  <th className="p-4 text-center bg-gray-50 text-gray-400 text-[10px] font-bold uppercase tracking-widest">Autres</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100">
                 {comparison.map((item, i) => (
                   <tr key={i} className="hover:bg-gray-50 transition-colors">
-                    <td className="p-4 text-sm font-medium text-gray-800">{item.feature}</td>
+                    <td className="p-4 text-xs font-bold text-gray-900 uppercase">{item.feature}</td>
                     <td className="p-4 text-center">
-                      <Check className="h-5 w-5 text-green-500 mx-auto" />
+                      <Check className="h-5 w-5 text-green-600 mx-auto" />
                     </td>
                     <td className="p-4 text-center">
                       {item.others ? (
-                        <Check className="h-5 w-5 text-green-500 mx-auto opacity-30" />
+                        <Check className="h-5 w-5 text-green-600 mx-auto opacity-20" />
                       ) : (
                         <X className="h-5 w-5 text-red-500 mx-auto" />
                       )}

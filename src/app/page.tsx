@@ -7,30 +7,30 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
 export default function Home() {
-  // Use only 4 products for the grid as requested
-  const serrureProducts = products.filter(p => p.category === 'Serrure intelligente').slice(0, 4);
+  // Use exactly 4 products for the grid
+  const displayProducts = products.filter(p => p.category === 'Serrure intelligente').slice(0, 4);
 
   return (
-    <div className="bg-white">
+    <div className="bg-white min-h-screen">
       <Hero />
       <FeaturesBar />
 
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-bold text-center mb-12 uppercase tracking-tight">
+          <h2 className="text-3xl font-bold text-center mb-12 text-black">
             Serrure intelligente
           </h2>
           
-          <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 px-4">
-            {serrureProducts.map((product) => (
+          <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12 px-4">
+            {displayProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
 
-          <div className="flex justify-center mt-12">
+          <div className="flex justify-center mt-16">
             <Button 
               asChild
-              className="bg-black hover:bg-gray-900 text-white px-8 py-6 rounded-none uppercase text-sm font-bold tracking-widest"
+              className="bg-black hover:bg-gray-900 text-white px-10 py-6 rounded-none uppercase text-xs font-bold tracking-widest"
             >
               <Link href="/category/serrure-intelligente">
                 Tout afficher

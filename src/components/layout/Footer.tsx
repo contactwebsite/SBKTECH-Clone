@@ -1,65 +1,56 @@
-
 import Link from 'next/link';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Facebook, Instagram, Twitter, ShieldCheck } from 'lucide-react';
+import { Facebook, Instagram, Twitter } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="bg-card border-t py-12 lg:py-16">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <ShieldCheck className="h-6 w-6 text-primary" />
-              <span className="text-xl font-bold">SBKTECH</span>
-            </div>
-            <p className="text-sm text-muted-foreground leading-relaxed">
+    <footer className="bg-[#111827] text-white py-20 px-8">
+      <div className="container mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
+          {/* Col 1 */}
+          <div className="space-y-6">
+            <span className="text-4xl font-black tracking-tighter text-white">SBKTECH</span>
+            <p className="text-gray-400 text-sm max-w-xs leading-relaxed">
               Votre partenaire de confiance pour la sécurité technologique au Maroc. Solutions innovantes pour maisons et entreprises.
             </p>
             <div className="flex space-x-4">
-              <Link href="#" className="text-muted-foreground hover:text-primary"><Facebook className="h-5 w-5" /></Link>
-              <Link href="#" className="text-muted-foreground hover:text-primary"><Instagram className="h-5 w-5" /></Link>
-              <Link href="#" className="text-muted-foreground hover:text-primary"><Twitter className="h-5 w-5" /></Link>
+              <Link href="#" className="text-gray-400 hover:text-white"><Facebook className="h-5 w-5" /></Link>
+              <Link href="#" className="text-gray-400 hover:text-white"><Instagram className="h-5 w-5" /></Link>
+              <Link href="#" className="text-gray-400 hover:text-white"><Twitter className="h-5 w-5" /></Link>
             </div>
           </div>
 
+          {/* Col 2 */}
           <div>
-            <h3 className="font-bold mb-4">Produits</h3>
-            <ul className="space-y-2 text-sm">
-              <li><Link href="#" className="text-muted-foreground hover:text-primary transition-colors">Serrures Intelligentes</Link></li>
-              <li><Link href="#" className="text-muted-foreground hover:text-primary transition-colors">Pointeuses Biométriques</Link></li>
-              <li><Link href="#" className="text-muted-foreground hover:text-primary transition-colors">Coffres Forts</Link></li>
-              <li><Link href="#" className="text-muted-foreground hover:text-primary transition-colors">Nouveautés</Link></li>
+            <h3 className="font-bold uppercase text-xs tracking-widest mb-8 text-gray-500">Liens utiles</h3>
+            <ul className="space-y-4 text-sm">
+              <li><Link href="/" className="text-gray-300 hover:text-white transition-colors">Accueil</Link></li>
+              <li><Link href="/category/serrure-intelligente" className="text-gray-300 hover:text-white transition-colors">Poignée Digital</Link></li>
+              <li><Link href="/category/coffre-fort" className="text-gray-300 hover:text-white transition-colors">Coffre-fort</Link></li>
+              <li><Link href="/catalogue" className="text-gray-300 hover:text-white transition-colors">Catalogue</Link></li>
+              <li><Link href="/contact" className="text-gray-300 hover:text-white transition-colors">Contactez-nous</Link></li>
             </ul>
           </div>
 
-          <div>
-            <h3 className="font-bold mb-4">Assistance</h3>
-            <ul className="space-y-2 text-sm">
-              <li><Link href="#" className="text-muted-foreground hover:text-primary transition-colors">Contactez-nous</Link></li>
-              <li><Link href="#" className="text-muted-foreground hover:text-primary transition-colors">Livraison & Retours</Link></li>
-              <li><Link href="#" className="text-muted-foreground hover:text-primary transition-colors">Guide d'installation</Link></li>
-              <li><Link href="#" className="text-muted-foreground hover:text-primary transition-colors">FAQ</Link></li>
-            </ul>
-          </div>
-
-          <div className="space-y-4">
-            <h3 className="font-bold mb-4">Newsletter</h3>
-            <p className="text-sm text-muted-foreground">Abonnez-vous pour recevoir nos offres exclusives.</p>
-            <form className="flex flex-col space-y-2">
+          {/* Col 3 */}
+          <div className="space-y-6">
+            <h3 className="font-bold uppercase text-xs tracking-widest text-gray-500">Subscribe to our emails</h3>
+            <div className="flex flex-col space-y-4">
               <Input
                 type="email"
-                placeholder="Votre email"
-                className="bg-background"
-                required
+                placeholder="Email"
+                className="bg-transparent border-gray-600 rounded-none focus:ring-white h-12 text-white placeholder:text-gray-600"
               />
-              <Button className="w-full">S'abonner</Button>
-            </form>
+              <Button className="w-full bg-white text-black hover:bg-gray-200 rounded-none font-bold uppercase text-xs h-12">
+                Sign up
+              </Button>
+            </div>
           </div>
         </div>
-        <div className="mt-12 pt-8 border-t border-border/50 text-center text-sm text-muted-foreground">
-          <p>© 2024 SBKTECH Clone. Tous droits réservés.</p>
+        
+        <div className="mt-20 pt-8 border-t border-gray-800 text-center text-[10px] text-gray-500 uppercase tracking-widest">
+          <p>© 2024 SBKTECH. All rights reserved.</p>
         </div>
       </div>
     </footer>
