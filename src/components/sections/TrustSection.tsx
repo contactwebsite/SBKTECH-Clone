@@ -1,5 +1,4 @@
-
-import { Check, X, ShieldCheck } from 'lucide-react';
+import { Check, X } from 'lucide-react';
 
 export default function TrustSection() {
   const comparison = [
@@ -12,40 +11,46 @@ export default function TrustSection() {
   ];
 
   return (
-    <section className="py-20 lg:py-32 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <h2 className="text-3xl lg:text-5xl font-bold">Pourquoi choisir <span className="text-primary">SBKTECH</span> ?</h2>
-          <p className="text-muted-foreground text-lg">Comparez et voyez la différence par vous-même.</p>
-        </div>
+    <section className="py-24 border-t border-gray-100 bg-white">
+      <div className="container mx-auto px-4 lg:px-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <h2 className="text-4xl lg:text-5xl font-bold leading-tight text-gray-900">
+              Le standard du véritable haut de gamme
+            </h2>
+            <p className="mt-6 text-lg text-gray-600 max-w-md">
+              Pourquoi choisir SBKTECH ? Comparez et voyez la différence par vous-même à travers nos services et la qualité de nos produits.
+            </p>
+          </div>
 
-        <div className="max-w-4xl mx-auto overflow-hidden rounded-2xl border bg-card shadow-xl">
-          <table className="w-full">
-            <thead>
-              <tr className="border-b bg-muted/50">
-                <th className="p-6 text-left font-bold">Caractéristiques</th>
-                <th className="p-6 text-center font-bold text-primary">SBKTECH</th>
-                <th className="p-6 text-center font-bold text-muted-foreground">Autres</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y">
-              {comparison.map((item, i) => (
-                <tr key={i} className="hover:bg-muted/30 transition-colors">
-                  <td className="p-6 text-sm font-medium">{item.feature}</td>
-                  <td className="p-6 text-center">
-                    <div className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary">
-                      <Check className="h-5 w-5" />
-                    </div>
-                  </td>
-                  <td className="p-6 text-center">
-                    <div className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-muted/10 text-muted-foreground/30">
-                      {item.others ? <Check className="h-5 w-5" /> : <X className="h-5 w-5" />}
-                    </div>
-                  </td>
+          <div className="overflow-hidden border border-gray-200">
+            <table className="w-full text-left border-collapse">
+              <thead>
+                <tr className="bg-black text-white">
+                  <th className="p-4 text-xs font-bold uppercase tracking-wider">Caractéristiques</th>
+                  <th className="p-4 text-center text-xs font-bold uppercase tracking-wider">SBKTECH</th>
+                  <th className="p-4 text-center text-xs font-bold uppercase tracking-wider text-gray-400">Autres</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="divide-y divide-gray-100">
+                {comparison.map((item, i) => (
+                  <tr key={i} className="hover:bg-gray-50 transition-colors">
+                    <td className="p-4 text-sm font-medium text-gray-800">{item.feature}</td>
+                    <td className="p-4 text-center">
+                      <Check className="h-5 w-5 text-green-500 mx-auto" />
+                    </td>
+                    <td className="p-4 text-center">
+                      {item.others ? (
+                        <Check className="h-5 w-5 text-green-500 mx-auto opacity-30" />
+                      ) : (
+                        <X className="h-5 w-5 text-red-500 mx-auto" />
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </section>

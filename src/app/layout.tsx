@@ -1,4 +1,3 @@
-
 import type {Metadata} from 'next';
 import './globals.css';
 import Header from '@/components/layout/Header';
@@ -7,7 +6,7 @@ import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
   title: 'SBKTECH - Solutions de Sécurité Intelligente',
-  description: 'Leader en serrures intelligentes, pointeuses biométriques et coffres-forts au Maroc. Sécurisez votre futur avec SBKTECH.',
+  description: 'Leader en serrures intelligentes, pointeuses biométriques et coffres-forts au Maroc.',
 };
 
 export default function RootLayout({
@@ -16,13 +15,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className="dark">
+    <html lang="fr">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
       </head>
-      <body className="font-body min-h-screen flex flex-col bg-background text-foreground">
+      <body className="font-sans min-h-screen flex flex-col bg-white text-[#111827]">
         <Header />
         <main className="flex-grow">
           {children}
