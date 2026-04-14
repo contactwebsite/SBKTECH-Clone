@@ -1,5 +1,7 @@
+
 "use client";
 
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Search, User, ShoppingBag, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -8,8 +10,19 @@ import {
   SheetContent,
   SheetTrigger,
 } from '@/components/ui/sheet';
+import { cn } from '@/lib/utils';
 
 export default function Header() {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const navLinks = [
     { name: 'ACCUEIL', href: '/' },
     { name: 'POIGNÉE DIGITAL', href: '/category/serrure-intelligente' },
@@ -19,7 +32,10 @@ export default function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/90 backdrop-blur-md h-20 transition-all duration-300">
+    <header className={cn(
+      "sticky top-0 z-50 w-full border-b border-gray-200 transition-all duration-300 h-20",
+      isScrolled ? "bg-white/90 backdrop-blur-md h-16" : "bg-white"
+    )}>
       <div className="mx-auto px-8 h-full flex items-center justify-between">
         <div className="flex items-center">
           <Link href="/" className="flex items-center group">
@@ -32,9 +48,10 @@ export default function Header() {
             <Link
               key={link.name}
               href={link.href}
-              className="text-sm font-medium text-black transition-colors duration-300 hover:text-gray-500 uppercase tracking-tight"
+              className="relative text-sm font-medium text-black transition-colors duration-300 hover:text-gray-500 uppercase tracking-tight group"
             >
               {link.name}
+              <span className="absolute left-0 bottom-[-4px] w-full h-[2px] bg-black scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100" />
             </Link>
           ))}
         </nav>

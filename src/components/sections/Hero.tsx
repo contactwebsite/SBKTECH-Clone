@@ -1,16 +1,26 @@
+
+"use client";
+
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 export default function Hero() {
   return (
-    <section className="relative w-full">
+    <section className="relative w-full overflow-hidden">
       <div className="w-full h-[500px] relative bg-[#eeeeee]">
-        <Image
-          src="https://placehold.co/1920x500/eeeeee/cccccc?text=Smart+Lock+Banner"
-          alt="SBKTECH Hero"
-          fill
-          priority
-          className="object-cover"
-        />
+        <motion.div
+          animate={{ scale: [1, 1.05, 1] }}
+          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+          className="w-full h-full"
+        >
+          <Image
+            src="https://placehold.co/1920x500/eeeeee/cccccc?text=Smart+Lock+Banner"
+            alt="SBKTECH Hero"
+            fill
+            priority
+            className="object-cover"
+          />
+        </motion.div>
       </div>
       
       {/* Ticker Section */}

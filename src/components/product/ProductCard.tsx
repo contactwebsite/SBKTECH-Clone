@@ -1,5 +1,9 @@
+
+"use client";
+
 import Image from 'next/image';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import { Product } from '@/app/data/products';
 
 interface ProductCardProps {
@@ -8,7 +12,11 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   return (
-    <article className="bg-white flex flex-col group cursor-pointer">
+    <motion.article 
+      whileHover={{ y: -10 }}
+      transition={{ duration: 0.3 }}
+      className="bg-white flex flex-col group cursor-pointer"
+    >
       <Link href={`/product/${product.slug}`} className="relative block aspect-[3/4] bg-gray-50 mb-4 overflow-hidden">
         <Image
           src={product.image}
@@ -16,9 +24,14 @@ export default function ProductCard({ product }: ProductCardProps) {
           fill
           className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-110"
         />
-        <div className="absolute top-0 left-0 bg-black text-white text-[10px] font-bold px-3 py-1 uppercase tracking-tighter z-10 animate-pulse">
+        <motion.div 
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+          className="absolute top-0 left-0 bg-black text-white text-[10px] font-bold px-3 py-1 uppercase tracking-tighter z-10"
+        >
           🏷️ Economisez {product.discountPercentage}
-        </div>
+        </motion.div>
       </Link>
 
       <div className="flex flex-col items-center text-center px-2">
@@ -37,6 +50,6 @@ export default function ProductCard({ product }: ProductCardProps) {
           </span>
         </div>
       </div>
-    </article>
+    </motion.article>
   );
 }

@@ -1,6 +1,8 @@
+
 "use client";
 
 import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import Hero from '@/components/sections/Hero';
 import FeaturesBar from '@/components/sections/FeaturesBar';
 import TrustSection from '@/components/sections/TrustSection';
@@ -42,13 +44,28 @@ export default function Home() {
     }
   ];
 
+  const sectionVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" }
+    }
+  };
+
   return (
-    <div className="bg-white min-h-screen">
+    <div className="bg-white min-h-screen overflow-x-hidden">
       <Hero />
       <FeaturesBar />
 
       {/* SECTION: Serrure intelligente */}
-      <section className="py-20">
+      <motion.section 
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={sectionVariants}
+        className="py-20"
+      >
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12 text-black uppercase tracking-widest">
             Serrure intelligente
@@ -59,15 +76,21 @@ export default function Home() {
             ))}
           </div>
           <div className="flex justify-center mt-12">
-            <Button asChild className="bg-black hover:bg-gray-800 text-white px-10 py-6 rounded-none uppercase text-xs font-bold tracking-widest transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]">
+            <Button asChild className="bg-black hover:bg-gray-800 text-white px-10 py-6 rounded-none uppercase text-xs font-bold tracking-widest transition-all duration-300 hover:scale-[1.05] active:scale-[0.98]">
               <Link href="/category/serrure-intelligente">Tout afficher</Link>
             </Button>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* SECTION: Pointeuse biométrique */}
-      <section className="py-20 bg-white">
+      <motion.section 
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={sectionVariants}
+        className="py-20 bg-white"
+      >
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12 text-black uppercase tracking-widest">
             Pointeuse biométrique
@@ -78,15 +101,21 @@ export default function Home() {
             ))}
           </div>
           <div className="flex justify-center mt-12">
-            <Button asChild className="bg-black hover:bg-gray-800 text-white px-10 py-6 rounded-none uppercase text-xs font-bold tracking-widest transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]">
+            <Button asChild className="bg-black hover:bg-gray-800 text-white px-10 py-6 rounded-none uppercase text-xs font-bold tracking-widest transition-all duration-300 hover:scale-[1.05] active:scale-[0.98]">
               <Link href="/category/pointeuse-biometrique">Tout afficher</Link>
             </Button>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* SECTION: Tourniquet tripode */}
-      <section className="py-20 bg-white">
+      <motion.section 
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={sectionVariants}
+        className="py-20 bg-white"
+      >
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12 text-black uppercase tracking-widest">
             Tourniquet tripode
@@ -97,52 +126,76 @@ export default function Home() {
             ))}
           </div>
           <div className="flex justify-center mt-12">
-            <Button asChild className="bg-black hover:bg-gray-800 text-white px-10 py-6 rounded-none uppercase text-xs font-bold tracking-widest transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]">
+            <Button asChild className="bg-black hover:bg-gray-800 text-white px-10 py-6 rounded-none uppercase text-xs font-bold tracking-widest transition-all duration-300 hover:scale-[1.05] active:scale-[0.98]">
               <Link href="/category/tourniquet-tripode">Tout afficher</Link>
             </Button>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* FEATURE SECTION 1: Image Left, Text Right */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16 px-8">
-          <div className="w-full md:w-1/2 aspect-video md:aspect-square relative bg-gray-100 overflow-hidden">
+          <motion.div 
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="w-full md:w-1/2 aspect-video md:aspect-square relative bg-gray-100 overflow-hidden"
+          >
             <Image
               src="https://picsum.photos/seed/home-security/800/800"
               alt="Votre maison sécurisée"
               fill
-              className="object-cover transition-transform duration-1000 hover:scale-105"
+              className="object-cover transition-transform duration-1000 hover:scale-110"
               data-ai-hint="smart home"
             />
-          </div>
-          <div className="w-full md:w-1/2 space-y-6">
+          </motion.div>
+          <motion.div 
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="w-full md:w-1/2 space-y-6"
+          >
             <h2 className="text-4xl font-bold text-black leading-tight uppercase tracking-tight">
               Votre maison. Votre sécurité. Votre tranquillité.
             </h2>
             <p className="text-gray-600 text-lg leading-relaxed">
               Ouvrez, contrôlez et protégez votre maison en un seul geste. Nos solutions intelligentes s'adaptent à votre style de vie pour vous offrir une sérénité totale, que vous soyez chez vous ou à l'autre bout du monde.
             </p>
-            <Button className="bg-black hover:bg-gray-800 text-white px-8 py-4 rounded-none uppercase text-xs font-bold tracking-widest h-auto transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]">
+            <Button className="bg-black hover:bg-gray-800 text-white px-8 py-4 rounded-none uppercase text-xs font-bold tracking-widest h-auto transition-all duration-300 hover:scale-[1.05] active:scale-[0.98]">
               Découvrir nos produits
             </Button>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* FEATURE SECTION 2: Text Left, Image Right */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row-reverse items-center gap-16 px-8">
-          <div className="w-full md:w-1/2 aspect-video md:aspect-square relative bg-gray-100 overflow-hidden">
+          <motion.div 
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="w-full md:w-1/2 aspect-video md:aspect-square relative bg-gray-100 overflow-hidden"
+          >
             <Image
               src="https://picsum.photos/seed/tech-security/800/800"
               alt="Technologie SBKTECH"
               fill
-              className="object-cover transition-transform duration-1000 hover:scale-105"
+              className="object-cover transition-transform duration-1000 hover:scale-110"
               data-ai-hint="security tech"
             />
-          </div>
-          <div className="w-full md:w-1/2 space-y-8">
+          </motion.div>
+          <motion.div 
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="w-full md:w-1/2 space-y-8"
+          >
             <h2 className="text-4xl font-bold text-black leading-tight uppercase tracking-tight">
               La sécurité intelligente commence ici.
             </h2>
@@ -163,42 +216,61 @@ export default function Home() {
             <p className="text-xl font-bold text-black border-l-4 border-black pl-4">
               Sécurité. Confort. Tranquillité.
             </p>
-            <Button className="bg-black hover:bg-gray-800 text-white px-8 py-4 rounded-none uppercase text-xs font-bold tracking-widest h-auto transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]">
+            <Button className="bg-black hover:bg-gray-800 text-white px-8 py-4 rounded-none uppercase text-xs font-bold tracking-widest h-auto transition-all duration-300 hover:scale-[1.05] active:scale-[0.98]">
               Découvrir les solutions SBKTECH
             </Button>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* VIDEO TESTIMONIALS */}
-      <section className="py-24">
+      <motion.section 
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={sectionVariants}
+        className="py-24"
+      >
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold text-center mb-16 text-black uppercase tracking-widest">
             Ils nous font confiance
           </h2>
-          <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 px-4">
-            {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="aspect-[9/16] bg-gray-200 relative group cursor-pointer overflow-hidden">
+          <div className="max-w-7xl mx-auto flex overflow-x-auto snap-x snap-mandatory hide-scrollbar gap-6 px-4 pb-8">
+            {[1, 2, 3, 4, 5, 6].map((i) => (
+              <motion.div 
+                key={i} 
+                whileHover={{ scale: 0.98 }}
+                className="min-w-[280px] md:min-w-[320px] aspect-[9/16] bg-gray-200 relative group cursor-pointer overflow-hidden snap-center shrink-0 shadow-none"
+              >
                 <Image
                   src={`https://picsum.photos/seed/testimonial-${i}/400/711`}
                   alt={`Témoignage ${i}`}
                   fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-75"
                 />
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors" />
+                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/30 transition-colors" />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center transform transition-all duration-300 group-hover:scale-110 group-hover:bg-white">
-                    <Play className="w-6 h-6 text-black fill-current ml-1 transition-transform duration-300 group-hover:scale-110" />
-                  </div>
+                  <motion.div 
+                    whileHover={{ scale: 1.2 }}
+                    className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center transition-all duration-300 group-hover:bg-white"
+                  >
+                    <Play className="w-6 h-6 text-black fill-current ml-1" />
+                  </motion.div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* FAQ SECTION */}
-      <section className="py-24 bg-white border-t">
+      <motion.section 
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={sectionVariants}
+        className="py-24 bg-white border-t"
+      >
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-16 text-black uppercase tracking-widest">
             Vos questions, nos réponses
@@ -216,17 +288,25 @@ export default function Home() {
                     openFaq === i && "rotate-180 text-black"
                   )} />
                 </button>
-                <div className={cn(
-                  "px-4 transition-all duration-300 ease-in-out bg-gray-50/50",
-                  openFaq === i ? "max-h-40 py-6 opacity-100" : "max-h-0 py-0 opacity-0"
-                )}>
-                  <p className="text-gray-600 text-sm leading-relaxed">{faq.a}</p>
-                </div>
+                <AnimatePresence>
+                  {openFaq === i && (
+                    <motion.div 
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                    >
+                      <div className="px-4 pb-6 bg-gray-50/50">
+                        <p className="text-gray-600 text-sm leading-relaxed">{faq.a}</p>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       <TrustSection />
     </div>
