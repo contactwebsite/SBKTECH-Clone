@@ -181,7 +181,7 @@ export default function Home() {
             className="w-full md:w-1/2 aspect-square relative bg-gray-100 overflow-hidden"
           >
             <Image
-              src="https://picsum.photos/seed/balencia-tech/800/800"
+              src="https://i.ibb.co/N6D2bQQf/Image-fx-12.jpg"
               alt="Technologie BALENCIA"
               fill
               className="object-cover transition-transform duration-1000 hover:scale-110"
