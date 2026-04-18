@@ -15,7 +15,7 @@ export default function Hero() {
         >
           <Image
             src="https://i.ibb.co/GfYGQ9Gm/BALENCIA.jpg"
-            alt="SBKTECH BALENCIA Smart Lock"
+            alt="BALENCIA Premium Smart Lock"
             fill
             priority
             className="object-cover"
@@ -25,11 +25,11 @@ export default function Hero() {
       </div>
       
       {/* Ticker Section */}
-      <div className="bg-black text-white py-2 overflow-hidden border-y border-black">
+      <div className="bg-black text-white py-2.5 overflow-hidden border-y border-black">
         <div className="animate-marquee whitespace-nowrap">
-          {Array.from({ length: 20 }).map((_, i) => (
-            <span key={i} className="text-sm font-bold mx-8 tracking-widest">
-              SBKTECH
+          {Array.from({ length: 12 }).map((_, i) => (
+            <span key={i} className="mx-8 font-bold tracking-[0.15em] text-[11px] uppercase">
+              BALENCIA SMART SECURITY
             </span>
           ))}
         </div>

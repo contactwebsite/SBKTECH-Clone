@@ -5,8 +5,8 @@ import Footer from '@/components/layout/Footer';
 import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
-  title: 'SBKTECH - Solutions de Sécurité Intelligente',
-  description: 'Leader en serrures intelligentes, pointeuses biométriques et coffres-forts au Maroc.',
+  title: 'BALENCIA - L\'Élégance de la Sécurité Intelligente',
+  description: 'Leader en solutions de sécurité de luxe : serrures digitales, pointeuses et coffres-forts au Maroc.',
 };
 
 export default function RootLayout({
@@ -19,7 +19,7 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
       </head>
       <body className="font-sans min-h-screen flex flex-col bg-white text-[#111827]">
         <Header />

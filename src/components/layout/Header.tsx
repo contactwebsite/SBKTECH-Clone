@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, useEffect } from 'react';
@@ -33,13 +32,18 @@ export default function Header() {
 
   return (
     <header className={cn(
-      "sticky top-0 z-50 w-full border-b border-gray-200 transition-all duration-300 h-20",
-      isScrolled ? "bg-white/90 backdrop-blur-md h-16" : "bg-white"
+      "sticky top-0 z-50 w-full border-b border-gray-100 transition-all duration-300 h-20",
+      isScrolled ? "bg-white/90 backdrop-blur-md h-16 shadow-sm" : "bg-white"
     )}>
       <div className="mx-auto px-8 h-full flex items-center justify-between">
         <div className="flex items-center">
-          <Link href="/" className="flex items-center group">
-            <span className="text-4xl font-black tracking-tighter text-black transition-transform duration-300 group-hover:scale-[1.02]">SBKTECH</span>
+          <Link href="/" className="flex items-center gap-3 group">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-black transition-transform duration-300 group-hover:scale-110">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <path d="M12 8v4"/>
+              <path d="M12 16h.01"/>
+            </svg>
+            <span className="font-black text-2xl lg:text-3xl tracking-[0.2em] uppercase text-black transition-all duration-300 group-hover:tracking-[0.25em]">BALENCIA</span>
           </Link>
         </div>
 
@@ -48,25 +52,25 @@ export default function Header() {
             <Link
               key={link.name}
               href={link.href}
-              className="relative text-sm font-medium text-black transition-colors duration-300 hover:text-gray-500 uppercase tracking-tight group"
+              className="relative text-[11px] font-bold text-black transition-colors duration-300 hover:text-gray-500 uppercase tracking-[0.1em] group"
             >
               {link.name}
-              <span className="absolute left-0 bottom-[-4px] w-full h-[2px] bg-black scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100" />
+              <span className="absolute left-0 bottom-[-4px] w-full h-[1px] bg-black scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100" />
             </Link>
           ))}
         </nav>
 
         <div className="flex items-center space-x-6 text-black">
           <Button variant="ghost" size="icon" className="hover:bg-transparent hover:scale-110 transition-transform duration-200 cursor-pointer">
-            <Search className="h-6 w-6" />
+            <Search className="h-5 w-5" />
             <span className="sr-only">Rechercher</span>
           </Button>
           <Button variant="ghost" size="icon" className="hover:bg-transparent hover:scale-110 transition-transform duration-200 cursor-pointer">
-            <User className="h-6 w-6" />
+            <User className="h-5 w-5" />
             <span className="sr-only">Compte</span>
           </Button>
           <Button variant="ghost" size="icon" className="hover:bg-transparent hover:scale-110 transition-transform duration-200 cursor-pointer">
-            <ShoppingBag className="h-6 w-6" />
+            <ShoppingBag className="h-5 w-5" />
             <span className="sr-only">Panier</span>
           </Button>
 
@@ -77,13 +81,13 @@ export default function Header() {
                 <span className="sr-only">Menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="bg-white">
+            <SheetContent side="right" className="bg-white border-l-0">
               <nav className="flex flex-col space-y-6 mt-12">
                 {navLinks.map((link) => (
                   <Link
                     key={link.name}
                     href={link.href}
-                    className="text-lg font-bold uppercase text-black hover:text-gray-500 transition-colors"
+                    className="text-lg font-black uppercase tracking-[0.1em] text-black hover:text-gray-500 transition-colors"
                   >
                     {link.name}
                   </Link>
