@@ -11,8 +11,12 @@ export default function Footer() {
           {/* Col 1 */}
           <div className="space-y-6">
             <div className="flex flex-col">
-              <span className="font-black text-4xl tracking-[0.2em] uppercase text-white">BALENCIA</span>
-              <p className="mt-2 text-sm text-gray-400 tracking-wider">L'ÉLÉGANCE DE LA SÉCURITÉ</p>
+              <span className="font-sans font-black text-3xl md:text-4xl tracking-[0.25em] text-white uppercase leading-none">
+                BALENCIA
+              </span>
+              <span className="font-sans font-medium text-[0.6rem] tracking-[0.4em] text-gray-400 uppercase mt-2 leading-none">
+                L'ÉLÉGANCE DE LA SÉCURITÉ
+              </span>
             </div>
             <p className="text-gray-400 text-sm max-w-xs leading-relaxed">
               Votre partenaire d'excellence pour la sécurité technologique au Maroc. Solutions de luxe pour résidences et entreprises.
