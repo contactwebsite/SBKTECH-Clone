@@ -1,10 +1,17 @@
+
 {
   "placeholderImages": [
     {
-      "id": "hero-balencia",
-      "description": "Serrure intelligente Balencia",
+      "id": "hero-balencia-desktop",
+      "description": "Serrure intelligente Balencia Desktop",
       "imageUrl": "https://i.ibb.co/GfYGQ9Gm/BALENCIA.jpg",
-      "imageHint": "smart lock balencia"
+      "imageHint": "smart lock desktop"
+    },
+    {
+      "id": "hero-balencia-mobile",
+      "description": "Serrure intelligente Balencia Mobile",
+      "imageUrl": "https://i.ibb.co/rfNLW2Qh/Image-fx-7.jpg",
+      "imageHint": "smart lock mobile"
     },
     {
       "id": "hero-lock",
