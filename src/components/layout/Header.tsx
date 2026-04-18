@@ -35,7 +35,7 @@ export default function Header() {
       "sticky top-0 z-50 w-full border-b border-gray-100 transition-all duration-300 h-20",
       isScrolled ? "bg-white/90 backdrop-blur-md h-16 shadow-sm" : "bg-white"
     )}>
-      <div className="mx-auto px-8 h-full flex items-center justify-between">
+      <div className="mx-auto px-4 md:px-8 h-full flex items-center justify-between">
         <div className="flex items-center">
           <Link href="/" className="flex items-center gap-3 group">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-black transition-transform duration-300 group-hover:scale-110">
@@ -43,11 +43,11 @@ export default function Header() {
               <path d="M12 8v4"/>
               <path d="M12 16h.01"/>
             </svg>
-            <span className="font-black text-2xl lg:text-3xl tracking-[0.2em] uppercase text-black transition-all duration-300 group-hover:tracking-[0.25em]">BALENCIA</span>
+            <span className="font-black text-2xl md:text-3xl tracking-[0.2em] uppercase text-black transition-all duration-300 group-hover:tracking-[0.25em]">BALENCIA</span>
           </Link>
         </div>
 
-        <nav className="hidden lg:flex items-center space-x-8">
+        <nav className="hidden md:flex items-center space-x-8">
           {navLinks.map((link) => (
             <Link
               key={link.name}
@@ -65,7 +65,7 @@ export default function Header() {
             <Search className="h-5 w-5" />
             <span className="sr-only">Rechercher</span>
           </Button>
-          <Button variant="ghost" size="icon" className="hover:bg-transparent hover:scale-110 transition-transform duration-200 cursor-pointer">
+          <Button variant="ghost" size="icon" className="hover:bg-transparent hover:scale-110 transition-transform duration-200 cursor-pointer hidden sm:flex">
             <User className="h-5 w-5" />
             <span className="sr-only">Compte</span>
           </Button>
@@ -76,7 +76,7 @@ export default function Header() {
 
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="lg:hidden hover:scale-110 transition-transform duration-200">
+              <Button variant="ghost" size="icon" className="md:hidden hover:scale-110 transition-transform duration-200">
                 <Menu className="h-6 w-6" />
                 <span className="sr-only">Menu</span>
               </Button>

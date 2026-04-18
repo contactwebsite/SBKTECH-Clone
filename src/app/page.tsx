@@ -53,7 +53,7 @@ export default function Home() {
   };
 
   return (
-    <div className="bg-white min-h-screen overflow-x-hidden">
+    <div className="bg-white min-h-screen overflow-x-hidden w-full max-w-[100vw]">
       <Hero />
       <FeaturesBar />
 
@@ -69,7 +69,7 @@ export default function Home() {
           <h2 className="text-3xl font-black text-center mb-12 text-black uppercase tracking-[0.2em]">
             Serrure intelligente
           </h2>
-          <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-4">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 px-4 md:px-0">
             {serrures.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
@@ -94,7 +94,7 @@ export default function Home() {
           <h2 className="text-3xl font-black text-center mb-12 text-black uppercase tracking-[0.2em]">
             Pointeuse biométrique
           </h2>
-          <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-4">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 px-4 md:px-0">
             {pointeuses.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
@@ -119,7 +119,7 @@ export default function Home() {
           <h2 className="text-3xl font-black text-center mb-12 text-black uppercase tracking-[0.2em]">
             Tourniquet tripode
           </h2>
-          <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-4">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 px-4 md:px-0">
             {tourniquets.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
