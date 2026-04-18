@@ -143,7 +143,7 @@ export default function Home() {
             className="w-full md:w-1/2 aspect-square relative bg-gray-50 overflow-hidden"
           >
             <Image
-              src="https://picsum.photos/seed/balencia-safe/800/800"
+              src="https://i.ibb.co/Mkb4rR03/balencia-photo.jpg"
               alt="Votre maison sécurisée par BALENCIA"
               fill
               className="object-cover transition-transform duration-1000 hover:scale-110"
