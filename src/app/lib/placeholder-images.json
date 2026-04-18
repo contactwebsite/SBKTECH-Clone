@@ -1,6 +1,11 @@
-
 {
   "placeholderImages": [
+    {
+      "id": "hero-balencia",
+      "description": "Serrure intelligente Balencia",
+      "imageUrl": "https://i.ibb.co/GfYGQ9Gm/BALENCIA.jpg",
+      "imageHint": "smart lock balencia"
+    },
     {
       "id": "hero-lock",
       "description": "Modern smart lock on a black door",
