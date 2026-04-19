@@ -77,18 +77,6 @@ export default function PoigneeDigitalPage() {
           ))}
         </div>
       </div>
-
-      {/* Luxury Footer Note */}
-      <section className="py-24 border-t border-gray-50">
-        <div className="max-w-3xl mx-auto text-center px-4">
-          <span className="text-[9px] font-black tracking-[0.4em] text-gray-400 uppercase mb-6 block">
-            BALENCIA EXCELLENCE
-          </span>
-          <p className="text-sm text-gray-500 leading-relaxed font-light italic">
-            "Chaque détail est pensé pour fusionner la haute sécurité technologique avec l'élégance architecturale de votre demeure."
-          </p>
-        </div>
-      </section>
     </div>
   );
 }
