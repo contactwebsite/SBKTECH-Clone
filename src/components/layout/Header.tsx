@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { ShoppingBag, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
@@ -13,6 +14,7 @@ import { cn } from '@/lib/utils';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -64,27 +66,39 @@ export default function Header() {
         </div>
 
         <nav className="hidden md:flex items-center space-x-2">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              className="text-sm font-semibold text-gray-500 uppercase tracking-wider px-5 py-2 border border-transparent rounded-full transition-all duration-300 ease-in-out hover:text-black hover:border-black hover:bg-gray-50/50 cursor-pointer"
-            >
-              {link.name}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href;
+            return (
+              <Link
+                key={link.name}
+                href={link.href}
+                className={cn(
+                  "text-sm font-semibold uppercase tracking-wider px-5 py-2 transition-all duration-300 ease-in-out cursor-pointer",
+                  isActive 
+                    ? "bg-black text-white border border-black rounded-full" 
+                    : "text-gray-500 border border-transparent rounded-full hover:text-black hover:border-black hover:bg-gray-50/50"
+                )}
+              >
+                {link.name}
+              </Link>
+            );
+          })}
         </nav>
 
-        <div className="flex items-center space-x-2 md:space-x-4 text-black">
-          <Button variant="ghost" size="icon" className="hover:bg-transparent hover:scale-110 transition-transform duration-200 cursor-pointer">
-            <ShoppingBag className="h-5 w-5" />
-            <span className="sr-only">Panier</span>
-          </Button>
+        <div className="flex items-center space-x-4">
+          {/* The Trillion-Dollar Shopping Bag */}
+          <div className="relative cursor-pointer group p-2">
+            <ShoppingBag className="w-5 h-5 text-gray-800 transition-transform duration-300 group-hover:scale-110 group-hover:text-black" strokeWidth={1.5} />
+            <span className="absolute top-1 right-1 flex h-2.5 w-2.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-500"></span>
+            </span>
+          </div>
 
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="md:hidden hover:scale-110 transition-transform duration-200">
-                <Menu className="h-6 w-6" />
+                <Menu className="h-6 w-6 text-black" />
                 <span className="sr-only">Menu</span>
               </Button>
             </SheetTrigger>
@@ -94,7 +108,10 @@ export default function Header() {
                   <Link
                     key={link.name}
                     href={link.href}
-                    className="text-lg font-black uppercase tracking-[0.1em] text-black hover:text-gray-500 transition-colors"
+                    className={cn(
+                      "text-lg font-black uppercase tracking-[0.1em] transition-colors",
+                      pathname === link.href ? "text-amber-600" : "text-black hover:text-gray-500"
+                    )}
                   >
                     {link.name}
                   </Link>
