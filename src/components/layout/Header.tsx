@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { ShoppingBag, Menu, X } from 'lucide-react';
+import { ShoppingBag, Menu, X, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   Sheet,
@@ -28,8 +28,19 @@ export default function Header() {
   const navLinks = [
     { name: 'ACCUEIL', href: '/' },
     { name: 'POIGNÉE DIGITAL', href: '/category/serrure-intelligente' },
-    { name: 'Coffre-fort', href: '/category/coffre-fort' },
-    { name: 'Catalogue', href: '/catalogue' },
+    { name: 'COFFRE-FORT', href: '/category/coffre-fort' },
+    { 
+      name: 'CATALOGUE', 
+      href: '/catalogue',
+      dropdown: [
+        { name: 'Pointeuse Biométrique', href: '/category/pointeuse-biometrique' },
+        { name: 'Contrôle d\'accès porte', href: '/category/controle-acces-porte' },
+        { name: 'Lecteurs contrôle d\'accès', href: '/category/lecteurs' },
+        { name: 'Contrôle d\'accès', href: '/category/controle-acces' },
+        { name: 'Caisse automatique', href: '/category/caisse' },
+        { name: 'Imprimante Thermique', href: '/category/imprimante' },
+      ]
+    },
     { name: 'CONTACTEZ-NOUS', href: '/contact' },
   ];
 
@@ -67,19 +78,39 @@ export default function Header() {
           <nav className="hidden md:flex items-center space-x-2">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
+              const hasDropdown = !!link.dropdown;
+
               return (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className={cn(
-                    "text-sm font-semibold uppercase tracking-wider px-5 py-2 transition-all duration-300 ease-in-out cursor-pointer",
-                    isActive 
-                      ? "bg-black text-white border border-black rounded-full" 
-                      : "text-gray-500 border border-transparent rounded-full hover:text-black hover:border-black hover:bg-gray-50/50"
+                <div key={link.name} className={cn("relative h-full flex items-center", hasDropdown && "group")}>
+                  <Link
+                    href={link.href}
+                    className={cn(
+                      "text-sm font-semibold uppercase tracking-wider px-5 py-2 transition-all duration-300 ease-in-out cursor-pointer flex items-center gap-1.5",
+                      isActive 
+                        ? "bg-black text-white border border-black rounded-full" 
+                        : "text-gray-500 border border-transparent rounded-full hover:text-black hover:border-black hover:bg-gray-50/50"
+                    )}
+                  >
+                    {link.name}
+                    {hasDropdown && <ChevronDown className="w-3.5 h-3.5 opacity-50 group-hover:rotate-180 transition-transform duration-300" />}
+                  </Link>
+
+                  {hasDropdown && (
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-300 z-50">
+                      <div className="w-64 bg-white/90 backdrop-blur-xl border border-gray-100 shadow-2xl rounded-2xl p-4 flex flex-col gap-1">
+                        {link.dropdown?.map((item) => (
+                          <Link
+                            key={item.name}
+                            href={item.href}
+                            className="text-sm text-gray-600 font-medium hover:text-black hover:pl-3 hover:border-l-2 hover:border-black transition-all duration-300 py-2.5 px-2"
+                          >
+                            {item.name}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
                   )}
-                >
-                  {link.name}
-                </Link>
+                </div>
               );
             })}
           </nav>
