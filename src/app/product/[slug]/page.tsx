@@ -17,7 +17,7 @@ interface ProductPageProps {
   params: Promise<{ slug: string }>;
 }
 
-const reviews = [
+const reviewsData = [
   {
     name: "Youssef M.",
     rating: 5,
@@ -41,6 +41,7 @@ const reviews = [
 export default function ProductPage({ params }: ProductPageProps) {
   const { slug } = use(params);
   const product = products.find((p) => p.slug === slug);
+  
   const [aiDescription, setAiDescription] = useState("");
   const [isLoadingAi, setIsLoadingAi] = useState(true);
   const [showSticky, setShowSticky] = useState(false);
@@ -53,7 +54,7 @@ export default function ProductPage({ params }: ProductPageProps) {
   useEffect(() => {
     if (!product) return;
     
-    // Generate dynamic values only on client-side
+    // Generate dynamic values only on client-side to prevent hydration errors
     const randomRating = parseFloat((Math.random() * (5.0 - 4.6) + 4.6).toFixed(1));
     const randomCount = Math.floor(Math.random() * (72 - 12 + 1) + 12);
     setDynamicRating(randomRating);
@@ -107,6 +108,23 @@ export default function ProductPage({ params }: ProductPageProps) {
     }
   ];
 
+  const renderStars = (rating: number) => {
+    return (
+      <div className="flex items-center text-yellow-400">
+        {Array.from({ length: 5 }).map((_, i) => {
+          const starValue = i + 1;
+          if (starValue <= Math.floor(rating)) {
+            return <Star key={i} className="h-5 w-5 fill-current" />;
+          } else if (starValue - 0.5 <= rating) {
+            return <StarHalf key={i} className="h-5 w-5 fill-current" />;
+          } else {
+            return <Star key={i} className="h-5 w-5 text-gray-200" />;
+          }
+        })}
+      </div>
+    );
+  };
+
   return (
     <div className="bg-white min-h-screen pb-20 lg:pb-0">
       <div className="container mx-auto px-4 py-12 lg:py-20">
@@ -120,7 +138,6 @@ export default function ProductPage({ params }: ProductPageProps) {
                 fill
                 priority
                 className="object-cover"
-                data-ai-hint="security tech"
               />
               <Badge className="absolute top-6 left-6 bg-red-600 hover:bg-red-700 font-bold px-4 py-1.5 text-lg">
                 {product.discountPercentage}
@@ -144,30 +161,27 @@ export default function ProductPage({ params }: ProductPageProps) {
           <section className="space-y-8">
             <div className="space-y-4">
               <h1 className="text-3xl lg:text-5xl font-bold leading-tight">{product.name}</h1>
+              
+              {/* Dynamic Social Proof Top Bar */}
               <div className="flex items-center gap-4">
-                <div className="flex items-center text-yellow-400">
-                  {dynamicRating ? (
-                    <>
-                      {Array.from({ length: 5 }).map((_, i) => {
-                        const starValue = i + 1;
-                        if (starValue <= Math.floor(dynamicRating)) {
-                          return <Star key={i} className="h-5 w-5 fill-current" />;
-                        } else if (starValue - 0.5 <= dynamicRating) {
-                          return <StarHalf key={i} className="h-5 w-5 fill-current" />;
-                        } else {
-                          return <Star key={i} className="h-5 w-5 text-muted" />;
-                        }
-                      })}
-                      <span className="text-foreground font-bold ml-2">{dynamicRating}/5</span>
-                    </>
+                {dynamicRating !== null ? (
+                  <div className="flex items-center gap-2">
+                    {renderStars(dynamicRating)}
+                    <span className="text-foreground font-bold">{dynamicRating}/5</span>
+                  </div>
+                ) : (
+                  <div className="h-6 w-32 bg-gray-100 animate-pulse rounded" />
+                )}
+                <div className="h-4 w-px bg-gray-200" />
+                <div className="text-muted-foreground text-sm font-medium">
+                  {dynamicReviewCount !== null ? (
+                    `${dynamicReviewCount} avis clients`
                   ) : (
-                    <div className="h-5 w-32 bg-gray-100 animate-pulse rounded" />
+                    <div className="h-4 w-24 bg-gray-100 animate-pulse rounded" />
                   )}
                 </div>
-                <div className="text-muted-foreground text-sm border-l pl-4">
-                  {dynamicReviewCount ? `${dynamicReviewCount} avis clients` : <div className="h-4 w-24 bg-gray-100 animate-pulse rounded inline-block" />}
-                </div>
               </div>
+
               <div className="flex items-baseline gap-4">
                 <span className="text-4xl font-bold text-primary">{product.price.toLocaleString()} MAD</span>
                 <span className="text-xl text-muted-foreground line-through decoration-red-500/50">
@@ -183,14 +197,20 @@ export default function ProductPage({ params }: ProductPageProps) {
             <div className="space-y-8">
               <CODForm productName={product.name} price={product.price} />
               
-              {/* Premium Customer Reviews Section */}
-              <div className="space-y-6">
-                <h3 className="text-xs font-black uppercase tracking-[0.2em] text-gray-400">Avis Clients</h3>
+              {/* Ultra-Premium Customer Reviews Section */}
+              <div className="space-y-6 pt-4">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-xs font-black uppercase tracking-[0.2em] text-gray-400">Avis Clients</h3>
+                  <div className="h-px flex-1 bg-gray-100 mx-4" />
+                </div>
                 <div className="space-y-4">
-                  {reviews.map((review, i) => (
-                    <div key={i} className="p-5 bg-gray-50/50 rounded-2xl border border-gray-100 flex flex-col gap-3">
-                      <div className="flex justify-between items-center">
-                        <span className="font-bold text-sm text-black">{review.name}</span>
+                  {reviewsData.map((review, i) => (
+                    <div key={i} className="p-6 bg-gray-50/50 rounded-2xl border border-gray-100 flex flex-col gap-3 transition-all hover:bg-white hover:shadow-xl hover:shadow-gray-200/50 group">
+                      <div className="flex justify-between items-start">
+                        <div className="space-y-1">
+                          <span className="font-bold text-sm text-black block">{review.name}</span>
+                          <span className="text-[10px] text-gray-400 uppercase tracking-tighter block">{review.date}</span>
+                        </div>
                         <div className="flex items-center text-yellow-500">
                           {Array.from({ length: 5 }).map((_, j) => (
                             <Star 
@@ -204,7 +224,6 @@ export default function ProductPage({ params }: ProductPageProps) {
                         </div>
                       </div>
                       <p className="text-gray-600 text-sm italic leading-relaxed">"{review.text}"</p>
-                      <span className="text-[10px] text-gray-400 uppercase tracking-tighter">{review.date}</span>
                     </div>
                   ))}
                 </div>
@@ -313,7 +332,7 @@ export default function ProductPage({ params }: ProductPageProps) {
         </section>
       </div>
 
-      {/* Trillion-Dollar Sticky Bottom Bar */}
+      {/* Sticky Bottom Bar */}
       <AnimatePresence>
         {showSticky && (
           <motion.div 
