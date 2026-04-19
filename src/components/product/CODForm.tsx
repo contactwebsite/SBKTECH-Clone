@@ -134,7 +134,7 @@ export default function CODForm({ productName, price }: CODFormProps) {
           />
           <Button 
             type="submit" 
-            className="relative overflow-hidden w-full bg-black text-white py-8 rounded-md font-semibold tracking-widest uppercase text-sm transition-all hover:bg-gray-900 group flex justify-center items-center gap-3 mt-4"
+            className="relative overflow-hidden w-full bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700 text-white py-8 rounded-md font-semibold tracking-widest uppercase text-sm transition-all animate-soft-pulse shadow-lg shadow-amber-500/50 hover:shadow-amber-500 group flex justify-center items-center gap-3 mt-4"
             disabled={isSubmitting}
           >
             <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:animate-shimmer"></div>

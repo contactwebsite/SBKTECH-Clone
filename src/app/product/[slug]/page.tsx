@@ -179,12 +179,6 @@ export default function ProductPage({ params }: ProductPageProps) {
               >
                 Description détaillée
               </TabsTrigger>
-              <TabsTrigger 
-                value="specs" 
-                className="px-0 py-4 border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none rounded-none text-lg font-bold"
-              >
-                Fiche technique
-              </TabsTrigger>
             </TabsList>
             <TabsContent value="description" className="py-10">
               {isLoadingAi ? (
@@ -200,31 +194,6 @@ export default function ProductPage({ params }: ProductPageProps) {
                   dangerouslySetInnerHTML={{ __html: aiDescription }}
                 />
               )}
-            </TabsContent>
-            <TabsContent value="specs" className="py-10">
-              <div className="max-w-3xl">
-                <h2 className="text-2xl font-bold mb-6">Spécifications Techniques</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
-                  {product.features.split(',').map((feat, i) => (
-                    <div key={i} className="flex justify-between py-3 border-b border-border/50">
-                      <span className="text-muted-foreground">{feat.trim()}</span>
-                      <span className="font-semibold text-primary">Inclus</span>
-                    </div>
-                  ))}
-                  <div className="flex justify-between py-3 border-b border-border/50">
-                    <span className="text-muted-foreground">Alimentation</span>
-                    <span className="font-semibold">4x Piles AA</span>
-                  </div>
-                  <div className="flex justify-between py-3 border-b border-border/50">
-                    <span className="text-muted-foreground">Matériau</span>
-                    <span className="font-semibold">Alliage de Zinc</span>
-                  </div>
-                  <div className="flex justify-between py-3 border-b border-border/50">
-                    <span className="text-muted-foreground">Étanchéité</span>
-                    <span className="font-semibold">IP65</span>
-                  </div>
-                </div>
-              </div>
             </TabsContent>
           </Tabs>
         </section>
@@ -281,13 +250,17 @@ export default function ProductPage({ params }: ProductPageProps) {
           >
             <div className="flex flex-col">
               <span className="text-sm font-bold text-black truncate max-w-[150px] md:max-w-none">{product.name}</span>
-              <span className="text-xs font-bold text-primary">{product.price.toLocaleString()} MAD</span>
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-medium text-muted-foreground line-through decoration-red-500/50">{product.oldPrice.toLocaleString()} MAD</span>
+                <span className="text-sm font-bold text-primary">{product.price.toLocaleString()} MAD</span>
+                <span className="text-[10px] font-black bg-amber-100 text-amber-700 px-2 py-0.5 rounded ml-1 uppercase">RÉDUCTION {product.discountPercentage}</span>
+              </div>
             </div>
             <button 
               onClick={() => {
                 window.scrollTo({ top: 400, behavior: 'smooth' });
               }}
-              className="bg-black text-white px-8 py-3 rounded-full text-[10px] font-bold tracking-[0.2em] uppercase hover:scale-105 transition-transform active:scale-95 whitespace-nowrap"
+              className="bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700 text-white px-8 py-3 rounded-full text-[10px] font-bold tracking-[0.2em] uppercase hover:scale-105 transition-all animate-soft-pulse shadow-lg shadow-amber-500/50 active:scale-95 whitespace-nowrap"
             >
               Commander maintenant
             </button>

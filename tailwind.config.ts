@@ -94,11 +94,22 @@ export default {
             transform: 'translateX(100%)',
           },
         },
+        'soft-pulse': {
+          '0%, 100%': {
+            transform: 'scale(1)',
+            boxShadow: '0 0 0 0 rgba(245, 158, 11, 0.7)',
+          },
+          '50%': {
+            transform: 'scale(1.02)',
+            boxShadow: '0 0 20px 5px rgba(245, 158, 11, 0.4)',
+          },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         shimmer: 'shimmer 1.5s infinite',
+        'soft-pulse': 'soft-pulse 3s infinite ease-in-out',
       },
     },
   },
