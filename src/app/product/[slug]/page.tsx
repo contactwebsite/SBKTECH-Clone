@@ -5,7 +5,7 @@ import { use, useState, useEffect } from 'react';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { products } from '@/app/data/products';
-import { Star, ShieldCheck, Truck, RefreshCcw, Headset, ChevronDown } from 'lucide-react';
+import { Star, ShieldCheck, Truck, RefreshCcw, Headset, ChevronDown, StarHalf } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import CODForm from '@/components/product/CODForm';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -17,6 +17,27 @@ interface ProductPageProps {
   params: Promise<{ slug: string }>;
 }
 
+const reviews = [
+  {
+    name: "Youssef M.",
+    rating: 5,
+    text: "Produit d'une qualité exceptionnelle. L'installation a été rapide et le design est magnifique sur ma porte.",
+    date: "Il y a 2 semaines"
+  },
+  {
+    name: "Hassan B.",
+    rating: 5,
+    text: "Saraha top ! Khedma mzyana bzaf o theknit men lswaret. Recommandé 100%.",
+    date: "Il y a 1 mois"
+  },
+  {
+    name: "Amine T.",
+    rating: 4.5,
+    text: "Très satisfait de cet achat. L'application est fluide et la serrure est très réactive.",
+    date: "Il y a 3 semaines"
+  }
+];
+
 export default function ProductPage({ params }: ProductPageProps) {
   const { slug } = use(params);
   const product = products.find((p) => p.slug === slug);
@@ -24,10 +45,20 @@ export default function ProductPage({ params }: ProductPageProps) {
   const [isLoadingAi, setIsLoadingAi] = useState(true);
   const [showSticky, setShowSticky] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  
+  // Dynamic social proof states to avoid hydration mismatch
+  const [dynamicRating, setDynamicRating] = useState<number | null>(null);
+  const [dynamicReviewCount, setDynamicReviewCount] = useState<number | null>(null);
 
   useEffect(() => {
     if (!product) return;
     
+    // Generate dynamic values only on client-side
+    const randomRating = parseFloat((Math.random() * (5.0 - 4.6) + 4.6).toFixed(1));
+    const randomCount = Math.floor(Math.random() * (72 - 12 + 1) + 12);
+    setDynamicRating(randomRating);
+    setDynamicReviewCount(randomCount);
+
     async function loadAiDescription() {
       try {
         const result = await enhanceProductDescription({
@@ -115,12 +146,27 @@ export default function ProductPage({ params }: ProductPageProps) {
               <h1 className="text-3xl lg:text-5xl font-bold leading-tight">{product.name}</h1>
               <div className="flex items-center gap-4">
                 <div className="flex items-center text-yellow-400">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} className={`h-5 w-5 ${i < Math.floor(product.rating) ? 'fill-current' : 'text-muted'}`} />
-                  ))}
-                  <span className="text-foreground font-bold ml-2">{product.rating}/5</span>
+                  {dynamicRating ? (
+                    <>
+                      {Array.from({ length: 5 }).map((_, i) => {
+                        const starValue = i + 1;
+                        if (starValue <= Math.floor(dynamicRating)) {
+                          return <Star key={i} className="h-5 w-5 fill-current" />;
+                        } else if (starValue - 0.5 <= dynamicRating) {
+                          return <StarHalf key={i} className="h-5 w-5 fill-current" />;
+                        } else {
+                          return <Star key={i} className="h-5 w-5 text-muted" />;
+                        }
+                      })}
+                      <span className="text-foreground font-bold ml-2">{dynamicRating}/5</span>
+                    </>
+                  ) : (
+                    <div className="h-5 w-32 bg-gray-100 animate-pulse rounded" />
+                  )}
                 </div>
-                <span className="text-muted-foreground text-sm border-l pl-4">127 avis clients</span>
+                <div className="text-muted-foreground text-sm border-l pl-4">
+                  {dynamicReviewCount ? `${dynamicReviewCount} avis clients` : <div className="h-4 w-24 bg-gray-100 animate-pulse rounded inline-block" />}
+                </div>
               </div>
               <div className="flex items-baseline gap-4">
                 <span className="text-4xl font-bold text-primary">{product.price.toLocaleString()} MAD</span>
@@ -134,7 +180,36 @@ export default function ProductPage({ params }: ProductPageProps) {
               {product.description}
             </p>
 
-            <CODForm productName={product.name} price={product.price} />
+            <div className="space-y-8">
+              <CODForm productName={product.name} price={product.price} />
+              
+              {/* Premium Customer Reviews Section */}
+              <div className="space-y-6">
+                <h3 className="text-xs font-black uppercase tracking-[0.2em] text-gray-400">Avis Clients</h3>
+                <div className="space-y-4">
+                  {reviews.map((review, i) => (
+                    <div key={i} className="p-5 bg-gray-50/50 rounded-2xl border border-gray-100 flex flex-col gap-3">
+                      <div className="flex justify-between items-center">
+                        <span className="font-bold text-sm text-black">{review.name}</span>
+                        <div className="flex items-center text-yellow-500">
+                          {Array.from({ length: 5 }).map((_, j) => (
+                            <Star 
+                              key={j} 
+                              className={cn(
+                                "h-3 w-3", 
+                                j < Math.floor(review.rating) ? "fill-current" : (j < review.rating ? "fill-current opacity-50" : "text-gray-200")
+                              )} 
+                            />
+                          ))}
+                        </div>
+                      </div>
+                      <p className="text-gray-600 text-sm italic leading-relaxed">"{review.text}"</p>
+                      <span className="text-[10px] text-gray-400 uppercase tracking-tighter">{review.date}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
 
             <div className="grid grid-cols-2 gap-4 py-8 border-t">
               <div className="flex items-start gap-3">
