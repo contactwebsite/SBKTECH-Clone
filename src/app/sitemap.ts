@@ -4,8 +4,8 @@ import { products } from '@/app/data/products';
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://balencia.ma';
 
-  // Base routes
-  const routes = [
+  // Routes statiques et catégories
+  const staticRoutes = [
     '',
     '/catalogue',
     '/category/serrure-intelligente',
@@ -24,13 +24,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: route === '' ? 1 : 0.8,
   }));
 
-  // Dynamic product routes
+  // Routes dynamiques des produits (Indexation Prioritaire)
   const productRoutes = products.map((product) => ({
     url: `${baseUrl}/product/${product.slug}`,
     lastModified: new Date(),
-    changeFrequency: 'monthly' as const,
-    priority: 0.6,
+    changeFrequency: 'daily' as const,
+    priority: 0.9,
   }));
 
-  return [...routes, ...productRoutes];
+  return [...staticRoutes, ...productRoutes];
 }
