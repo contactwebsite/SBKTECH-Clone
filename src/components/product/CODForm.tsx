@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from 'react';
@@ -134,12 +133,17 @@ export default function CODForm({ productName, price }: CODFormProps) {
           />
           <Button 
             type="submit" 
-            className="relative overflow-hidden w-full bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700 text-white py-8 rounded-md font-semibold tracking-widest uppercase text-sm transition-all animate-soft-pulse shadow-lg shadow-amber-500/50 hover:shadow-amber-500 group flex justify-center items-center gap-3 mt-4"
+            className="relative overflow-hidden w-full bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700 text-white py-3 sm:py-8 h-auto rounded-md font-semibold tracking-widest uppercase transition-all shadow-amber-500/50 hover:shadow-amber-500 animate-soft-pulse group flex flex-col sm:flex-row justify-center items-center gap-1 sm:gap-3 px-2 mt-4"
             disabled={isSubmitting}
           >
             <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:animate-shimmer"></div>
-            <span>{isSubmitting ? "Traitement..." : "COMPLÉTER LA COMMANDE"}</span>
-            <span className="font-light opacity-80">| {price.toLocaleString()} MAD</span>
+            <span className="text-[11px] sm:text-sm text-center w-full sm:w-auto leading-tight">
+              {isSubmitting ? "Traitement..." : "COMPLÉTER LA COMMANDE"}
+            </span>
+            <span className="hidden sm:inline font-light opacity-80">|</span>
+            <span className="font-light opacity-90 text-[12px] sm:text-sm whitespace-nowrap">
+              {price.toLocaleString()} MAD
+            </span>
           </Button>
           <p className="text-[10px] text-center text-muted-foreground">
             En cliquant sur le bouton, vous acceptez nos conditions générales de vente.

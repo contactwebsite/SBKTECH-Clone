@@ -1,4 +1,3 @@
-
 "use client";
 
 import { use, useState, useEffect, useRef } from 'react';
@@ -367,21 +366,21 @@ export default function ProductPage({ params }: ProductPageProps) {
             animate={{ y: 0 }}
             exit={{ y: 100 }}
             transition={{ duration: 0.5, ease: "circOut" }}
-            className="fixed bottom-0 left-0 w-full bg-white/90 backdrop-blur-xl border-t border-gray-200 p-4 z-[100] flex justify-between items-center shadow-[0_-10px_40px_rgba(0,0,0,0.05)] md:px-12"
+            className="fixed bottom-0 left-0 w-full bg-white/90 backdrop-blur-xl border-t border-gray-200 px-2 sm:px-4 py-3 z-[100] flex justify-between items-center shadow-[0_-10px_40px_rgba(0,0,0,0.05)] md:px-12"
           >
             <div className="flex flex-col">
-              <span className="text-sm font-bold text-black truncate max-w-[150px] md:max-w-none">{product.name}</span>
+              <span className="text-sm font-bold text-black truncate max-w-[150px] md:max-w-none hidden sm:block">{product.name}</span>
               <div className="flex items-center gap-2">
                 <span className="text-xs font-medium text-muted-foreground line-through decoration-red-500/50">{product.oldPrice.toLocaleString()} MAD</span>
-                <span className="text-sm font-bold text-primary">{product.price.toLocaleString()} MAD</span>
-                <span className="text-[10px] font-black bg-amber-100 text-amber-700 px-2 py-0.5 rounded ml-1 uppercase">RÉDUCTION {product.discountPercentage}</span>
+                <span className="text-sm sm:text-lg font-bold text-primary">{product.price.toLocaleString()} MAD</span>
+                <span className="text-[9px] sm:text-xs font-black bg-amber-100 text-amber-700 px-2 py-0.5 rounded ml-1 uppercase">RÉDUCTION {product.discountPercentage}</span>
               </div>
             </div>
             <button 
               onClick={() => {
                 window.scrollTo({ top: 400, behavior: 'smooth' });
               }}
-              className="bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700 text-white px-8 py-3 rounded-full text-[10px] font-bold tracking-[0.2em] uppercase hover:scale-105 transition-all animate-soft-pulse shadow-lg shadow-amber-500/50 active:scale-95 whitespace-nowrap"
+              className="bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700 text-white px-3 py-2 sm:px-8 sm:py-3 rounded-full text-[9px] sm:text-xs font-bold tracking-[0.2em] uppercase hover:scale-105 transition-all animate-soft-pulse shadow-lg shadow-amber-500/50 active:scale-95 whitespace-nowrap flex-shrink-0"
             >
               Commander maintenant
             </button>
