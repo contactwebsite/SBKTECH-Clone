@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Search, User, ShoppingBag, Menu } from 'lucide-react';
+import { ShoppingBag, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   Sheet,
@@ -63,28 +63,19 @@ export default function Header() {
           </Link>
         </div>
 
-        <nav className="hidden md:flex items-center space-x-8">
+        <nav className="hidden md:flex items-center space-x-2">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               href={link.href}
-              className="relative text-[11px] font-bold text-black transition-colors duration-300 hover:text-gray-500 uppercase tracking-[0.1em] group"
+              className="text-sm font-semibold text-gray-500 uppercase tracking-wider px-5 py-2 border border-transparent rounded-full transition-all duration-300 ease-in-out hover:text-black hover:border-black hover:bg-gray-50/50 cursor-pointer"
             >
               {link.name}
-              <span className="absolute left-0 bottom-[-4px] w-full h-[1px] bg-black scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100" />
             </Link>
           ))}
         </nav>
 
-        <div className="flex items-center space-x-4 md:space-x-6 text-black">
-          <Button variant="ghost" size="icon" className="hover:bg-transparent hover:scale-110 transition-transform duration-200 cursor-pointer">
-            <Search className="h-5 w-5" />
-            <span className="sr-only">Rechercher</span>
-          </Button>
-          <Button variant="ghost" size="icon" className="hover:bg-transparent hover:scale-110 transition-transform duration-200 cursor-pointer hidden sm:flex">
-            <User className="h-5 w-5" />
-            <span className="sr-only">Compte</span>
-          </Button>
+        <div className="flex items-center space-x-2 md:space-x-4 text-black">
           <Button variant="ghost" size="icon" className="hover:bg-transparent hover:scale-110 transition-transform duration-200 cursor-pointer">
             <ShoppingBag className="h-5 w-5" />
             <span className="sr-only">Panier</span>
