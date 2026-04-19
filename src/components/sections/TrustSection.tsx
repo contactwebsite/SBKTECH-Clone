@@ -4,9 +4,8 @@ export default function TrustSection() {
   const comparison = [
     { feature: 'Accès sans clé (Biométrie)', balencia: true, others: false },
     { feature: 'Contrôle à distance via App', balencia: true, others: false },
-    { feature: 'Installation professionnelle', balencia: true, others: true },
     { feature: 'Support technique 24/7 au Maroc', balencia: true, others: false },
-    { feature: 'Garantie de 2 ans minimum', balencia: true, others: true },
+    { feature: 'GARANTIE', balencia: true, others: true },
     { feature: 'Résistance aux intempéries IP65', balencia: true, others: false },
   ];
 
