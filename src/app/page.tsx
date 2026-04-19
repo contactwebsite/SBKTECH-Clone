@@ -10,7 +10,7 @@ import { products } from '@/app/data/products';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Check, ChevronDown, Play } from 'lucide-react';
+import { Check, ChevronDown, ArrowUpRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export default function Home() {
@@ -229,25 +229,30 @@ export default function Home() {
         </div>
       </section>
 
-      {/* VIDEO TESTIMONIALS */}
+      {/* VIDEO TESTIMONIALS - REIMAGINED LUXURY VERSION */}
       <motion.section 
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
         variants={sectionVariants}
-        className="py-24"
+        className="py-24 bg-white"
       >
-        <div className="container mx-auto">
-          <h2 className="text-3xl font-black text-center mb-16 text-black uppercase tracking-[0.2em]">
-            Ils nous font confiance
+        <div className="max-w-7xl mx-auto px-8 md:px-16">
+          <h2 className="text-[10px] font-black text-center mb-12 text-gray-400 uppercase tracking-[0.4em]">
+            L'Expérience BALENCIA
           </h2>
-          <div className="max-w-7xl mx-auto flex overflow-x-auto snap-x snap-mandatory hide-scrollbar gap-6 px-4 pb-8">
+          <div className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar gap-8 pb-12">
             {videoTestimonials.map((url, i) => (
               <motion.div 
                 key={i} 
-                whileHover={{ scale: 0.98 }}
-                className="min-w-[280px] md:min-w-[320px] aspect-[9/16] bg-black relative group cursor-pointer overflow-hidden snap-center shrink-0"
+                className="relative min-w-[240px] md:min-w-[280px] aspect-[9/16] bg-black group cursor-pointer overflow-hidden snap-center shrink-0 shadow-sm"
               >
+                {/* Metallic Gold Pulsating Ring (Only visible on hover) */}
+                <div className="absolute inset-0 z-20 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <div className="absolute inset-0 border border-[#D4AF37]/30 animate-pulse scale-95" />
+                  <div className="absolute inset-[2px] border border-[#D4AF37]/20" />
+                </div>
+
                 <video
                   src={url}
                   autoPlay
@@ -255,17 +260,20 @@ export default function Home() {
                   muted
                   playsInline
                   preload="metadata"
-                  className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-75"
+                  className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110 group-hover:brightness-75"
                 />
-                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/30 transition-colors" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <motion.div 
-                    whileHover={{ scale: 1.2 }}
-                    className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center transition-all duration-300 group-hover:bg-white shadow-xl"
-                  >
-                    <Play className="w-6 h-6 text-black fill-current ml-1" />
-                  </motion.div>
+                
+                {/* EXPLORE UI - Bottom Center */}
+                <div className="absolute inset-x-0 bottom-8 z-30 flex flex-col items-center gap-2 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-out">
+                  <span className="text-[9px] font-black tracking-[0.3em] text-[#D4AF37] uppercase">
+                    EXPLORE
+                  </span>
+                  <div className="w-8 h-8 rounded-full border border-[#D4AF37]/40 flex items-center justify-center text-[#D4AF37]">
+                    <ArrowUpRight className="w-3 h-3" />
+                  </div>
                 </div>
+
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
               </motion.div>
             ))}
           </div>
