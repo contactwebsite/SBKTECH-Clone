@@ -17,27 +17,6 @@ interface ProductPageProps {
   params: Promise<{ slug: string }>;
 }
 
-const reviewsData = [
-  {
-    name: "Youssef M.",
-    rating: 5,
-    text: "Produit d'une qualité exceptionnelle. L'installation a été rapide et le design est magnifique sur ma porte.",
-    date: "Il y a 2 semaines"
-  },
-  {
-    name: "Hassan B.",
-    rating: 5,
-    text: "Saraha top ! Khedma mzyana bzaf o theknit men lswaret. Recommandé 100%.",
-    date: "Il y a 1 mois"
-  },
-  {
-    name: "Amine T.",
-    rating: 4.5,
-    text: "Très satisfait de cet achat. L'application est fluide et la serrure est très réactive.",
-    date: "Il y a 3 semaines"
-  }
-];
-
 export default function ProductPage({ params }: ProductPageProps) {
   const { slug } = use(params);
   const product = products.find((p) => p.slug === slug);
@@ -197,35 +176,48 @@ export default function ProductPage({ params }: ProductPageProps) {
             <div className="space-y-8">
               <CODForm productName={product.name} price={product.price} />
               
-              {/* Ultra-Premium Customer Reviews Section */}
-              <div className="space-y-6 pt-4">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-xs font-black uppercase tracking-[0.2em] text-gray-400">Avis Clients</h3>
-                  <div className="h-px flex-1 bg-gray-100 mx-4" />
-                </div>
-                <div className="space-y-4">
-                  {reviewsData.map((review, i) => (
-                    <div key={i} className="p-6 bg-gray-50/50 rounded-2xl border border-gray-100 flex flex-col gap-3 transition-all hover:bg-white hover:shadow-xl hover:shadow-gray-200/50 group">
-                      <div className="flex justify-between items-start">
-                        <div className="space-y-1">
-                          <span className="font-bold text-sm text-black block">{review.name}</span>
-                          <span className="text-[10px] text-gray-400 uppercase tracking-tighter block">{review.date}</span>
-                        </div>
-                        <div className="flex items-center text-yellow-500">
-                          {Array.from({ length: 5 }).map((_, j) => (
-                            <Star 
-                              key={j} 
-                              className={cn(
-                                "h-3 w-3", 
-                                j < Math.floor(review.rating) ? "fill-current" : (j < review.rating ? "fill-current opacity-50" : "text-gray-200")
-                              )} 
-                            />
-                          ))}
-                        </div>
+              {/* AVIS CLIENTS - HORIZONTAL CAROUSEL */}
+              <div className="mt-8 mb-12 w-full overflow-hidden">
+                <h3 className="text-xs font-bold tracking-widest uppercase text-gray-400 mb-4 ml-1">Avis Clients</h3>
+                
+                <div className="flex overflow-x-auto gap-4 pb-4 snap-x snap-mandatory flex-nowrap w-full [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                  
+                  {/* Review 1 */}
+                  <div className="w-[85%] sm:w-[320px] flex-shrink-0 snap-center bg-gray-50 p-5 rounded-2xl border border-gray-100 flex flex-col justify-between">
+                    <div>
+                      <div className="flex justify-between items-center mb-3">
+                        <span className="text-sm font-bold text-gray-900">Youssef M.</span>
+                        <div className="flex text-amber-400 text-xs">★★★★★</div>
                       </div>
-                      <p className="text-gray-600 text-sm italic leading-relaxed">"{review.text}"</p>
+                      <p className="text-sm text-gray-600 italic">"Produit d'une qualité exceptionnelle. L'installation a été rapide et le design est magnifique sur ma porte."</p>
                     </div>
-                  ))}
+                    <span className="text-[10px] text-gray-400 uppercase tracking-wider mt-4">Il y a 2 semaines</span>
+                  </div>
+
+                  {/* Review 2 */}
+                  <div className="w-[85%] sm:w-[320px] flex-shrink-0 snap-center bg-gray-50 p-5 rounded-2xl border border-gray-100 flex flex-col justify-between">
+                    <div>
+                      <div className="flex justify-between items-center mb-3">
+                        <span className="text-sm font-bold text-gray-900">Hassan B.</span>
+                        <div className="flex text-amber-400 text-xs">★★★★★</div>
+                      </div>
+                      <p className="text-sm text-gray-600 italic">"Saraha top ! Khedma mzyana bzaf o theknit men lswaret. Recommandé 100%."</p>
+                    </div>
+                    <span className="text-[10px] text-gray-400 uppercase tracking-wider mt-4">Il y a 1 mois</span>
+                  </div>
+
+                  {/* Review 3 */}
+                  <div className="w-[85%] sm:w-[320px] flex-shrink-0 snap-center bg-gray-50 p-5 rounded-2xl border border-gray-100 flex flex-col justify-between">
+                    <div>
+                      <div className="flex justify-between items-center mb-3">
+                        <span className="text-sm font-bold text-gray-900">Amine T.</span>
+                        <div className="flex text-amber-400 text-xs">★★★★☆</div>
+                      </div>
+                      <p className="text-sm text-gray-600 italic">"Très satisfait de cet achat. L'application est fluide et la serrure est très réactive."</p>
+                    </div>
+                    <span className="text-[10px] text-gray-400 uppercase tracking-wider mt-4">Il y a 3 semaines</span>
+                  </div>
+
                 </div>
               </div>
             </div>
