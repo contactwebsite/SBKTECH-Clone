@@ -57,7 +57,7 @@ export default function Footer() {
         </div>
         
         <div className="mt-20 pt-8 border-t border-gray-800 text-center text-[9px] text-gray-500 uppercase tracking-[0.3em]">
-          <p>© 2024 BALENCIA SECURITY. Tous droits réservés.</p>
+          <p>© 2026 BALENCIA SECURITY. Tous droits réservés.</p>
         </div>
       </div>
     </footer>
