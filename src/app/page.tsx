@@ -46,8 +46,7 @@ export default function Home() {
   const videoTestimonials = [
     "https://res.cloudinary.com/dwn1omfyl/video/upload/v1766365949/1222_d1adt9.mp4",
     "https://res.cloudinary.com/dwn1omfyl/video/upload/v1766365943/1222_2_xnoplf.mp4",
-    "https://res.cloudinary.com/dwn1omfyl/video/upload/v1776612315/0418_ksj9zt.mp4",
-    "https://res.cloudinary.com/dwn1omfyl/video/upload/v1766365943/1222_1_k642zn.mp4"
+    "https://res.cloudinary.com/dwn1omfyl/video/upload/v1776612315/0418_ksj9zt.mp4"
   ];
 
   const sectionVariants = {
@@ -229,30 +228,24 @@ export default function Home() {
         </div>
       </section>
 
-      {/* VIDEO TESTIMONIALS - REIMAGINED LUXURY VERSION */}
+      {/* VIDEO TESTIMONIALS - FIXED PREMIUM GRID */}
       <motion.section 
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
         variants={sectionVariants}
-        className="py-24 bg-white"
+        className="py-16 bg-white"
       >
-        <div className="max-w-7xl mx-auto px-8 md:px-16">
+        <div className="max-w-6xl mx-auto px-4">
           <h2 className="text-[10px] font-black text-center mb-12 text-gray-400 uppercase tracking-[0.4em]">
-            L'Expérience BALENCIA
+            ILS NOUS FONT CONFIANCE
           </h2>
-          <div className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar gap-8 pb-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
             {videoTestimonials.map((url, i) => (
-              <motion.div 
+              <div 
                 key={i} 
-                className="relative min-w-[240px] md:min-w-[280px] aspect-[9/16] bg-black group cursor-pointer overflow-hidden snap-center shrink-0 shadow-sm"
+                className="relative w-full aspect-[9/16] max-h-[550px] rounded-2xl overflow-hidden shadow-2xl border border-gray-200/20 group ring-1 ring-amber-500/0 group-hover:ring-amber-500/50 transition-all duration-700 bg-black"
               >
-                {/* Metallic Gold Pulsating Ring (Only visible on hover) */}
-                <div className="absolute inset-0 z-20 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <div className="absolute inset-0 border border-[#D4AF37]/30 animate-pulse scale-95" />
-                  <div className="absolute inset-[2px] border border-[#D4AF37]/20" />
-                </div>
-
                 <video
                   src={url}
                   autoPlay
@@ -260,21 +253,21 @@ export default function Home() {
                   muted
                   playsInline
                   preload="metadata"
-                  className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110 group-hover:brightness-75"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                 />
                 
                 {/* EXPLORE UI - Bottom Center */}
                 <div className="absolute inset-x-0 bottom-8 z-30 flex flex-col items-center gap-2 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-out">
-                  <span className="text-[9px] font-black tracking-[0.3em] text-[#D4AF37] uppercase">
+                  <span className="text-[9px] font-black tracking-[0.3em] text-amber-500 uppercase">
                     EXPLORE
                   </span>
-                  <div className="w-8 h-8 rounded-full border border-[#D4AF37]/40 flex items-center justify-center text-[#D4AF37]">
+                  <div className="w-8 h-8 rounded-full border border-amber-500/40 flex items-center justify-center text-amber-500">
                     <ArrowUpRight className="w-3 h-3" />
                   </div>
                 </div>
 
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-              </motion.div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              </div>
             ))}
           </div>
         </div>
