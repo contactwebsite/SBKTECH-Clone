@@ -1,11 +1,11 @@
 
 "use client";
 
-import { use, useState, useEffect } from 'react';
+import { use, useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { products } from '@/app/data/products';
-import { Star, ShieldCheck, Truck, RefreshCcw, Headset, ChevronDown, StarHalf } from 'lucide-react';
+import { Star, ShieldCheck, Truck, RefreshCcw, Headset, ChevronDown, StarHalf, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import CODForm from '@/components/product/CODForm';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -29,6 +29,18 @@ export default function ProductPage({ params }: ProductPageProps) {
   // Dynamic social proof states to avoid hydration mismatch
   const [dynamicRating, setDynamicRating] = useState<number | null>(null);
   const [dynamicReviewCount, setDynamicReviewCount] = useState<number | null>(null);
+
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollRef.current) {
+      const scrollAmount = 320;
+      scrollRef.current.scrollBy({ 
+        left: direction === 'left' ? -scrollAmount : scrollAmount, 
+        behavior: 'smooth' 
+      });
+    }
+  };
 
   useEffect(() => {
     if (!product) return;
@@ -176,11 +188,34 @@ export default function ProductPage({ params }: ProductPageProps) {
             <div className="space-y-8">
               <CODForm productName={product.name} price={product.price} />
               
-              {/* AVIS CLIENTS - HORIZONTAL CAROUSEL */}
+              {/* AVIS CLIENTS - HORIZONTAL CAROUSEL WITH NAVIGATION */}
               <div className="mt-8 mb-12 w-full overflow-hidden">
-                <h3 className="text-xs font-bold tracking-widest uppercase text-gray-400 mb-4 ml-1">Avis Clients</h3>
+                <div className="flex justify-between items-center mb-4 px-1">
+                  <h3 className="text-xs font-bold tracking-widest uppercase text-gray-400">Avis Clients</h3>
+                  <div className="flex gap-2">
+                    <button 
+                      onClick={() => scroll('left')} 
+                      type="button" 
+                      className="p-2 rounded-full bg-white border border-gray-200 hover:bg-gray-50 transition-colors text-gray-600 hover:text-black group/btn"
+                      aria-label="Avis précédent"
+                    >
+                      <ChevronLeft className="w-4 h-4 transition-transform group-hover/btn:-translate-x-0.5" />
+                    </button>
+                    <button 
+                      onClick={() => scroll('right')} 
+                      type="button" 
+                      className="p-2 rounded-full bg-white border border-gray-200 hover:bg-gray-50 transition-colors text-gray-600 hover:text-black group/btn"
+                      aria-label="Avis suivant"
+                    >
+                      <ChevronRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-0.5" />
+                    </button>
+                  </div>
+                </div>
                 
-                <div className="flex overflow-x-auto gap-4 pb-4 snap-x snap-mandatory flex-nowrap w-full [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                <div 
+                  ref={scrollRef} 
+                  className="flex overflow-x-auto gap-4 pb-4 snap-x snap-mandatory flex-nowrap w-full [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+                >
                   
                   {/* Review 1 */}
                   <div className="w-[85%] sm:w-[320px] flex-shrink-0 snap-center bg-gray-50 p-5 rounded-2xl border border-gray-100 flex flex-col justify-between">
