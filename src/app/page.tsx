@@ -43,6 +43,13 @@ export default function Home() {
     }
   ];
 
+  const videoTestimonials = [
+    "https://res.cloudinary.com/dwn1omfyl/video/upload/v1766365949/1222_d1adt9.mp4",
+    "https://res.cloudinary.com/dwn1omfyl/video/upload/v1766365943/1222_2_xnoplf.mp4",
+    "https://res.cloudinary.com/dwn1omfyl/video/upload/v1776612315/0418_ksj9zt.mp4",
+    "https://res.cloudinary.com/dwn1omfyl/video/upload/v1766365943/1222_1_k642zn.mp4"
+  ];
+
   const sectionVariants = {
     hidden: { opacity: 0, y: 40 },
     visible: { 
@@ -235,17 +242,20 @@ export default function Home() {
             Ils nous font confiance
           </h2>
           <div className="max-w-7xl mx-auto flex overflow-x-auto snap-x snap-mandatory hide-scrollbar gap-6 px-4 pb-8">
-            {[1, 2, 3, 4, 5, 6].map((i) => (
+            {videoTestimonials.map((url, i) => (
               <motion.div 
                 key={i} 
                 whileHover={{ scale: 0.98 }}
-                className="min-w-[280px] md:min-w-[320px] aspect-[9/16] bg-gray-200 relative group cursor-pointer overflow-hidden snap-center shrink-0"
+                className="min-w-[280px] md:min-w-[320px] aspect-[9/16] bg-black relative group cursor-pointer overflow-hidden snap-center shrink-0"
               >
-                <Image
-                  src={`https://picsum.photos/seed/testimonial-balencia-${i}/400/711`}
-                  alt={`Témoignage BALENCIA ${i}`}
-                  fill
-                  className="object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-75"
+                <video
+                  src={url}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="metadata"
+                  className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-75"
                 />
                 <div className="absolute inset-0 bg-black/10 group-hover:bg-black/30 transition-colors" />
                 <div className="absolute inset-0 flex items-center justify-center">
