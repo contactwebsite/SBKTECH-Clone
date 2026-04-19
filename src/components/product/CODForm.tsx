@@ -24,7 +24,12 @@ const formSchema = z.object({
   city: z.string().min(2, { message: "La ville est requise" }),
 });
 
-export default function CODForm({ productName }: { productName: string }) {
+interface CODFormProps {
+  productName: string;
+  price: number;
+}
+
+export default function CODForm({ productName, price }: CODFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const { toast } = useToast();
@@ -71,13 +76,18 @@ export default function CODForm({ productName }: { productName: string }) {
 
   return (
     <div className="bg-card border-2 border-primary/20 rounded-2xl p-6 lg:p-8 shadow-2xl">
+      <div className="flex items-center gap-2 mb-6 p-3 bg-gray-50 border border-gray-100 rounded-lg text-sm text-gray-700 font-medium">
+        <Truck className="w-5 h-5 text-green-600" /> 
+        Livraison Gratuite partout au Maroc
+      </div>
+
       <div className="flex items-center gap-3 mb-6">
         <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white">
           <Truck className="w-5 h-5" />
         </div>
         <div>
           <h3 className="font-bold text-lg">Commande Rapide (Paiement Cash)</h3>
-          <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold">Paiement à la livraison partout au Maroc</p>
+          <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold">Paiement à la livraison</p>
         </div>
       </div>
 
@@ -124,10 +134,12 @@ export default function CODForm({ productName }: { productName: string }) {
           />
           <Button 
             type="submit" 
-            className="w-full h-14 text-lg font-bold shadow-lg shadow-primary/25 mt-4"
+            className="relative overflow-hidden w-full bg-black text-white py-8 rounded-md font-semibold tracking-widest uppercase text-sm transition-all hover:bg-gray-900 group flex justify-center items-center gap-3 mt-4"
             disabled={isSubmitting}
           >
-            {isSubmitting ? "Traitement..." : "COMPLÉTER LA COMMANDE"}
+            <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:animate-shimmer"></div>
+            <span>{isSubmitting ? "Traitement..." : "COMPLÉTER LA COMMANDE"}</span>
+            <span className="font-light opacity-80">| {price.toLocaleString()} MAD</span>
           </Button>
           <p className="text-[10px] text-center text-muted-foreground">
             En cliquant sur le bouton, vous acceptez nos conditions générales de vente.
