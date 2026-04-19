@@ -1,9 +1,8 @@
-
 export interface Product {
   id: string;
   slug: string;
   name: string;
-  category: 'Serrure intelligente' | 'Pointeuse biométrique' | 'Tourniquet tripode' | 'Coffre Fort';
+  category: 'Serrure intelligente' | 'Pointeuse biométrique' | 'Tourniquet tripode' | 'Coffre Fort' | 'Contrôle d\'accès' | 'Caisse automatique' | 'Imprimante Thermique';
   price: number;
   oldPrice: number;
   discountPercentage: string;
@@ -72,6 +71,35 @@ export const products: Product[] = [
     features: 'Badge, Code, Télécommande',
     benefits: 'Sans perçage, Esthétique'
   },
+  // Coffre Fort
+  {
+    id: 'cf1',
+    slug: 'coffre-fort-titan-v1',
+    name: 'Coffre-Fort Titan V1 - Haute Sécurité',
+    category: 'Coffre Fort',
+    price: 4500,
+    oldPrice: 7500,
+    discountPercentage: '40%',
+    image: 'https://picsum.photos/seed/safe1/600/800',
+    rating: 5.0,
+    description: 'Une protection impénétrable pour vos objets de valeur.',
+    features: 'Acier blindé, Empreinte digitale, Clé de secours',
+    benefits: 'Anti-feu, Résistance maximale'
+  },
+  {
+    id: 'cf2',
+    slug: 'coffre-luxe-biometrique',
+    name: 'Coffre de Luxe Biométrique - Premium Silver',
+    category: 'Coffre Fort',
+    price: 6200,
+    oldPrice: 9800,
+    discountPercentage: '37%',
+    image: 'https://picsum.photos/seed/safe2/600/800',
+    rating: 4.9,
+    description: 'L\'élégance alliée à la sécurité absolue.',
+    features: 'Revêtement cuir intérieur, LED, Biométrie',
+    benefits: 'Discrétion, Prestige'
+  },
   // Pointeuse biométrique
   {
     id: 'p1',
@@ -101,33 +129,50 @@ export const products: Product[] = [
     features: 'WiFi, Batterie intégrée',
     benefits: 'Accès distant, Sécurité données'
   },
+  // Contrôle d'accès
   {
-    id: 'p3',
-    slug: 'lecteur-usb-high',
-    name: 'Lecteur Empreinte USB Haute Précision',
-    category: 'Pointeuse biométrique',
-    price: 850,
-    oldPrice: 1500,
-    discountPercentage: '43%',
-    image: 'https://picsum.photos/seed/bio3/600/800',
-    rating: 4.2,
-    description: 'Compact et puissant pour PC.',
-    features: 'USB 3.0, Scan 360°',
-    benefits: 'Portable, Plug & Play'
-  },
-  {
-    id: 'p4',
-    slug: 'pack-controle-acces',
-    name: 'Pack Contrôle d\'Accès Centralisé X4',
-    category: 'Pointeuse biométrique',
-    price: 5900,
-    oldPrice: 8500,
-    discountPercentage: '30%',
-    image: 'https://picsum.photos/seed/bio4/600/800',
+    id: 'ca1',
+    slug: 'controle-acces-faciale',
+    name: 'Système de Contrôle d\'Accès Faciale AI',
+    category: 'Contrôle d\'accès',
+    price: 5400,
+    oldPrice: 8200,
+    discountPercentage: '34%',
+    image: 'https://picsum.photos/seed/access1/600/800',
     rating: 5.0,
-    description: 'Solution complète pour entreprise.',
-    features: 'Logiciel inclus, 4 Lecteurs',
-    benefits: 'Centralisation, Support technique'
+    description: 'Identifiez vos collaborateurs en moins d\'une seconde.',
+    features: 'AI Recognition, Log instantané, IP65',
+    benefits: 'Rapidité, Haute fiabilité'
+  },
+  // Caisse automatique
+  {
+    id: 'c1',
+    slug: 'caisse-auto-smart',
+    name: 'Caisse Automatique Smart Pay - 2026',
+    category: 'Caisse automatique',
+    price: 15900,
+    oldPrice: 22000,
+    discountPercentage: '28%',
+    image: 'https://picsum.photos/seed/pos1/600/800',
+    rating: 4.8,
+    description: 'Simplifiez vos transactions avec élégance.',
+    features: 'Écran tactile 4K, Paiement NFC, Ticket thermique',
+    benefits: 'Efficacité, Design compact'
+  },
+  // Imprimante Thermique
+  {
+    id: 'it1',
+    slug: 'imprimante-thermique-pro',
+    name: 'Imprimante Thermique Pro - Ultra Rapide',
+    category: 'Imprimante Thermique',
+    price: 1450,
+    oldPrice: 2800,
+    discountPercentage: '48%',
+    image: 'https://picsum.photos/seed/print1/600/800',
+    rating: 4.7,
+    description: 'Des impressions nettes et instantanées.',
+    features: 'Bluetooth, USB-C, 250mm/s',
+    benefits: 'Économique, Durable'
   },
   // Tourniquet tripode
   {
@@ -143,47 +188,5 @@ export const products: Product[] = [
     description: 'Robuste et fiable pour flux intenses.',
     features: 'Inox 304, Bidirectionnel',
     benefits: 'Longue durée de vie, Maintenance réduite'
-  },
-  {
-    id: 't2',
-    slug: 'tourniquet-slim-led',
-    name: 'Tourniquet Slim LED - Indicateur de Passage',
-    category: 'Tourniquet tripode',
-    price: 10500,
-    oldPrice: 15000,
-    discountPercentage: '30%',
-    image: 'https://picsum.photos/seed/turn2/600/800',
-    rating: 4.8,
-    description: 'Design moderne avec signalisation LED.',
-    features: 'LED RGB, Passage fluide',
-    benefits: 'Guidage visuel, Esthétique'
-  },
-  {
-    id: 't3',
-    slug: 'tripode-semi-auto',
-    name: 'Tripode Semi-Automatique Haute Sécurité',
-    category: 'Tourniquet tripode',
-    price: 9200,
-    oldPrice: 13500,
-    discountPercentage: '32%',
-    image: 'https://picsum.photos/seed/turn3/600/800',
-    rating: 4.7,
-    description: 'Mécanisme haute précision.',
-    features: 'Anti-panique, Silencieux',
-    benefits: 'Sécurité incendie, Confort'
-  },
-  {
-    id: 't4',
-    slug: 'speed-gate-pro',
-    name: 'Speed Gate Pro - Couloir Rapide',
-    category: 'Tourniquet tripode',
-    price: 18900,
-    oldPrice: 25000,
-    discountPercentage: '24%',
-    image: 'https://picsum.photos/seed/turn4/600/800',
-    rating: 5.0,
-    description: 'Le summum du contrôle d\'accès.',
-    features: 'Vantaux motorisés, Capteurs IR',
-    benefits: 'Flux ultra-rapide, Design prestigieux'
   }
 ];
