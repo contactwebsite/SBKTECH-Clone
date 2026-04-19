@@ -10,8 +10,51 @@ import { products } from '@/app/data/products';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Check, ChevronDown, ArrowUpRight } from 'lucide-react';
+import { Check, ChevronDown, ArrowUpRight, Volume2, VolumeX } from 'lucide-react';
 import { cn } from '@/lib/utils';
+
+// Sub-component for individual video state management
+const VideoTestimonial = ({ url }: { url: string }) => {
+  const [isMuted, setIsMuted] = useState(true);
+
+  return (
+    <div className="relative w-full aspect-[9/16] max-h-[550px] rounded-2xl overflow-hidden shadow-2xl border border-gray-200/20 group ring-1 ring-amber-500/0 group-hover:ring-amber-500/50 transition-all duration-700 bg-black">
+      <video
+        src={url}
+        autoPlay
+        loop
+        muted={isMuted}
+        playsInline
+        preload="metadata"
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+      />
+
+      {/* Volume Toggle - High-end Glassmorphism */}
+      <button
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          setIsMuted(!isMuted);
+        }}
+        className="absolute top-4 right-4 z-40 p-2.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-white/20 active:scale-90"
+      >
+        {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+      </button>
+      
+      {/* EXPLORE UI - Bottom Center */}
+      <div className="absolute inset-x-0 bottom-8 z-30 flex flex-col items-center gap-2 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-out pointer-events-none">
+        <span className="text-[9px] font-black tracking-[0.3em] text-amber-500 uppercase">
+          EXPLORE
+        </span>
+        <div className="w-8 h-8 rounded-full border border-amber-500/40 flex items-center justify-center text-amber-500">
+          <ArrowUpRight className="w-3 h-3" />
+        </div>
+      </div>
+
+      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+    </div>
+  );
+};
 
 export default function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -46,7 +89,8 @@ export default function Home() {
   const videoTestimonials = [
     "https://res.cloudinary.com/dwn1omfyl/video/upload/v1766365949/1222_d1adt9.mp4",
     "https://res.cloudinary.com/dwn1omfyl/video/upload/v1766365943/1222_2_xnoplf.mp4",
-    "https://res.cloudinary.com/dwn1omfyl/video/upload/v1776612315/0418_ksj9zt.mp4"
+    "https://res.cloudinary.com/dwn1omfyl/video/upload/v1776612315/0418_ksj9zt.mp4",
+    "https://res.cloudinary.com/dwn1omfyl/video/upload/v1766365943/1222_1_k642zn.mp4"
   ];
 
   const sectionVariants = {
@@ -242,32 +286,7 @@ export default function Home() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
             {videoTestimonials.map((url, i) => (
-              <div 
-                key={i} 
-                className="relative w-full aspect-[9/16] max-h-[550px] rounded-2xl overflow-hidden shadow-2xl border border-gray-200/20 group ring-1 ring-amber-500/0 group-hover:ring-amber-500/50 transition-all duration-700 bg-black"
-              >
-                <video
-                  src={url}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="metadata"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                />
-                
-                {/* EXPLORE UI - Bottom Center */}
-                <div className="absolute inset-x-0 bottom-8 z-30 flex flex-col items-center gap-2 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-out">
-                  <span className="text-[9px] font-black tracking-[0.3em] text-amber-500 uppercase">
-                    EXPLORE
-                  </span>
-                  <div className="w-8 h-8 rounded-full border border-amber-500/40 flex items-center justify-center text-amber-500">
-                    <ArrowUpRight className="w-3 h-3" />
-                  </div>
-                </div>
-
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-              </div>
+              <VideoTestimonial key={i} url={url} />
             ))}
           </div>
         </div>
