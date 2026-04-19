@@ -2,7 +2,7 @@ export interface Product {
   id: string;
   slug: string;
   name: string;
-  category: 'Serrure intelligente' | 'Pointeuse biométrique' | 'Tourniquet tripode' | 'Coffre Fort' | 'Contrôle d\'accès' | 'Caisse automatique' | 'Imprimante Thermique';
+  category: 'Serrure intelligente' | 'Pointeuse biométrique' | 'Tourniquet tripode' | 'Coffre Fort' | 'Contrôle d\'accès' | 'Caisse automatique' | 'Imprimante Thermique' | 'Contrôle d\'accès porte' | 'Lecteurs contrôle d\'accès';
   price: number;
   oldPrice: number;
   discountPercentage: string;
@@ -57,20 +57,6 @@ export const products: Product[] = [
     features: 'Empreinte, Bluetooth',
     benefits: 'Installation facile, Prix abordable'
   },
-  {
-    id: 's4',
-    slug: 'serrure-porte-verre',
-    name: 'Serrure Spéciale Porte en Verre G1',
-    category: 'Serrure intelligente',
-    price: 1850,
-    oldPrice: 3200,
-    discountPercentage: '42%',
-    image: 'https://picsum.photos/seed/lock4/600/800',
-    rating: 4.7,
-    description: 'Conçue spécifitiement pour le tertiaire.',
-    features: 'Badge, Code, Télécommande',
-    benefits: 'Sans perçage, Esthétique'
-  },
   // Coffre Fort
   {
     id: 'cf1',
@@ -85,20 +71,6 @@ export const products: Product[] = [
     description: 'Une protection impénétrable pour vos objets de valeur.',
     features: 'Acier blindé, Empreinte digitale, Clé de secours',
     benefits: 'Anti-feu, Résistance maximale'
-  },
-  {
-    id: 'cf2',
-    slug: 'coffre-luxe-biometrique',
-    name: 'Coffre de Luxe Biométrique - Premium Silver',
-    category: 'Coffre Fort',
-    price: 6200,
-    oldPrice: 9800,
-    discountPercentage: '37%',
-    image: 'https://picsum.photos/seed/safe2/600/800',
-    rating: 4.9,
-    description: 'L\'élégance alliée à la sécurité absolue.',
-    features: 'Revêtement cuir intérieur, LED, Biométrie',
-    benefits: 'Discrétion, Prestige'
   },
   // Pointeuse biométrique
   {
@@ -115,34 +87,35 @@ export const products: Product[] = [
     features: 'Visage, Empreinte, Carte',
     benefits: 'Hygiénique, Export Excel'
   },
+  // Contrôle d'accès porte
   {
-    id: 'p2',
-    slug: 'pointeuse-cloud-wifi',
-    name: 'Pointeuse Cloud WiFi - Gestion Mobile',
-    category: 'Pointeuse biométrique',
-    price: 2800,
-    oldPrice: 4200,
-    discountPercentage: '33%',
-    image: 'https://picsum.photos/seed/bio2/600/800',
+    id: 'cap1',
+    slug: 'serrure-magnetique-600',
+    name: 'Ventouse Magnétique 600kg Pro',
+    category: 'Contrôle d\'accès porte',
+    price: 1850,
+    oldPrice: 2400,
+    discountPercentage: '23%',
+    image: 'https://picsum.photos/seed/mag1/600/800',
     rating: 4.8,
-    description: 'Synchronisation automatique sur le cloud.',
-    features: 'WiFi, Batterie intégrée',
-    benefits: 'Accès distant, Sécurité données'
+    description: 'Force de maintien extrême pour portes sécurisées.',
+    features: 'Acier inox, LED indicateur',
+    benefits: 'Inviolable, Installation discrète'
   },
-  // Contrôle d'accès
+  // Lecteurs contrôle d'accès
   {
-    id: 'ca1',
-    slug: 'controle-acces-faciale',
-    name: 'Système de Contrôle d\'Accès Faciale AI',
-    category: 'Contrôle d\'accès',
-    price: 5400,
-    oldPrice: 8200,
-    discountPercentage: '34%',
-    image: 'https://picsum.photos/seed/access1/600/800',
-    rating: 5.0,
-    description: 'Identifiez vos collaborateurs en moins d\'une seconde.',
-    features: 'AI Recognition, Log instantané, IP65',
-    benefits: 'Rapidité, Haute fiabilité'
+    id: 'lca1',
+    slug: 'lecteur-rfid-premium',
+    name: 'Lecteur RFID Premium - Black Glass',
+    category: 'Lecteurs contrôle d\'accès',
+    price: 950,
+    oldPrice: 1500,
+    discountPercentage: '36%',
+    image: 'https://picsum.photos/seed/reader1/600/800',
+    rating: 4.7,
+    description: 'Lecteur de badges ultra-rapide au design épuré.',
+    features: 'Wiegand, IP66, Rétroéclairé',
+    benefits: 'Esthétique, Résistant'
   },
   // Caisse automatique
   {

@@ -34,8 +34,8 @@ export default function Header() {
       href: '/catalogue',
       dropdown: [
         { name: 'Pointeuse Biométrique', href: '/category/pointeuse-biometrique' },
-        { name: 'Contrôle d\'accès porte', href: '/category/controle-acces-porte' },
-        { name: 'Lecteurs contrôle d\'accès', href: '/category/lecteurs' },
+        { name: 'Contrôle d\'accès porte', href: '/category/controle-d-acces-porte' },
+        { name: 'Lecteurs contrôle d\'accès', href: '/category/lecteurs-controle-d-acces' },
         { name: 'Contrôle d\'accès', href: '/category/controle-acces' },
         { name: 'Caisse automatique', href: '/category/caisse' },
         { name: 'Imprimante Thermique', href: '/category/imprimante' },
