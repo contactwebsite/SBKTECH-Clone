@@ -3,7 +3,8 @@ import Link from 'next/link';
 import { getProductsFromGitHub } from '@/lib/github';
 import { products as localProducts } from '@/app/data/products';
 
-export const revalidate = 60;
+export const revalidate = 0;
+export const dynamic = 'force-dynamic';
 
 export default async function FullCataloguePage() {
   const githubProducts = await getProductsFromGitHub();
@@ -24,15 +25,16 @@ export default async function FullCataloguePage() {
         </header>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
-          {allProducts.map((product: any, index: number) => (
+          {allProducts.map((product: any) => (
             <div key={product.id || product.slug} className="group cursor-pointer flex flex-col">
               <Link href={`/product/${product.slug}`} className="group cursor-pointer flex flex-col">
                 <div className="relative aspect-[4/5] bg-gray-50 overflow-hidden rounded-sm">
                   <Image
-                    src={product.images?.[0]?.url || product.image}
-                    alt={product.images?.[0]?.alt || product.name || product.title}
+                    src={product.images?.[0]?.url || product.image || 'https://placehold.co/400x500'}
+                    alt={product.images?.[0]?.alt || product.name || ''}
                     fill
                     className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
+                    unoptimized
                   />
                   <div className="absolute bottom-0 left-0 w-full bg-black text-white text-[10px] font-bold tracking-[0.3em] uppercase py-5 text-center transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] z-10">
                     AJOUTER AU PANIER
@@ -46,9 +48,9 @@ export default async function FullCataloguePage() {
                     <span className="text-[13px] font-black tracking-[0.1em] text-black">
                       {(product.price || 0).toLocaleString('fr-FR')} DH
                     </span>
-                    {(product.oldPrice || product.old_price) && (
+                    {(product.oldPrice || product.old_price) > 0 && (
                       <span className="text-[11px] text-gray-400 font-medium line-through tracking-wider">
-                        {(product.oldPrice || product.old_price).toLocaleString('fr-FR')} DH
+                        {(product.oldPrice || product.old_price || 0).toLocaleString('fr-FR')} DH
                       </span>
                     )}
                   </div>
