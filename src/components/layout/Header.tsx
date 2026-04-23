@@ -41,6 +41,7 @@ export default function Header() {
         { name: 'Imprimante Thermique', href: '/category/imprimante' },
       ]
     },
+    { name: 'BLOG', href: '/blog' },
     { name: 'CONTACTEZ-NOUS', href: '/contact' },
   ];
 
