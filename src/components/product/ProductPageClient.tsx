@@ -124,11 +124,11 @@ export default function ProductPageClient({ product }: ProductPageClientProps) {
               </Badge>
             </div>
             <div className="grid grid-cols-4 gap-4">
-              {[1, 2, 3, 4].map((i) => (
+              {((product as any).images?.length > 0 ? (product as any).images : [{url: (product as any).image, alt: product.name}]).map((img: any, i: number) => (
                 <div key={i} className="aspect-square relative rounded-xl overflow-hidden bg-muted border hover:border-primary cursor-pointer transition-colors">
                   <Image unoptimized
-                    src={`https://picsum.photos/seed/${product.id}-${i}/200/200`}
-                    alt={`Détail de la serrure ${product.name} - Image ${i}`}
+                    src={img.url || "https://placehold.co/200x200"}
+                    alt={img.alt || product.name}
                     fill
                     className="object-cover"
                   />
