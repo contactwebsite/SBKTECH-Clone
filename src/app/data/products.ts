@@ -7,6 +7,11 @@ export interface Product {
   oldPrice: number;
   discountPercentage: string;
   image: string;
+  images?: { url: string; alt: string; }[];
+  metaDescription?: string;
+  detailedDescription?: string;
+  reviewCount?: number;
+  rating: number;
   rating: number;
   description: string;
   features: string;
