@@ -52,10 +52,10 @@ export default function ProductPageClient({ product }: ProductPageClientProps) {
           features: product.features,
           benefits: product.benefits,
         });
-        setAiDescription(result.enhancedDescription);
+        setAiDescription((product as any).detailedDescription || result.enhancedDescription);
       } catch (error) {
         console.error("AI description failed", error);
-        setAiDescription(product.description);
+        setAiDescription((product as any).detailedDescription || product.description);
       } finally {
         setIsLoadingAi(false);
       }
