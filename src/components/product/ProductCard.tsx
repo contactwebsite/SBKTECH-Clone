@@ -18,10 +18,11 @@ export default function ProductCard({ product }: ProductCardProps) {
         {/* Product Image with ultra-smooth zoom */}
         <div className="relative w-full h-full transition-transform duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-110 mix-blend-multiply">
           <Image 
-            src={product.image} 
+            src={(product as any).images?.[0]?.url || product.image || "https://placehold.co/400x500"} 
             alt={product.name} 
             fill
             className="object-cover"
+            unoptimized
             data-ai-hint="luxury product"
           />
         </div>
