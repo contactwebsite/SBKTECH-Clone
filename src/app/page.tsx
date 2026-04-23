@@ -6,7 +6,7 @@ import Hero from '@/components/sections/Hero';
 import FeaturesBar from '@/components/sections/FeaturesBar';
 import TrustSection from '@/components/sections/TrustSection';
 import ProductCard from '@/components/product/ProductCard';
-import { products } from '@/app/data/products';
+import { products as localProducts } from '@/app/data/products';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -59,9 +59,19 @@ const VideoTestimonial = ({ url }: { url: string }) => {
 export default function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
-  const serrures = products.filter(p => p.category === 'Serrure intelligente').slice(0, 4);
-  const pointeuses = products.filter(p => p.category === 'Pointeuse biométrique').slice(0, 4);
-  const tourniquets = products.filter(p => p.category === 'Tourniquet tripode').slice(0, 4);
+  const [githubProducts, setGithubProducts] = useState<any[]>([]);
+  
+  useEffect(() => {
+    fetch('/api/github-products')
+      .then(r => r.json())
+      .then(data => Array.isArray(data) && data.length > 0 && setGithubProducts(data))
+      .catch(() => {})
+  }, []);
+
+  const allProducts = githubProducts.length > 0 ? [...githubProducts, ...localProducts] : localProducts;
+  const serrures = allProducts.filter((p:any) => p.category === 'Serrure intelligente').slice(0, 4);
+  const pointeuses = allProducts.filter((p:any) => p.category === 'Pointeuse biométrique').slice(0, 4);
+  const tourniquets = allProducts.filter((p:any) => p.category === 'Tourniquet tripode').slice(0, 4);
 
   const faqs = [
     {
