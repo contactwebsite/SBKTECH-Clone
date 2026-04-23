@@ -112,7 +112,7 @@ export default function ProductPageClient({ product }: ProductPageClientProps) {
           {/* Left Gallery */}
           <section className="space-y-4">
             <div className="relative aspect-square rounded-3xl overflow-hidden bg-card border">
-              <Image
+              <Image unoptimized
                 src={(product as any).images?.[0]?.url || (product as any).image || "https://placehold.co/600x600"}
                 alt={`Serrure intelligente ${product.name} - Vue principale Balencia`}
                 fill
@@ -126,7 +126,7 @@ export default function ProductPageClient({ product }: ProductPageClientProps) {
             <div className="grid grid-cols-4 gap-4">
               {[1, 2, 3, 4].map((i) => (
                 <div key={i} className="aspect-square relative rounded-xl overflow-hidden bg-muted border hover:border-primary cursor-pointer transition-colors">
-                  <Image
+                  <Image unoptimized
                     src={`https://picsum.photos/seed/${product.id}-${i}/200/200`}
                     alt={`Détail de la serrure ${product.name} - Image ${i}`}
                     fill
