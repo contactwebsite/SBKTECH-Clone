@@ -10,16 +10,15 @@ export default async function CategoryPage() {
   const allProducts = githubProducts.length > 0
     ? [...githubProducts, ...localProducts]
     : localProducts;
-  const categoryProducts = allProducts.filter((p: any) =>
-    p.category === 'Contrôle d'accès porte'
-  );
+  const cat = "Contrôle d\u0027accès porte";
+  const categoryProducts = allProducts.filter((p: any) => p.category === cat);
 
   return (
     <div className="bg-white min-h-screen">
       <div className="max-w-7xl mx-auto px-4 py-24">
         <header className="text-center mb-20">
           <h1 className="text-3xl md:text-4xl font-light tracking-[0.2em] uppercase text-black">
-            Contrôle d'accès porte
+            {cat}
           </h1>
           <p className="text-gray-500 mt-4 text-sm font-medium tracking-wide">
             Découvrez notre collection.
