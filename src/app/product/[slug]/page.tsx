@@ -6,7 +6,7 @@ import ProductPageClient from '@/components/product/ProductPageClient';
 
 export const dynamic = 'force-dynamic';
 
-const BASE_URL = 'process.env.NEXT_PUBLIC_BASE_URL || 'https://balencia-pr.vercel.app'';
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://balencia-pr.vercel.app'
 
 interface ProductPageProps {
   params: Promise<{ slug: string }>;
