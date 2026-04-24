@@ -3,7 +3,7 @@ import { getProductsFromGitHub, getBlogsFromGitHub } from '@/lib/github'
 
 export const dynamic = 'force-dynamic'
 
-const BASE_URL = 'process.env.NEXT_PUBLIC_BASE_URL || process.env.NEXT_PUBLIC_BASE_URL || 'https://balencia-pr.vercel.app''
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://balencia-pr.vercel.app'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPages: MetadataRoute.Sitemap = [
@@ -28,12 +28,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   try {
     const products = await getProductsFromGitHub()
     productPages = products
-      .filter((p: any) => {
-        const name = p.title || p.name || ''
-        const desc = p.description || ''
-        // فقط منتجات حقيقية - اسم أكثر من 5 أحرف ووصف موجود
-        return name.length >= 5 && desc.length >= 20
-      })
+      .filter((p: any) => (p.title || p.name || '').length >= 5 && (p.description || '').length >= 20)
       .map((p: any) => ({
         url: `${BASE_URL}/product/${p.slug}`,
         lastModified: new Date(p.publishedAt || new Date()),
@@ -45,11 +40,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   try {
     const blogs = await getBlogsFromGitHub()
     blogPages = blogs
-      .filter((b: any) => {
-        const title = b.title || ''
-        const content = b.content || ''
-        return title.length >= 10 && content.length >= 100
-      })
+      .filter((b: any) => (b.title || '').length >= 10 && (b.content || '').length >= 100)
       .map((b: any) => ({
         url: `${BASE_URL}/blog/${b.slug}`,
         lastModified: new Date(b.publishedAt || new Date()),
