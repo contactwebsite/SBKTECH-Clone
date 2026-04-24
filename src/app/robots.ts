@@ -6,11 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/api/', '/_next/'],
-      },
-      {
-        userAgent: 'Googlebot',
-        allow: '/',
+        disallow: ['/api/'],
       }
     ],
     sitemap: 'https://balencia-pr.vercel.app/sitemap.xml',

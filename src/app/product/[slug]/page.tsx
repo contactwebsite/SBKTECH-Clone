@@ -74,7 +74,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
       url,
       priceCurrency: 'MAD',
       price: product.price,
-      priceValidUntil: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+      priceValidUntil: "2026-12-31",
       availability: 'https://schema.org/InStock',
       seller: { '@type': 'Organization', name: 'BALENCIA Smart Security' },
       shippingDetails: {

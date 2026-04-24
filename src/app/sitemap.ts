@@ -3,23 +3,23 @@ import { getProductsFromGitHub, getBlogsFromGitHub } from '@/lib/github'
 
 export const dynamic = 'force-dynamic'
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://balencia-pr.vercel.app'
+const BASE_URL = 'https://balencia-pr.vercel.app'
 
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPages: MetadataRoute.Sitemap = [
-    { url: baseUrl, lastModified: new Date(), changeFrequency: 'daily', priority: 1 },
-    { url: `${baseUrl}/catalogue`, lastModified: new Date(), changeFrequency: 'daily', priority: 0.9 },
-    { url: `${baseUrl}/blog`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
-    { url: `${baseUrl}/contact`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
-    { url: `${baseUrl}/category/serrure-intelligente`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
-    { url: `${baseUrl}/category/coffre-fort`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
-    { url: `${baseUrl}/category/pointeuse-biometrique`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
-    { url: `${baseUrl}/category/tourniquet-tripode`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
-    { url: `${baseUrl}/category/controle-acces`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
-    { url: `${baseUrl}/category/controle-d-acces-porte`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
-    { url: `${baseUrl}/category/lecteurs-controle-d-acces`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
-    { url: `${baseUrl}/category/caisse`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
-    { url: `${baseUrl}/category/imprimante`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
+    { url: BASE_URL, lastModified: new Date(), changeFrequency: 'daily', priority: 1.0 },
+    { url: `${BASE_URL}/catalogue`, lastModified: new Date(), changeFrequency: 'daily', priority: 0.9 },
+    { url: `${BASE_URL}/blog`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${BASE_URL}/contact`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
+    { url: `${BASE_URL}/category/serrure-intelligente`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${BASE_URL}/category/coffre-fort`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${BASE_URL}/category/pointeuse-biometrique`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
+    { url: `${BASE_URL}/category/tourniquet-tripode`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
+    { url: `${BASE_URL}/category/controle-acces`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
+    { url: `${BASE_URL}/category/controle-d-acces-porte`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
+    { url: `${BASE_URL}/category/lecteurs-controle-d-acces`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
+    { url: `${BASE_URL}/category/caisse`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
+    { url: `${BASE_URL}/category/imprimante`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
   ]
 
   let productPages: MetadataRoute.Sitemap = []
@@ -27,22 +27,35 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   try {
     const products = await getProductsFromGitHub()
-    productPages = products.map((p: any) => ({
-      url: `${baseUrl}/product/${p.slug}`,
-      lastModified: new Date(p.publishedAt || new Date()),
-      changeFrequency: 'weekly' as const,
-      priority: 0.8,
-    }))
+    productPages = products
+      .filter((p: any) => {
+        const name = p.title || p.name || ''
+        const desc = p.description || ''
+        // فقط منتجات حقيقية - اسم أكثر من 5 أحرف ووصف موجود
+        return name.length >= 5 && desc.length >= 20
+      })
+      .map((p: any) => ({
+        url: `${BASE_URL}/product/${p.slug}`,
+        lastModified: new Date(p.publishedAt || new Date()),
+        changeFrequency: 'weekly' as const,
+        priority: 0.8,
+      }))
   } catch {}
 
   try {
     const blogs = await getBlogsFromGitHub()
-    blogPages = blogs.map((b: any) => ({
-      url: `${baseUrl}/blog/${b.slug}`,
-      lastModified: new Date(b.publishedAt || new Date()),
-      changeFrequency: 'monthly' as const,
-      priority: 0.7,
-    }))
+    blogPages = blogs
+      .filter((b: any) => {
+        const title = b.title || ''
+        const content = b.content || ''
+        return title.length >= 10 && content.length >= 100
+      })
+      .map((b: any) => ({
+        url: `${BASE_URL}/blog/${b.slug}`,
+        lastModified: new Date(b.publishedAt || new Date()),
+        changeFrequency: 'monthly' as const,
+        priority: 0.7,
+      }))
   } catch {}
 
   return [...staticPages, ...productPages, ...blogPages]
