@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   const url = `${BASE_URL}/product/${product.slug}`;
 
   return {
-    title: `${name} - Prix ${price} MAD | BALENCIA`,
+    title: `${name} - Prix ${price} MAD`,
     description: `${description} - Achetez ${name} au Maroc. Livraison gratuite partout au Maroc. Paiement à la livraison.`,
     keywords: [name, 'serrure maroc', 'sécurité maroc', 'BALENCIA', (product as any).category || ''],
     openGraph: {

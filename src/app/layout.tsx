@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
     default: "BALENCIA - L'Élégance de la Sécurité Intelligente au Maroc",
-    template: '%s | BALENCIA Smart Security',
+    template: '%s | BALENCIA',
   },
   description: 'Leader en solutions de sécurité de luxe au Maroc : serrures digitales, pointeuses biométriques, coffres-forts et contrôle d\'accès. Livraison gratuite partout au Maroc.',
   keywords: ['serrure digitale maroc', 'serrure intelligente', 'pointeuse biométrique', 'coffre fort maroc', 'contrôle accès', 'sécurité maroc', 'BALENCIA'],
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'website',
-    locale: 'fr_MA',
+    locale: 'fr_FR',
     url: BASE_URL,
     siteName: 'BALENCIA Smart Security',
     title: "BALENCIA - L'Élégance de la Sécurité Intelligente",
@@ -64,12 +64,13 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <head>
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
         <meta name="geo.region" content="MA" />
         <meta name="geo.country" content="Morocco" />
-        <meta name="language" content="French" />
+        <meta name="language" content="fr" />
       </head>
       <body className="font-sans min-h-screen flex flex-col bg-white text-[#111827] overflow-x-hidden">
         <Header />
@@ -82,3 +83,4 @@ export default function RootLayout({
     </html>
   );
 }
+// Add to head section
