@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next'
 
 export default function robots(): MetadataRoute.Robots {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://balencia-pr.vercel.app'
   return {
     rules: [
       {
@@ -9,7 +10,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/api/'],
       }
     ],
-    sitemap: 'process.env.NEXT_PUBLIC_BASE_URL || 'https://balencia-pr.vercel.app'/sitemap.xml',
-    host: 'process.env.NEXT_PUBLIC_BASE_URL || 'https://balencia-pr.vercel.app'',
+    sitemap: `${baseUrl}/sitemap.xml`,
+    host: baseUrl,
   }
 }
