@@ -4,7 +4,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { Toaster } from '@/components/ui/toaster';
 
-const BASE_URL = 'https://balencia-pr.vercel.app';
+const BASE_URL = 'process.env.NEXT_PUBLIC_BASE_URL || 'https://balencia-pr.vercel.app'';
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),

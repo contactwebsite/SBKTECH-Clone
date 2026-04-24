@@ -9,7 +9,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/api/'],
       }
     ],
-    sitemap: 'https://balencia-pr.vercel.app/sitemap.xml',
-    host: 'https://balencia-pr.vercel.app',
+    sitemap: 'process.env.NEXT_PUBLIC_BASE_URL || 'https://balencia-pr.vercel.app'/sitemap.xml',
+    host: 'process.env.NEXT_PUBLIC_BASE_URL || 'https://balencia-pr.vercel.app'',
   }
 }
