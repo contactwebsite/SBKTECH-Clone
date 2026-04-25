@@ -36,9 +36,9 @@ export default async function FullCataloguePage() {
                     className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
                     unoptimized
                   />
-                  <div className="absolute bottom-0 left-0 w-full bg-black text-white text-[10px] font-bold tracking-[0.3em] uppercase py-5 text-center transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] z-10">
+                  <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.location.href = `/product/${product.slug}`; }} className="absolute bottom-0 left-0 w-full bg-black text-white text-[10px] font-bold tracking-[0.3em] uppercase py-5 text-center transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] z-10">
                     AJOUTER AU PANIER
-                  </div>
+                  </button>
                 </div>
                 <div className="mt-8 text-center px-2">
                   <h3 className="text-[11px] font-black uppercase tracking-[0.2em] text-black mb-2 leading-relaxed h-8 line-clamp-2">

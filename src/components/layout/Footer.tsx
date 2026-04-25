@@ -37,6 +37,9 @@ export default function Footer() {
               <li><Link href="/category/coffre-fort" className="text-gray-300 hover:text-white transition-colors tracking-wide">Coffre-fort</Link></li>
               <li><Link href="/catalogue" className="text-gray-300 hover:text-white transition-colors tracking-wide">Catalogue</Link></li>
               <li><Link href="/contact" className="text-gray-300 hover:text-white transition-colors tracking-wide">Contactez-nous</Link></li>
+              <li><Link href="/a-propos" className="text-gray-300 hover:text-white transition-colors tracking-wide">À Propos</Link></li>
+              <li><Link href="/politique-confidentialite" className="text-gray-300 hover:text-white transition-colors tracking-wide">Politique de Confidentialité</Link></li>
+              <li><Link href="/conditions-utilisation" className="text-gray-300 hover:text-white transition-colors tracking-wide">Conditions d'Utilisation</Link></li>
             </ul>
           </div>
 
