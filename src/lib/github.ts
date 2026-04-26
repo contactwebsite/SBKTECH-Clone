@@ -20,6 +20,7 @@ async function fetchGitHub(path: string) {
 
 export async function getProductsFromGitHub() {
   try {
+    if (!process.env.GITHUB_TOKEN) return []
     const data = await fetchGitHub('data/products/index.json')
     if (!data) return []
     return data.map((p: any) => ({
