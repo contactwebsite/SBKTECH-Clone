@@ -1,7 +1,9 @@
 import { Metadata } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { products } from '@/app/data/products';
-import { getProductBySlug } from '@/lib/github';
+import { getProductBySlug, getProductsFromGitHub } from '@/lib/github';
 import ProductPageClient from '@/components/product/ProductPageClient';
 
 export const dynamic = 'force-dynamic';
@@ -23,6 +25,19 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   const description = (product as any).metaDescription || product.description;
   const price = product.price;
   const url = `${BASE_URL}/product/${product.slug}`;
+
+  let relatedProducts: any[] = [];
+  try {
+    const allProducts = await getProductsFromGitHub();
+    const category = (product as any).category;
+    const sameCategory = allProducts.filter((p: any) =>
+      p.slug !== product.slug && p.category === category
+    );
+    const others = allProducts.filter((p: any) =>
+      p.slug !== product.slug && p.category !== category
+    );
+    relatedProducts = [...sameCategory, ...others].slice(0, 4);
+  } catch {}
 
   return {
     title: `${name} - Prix ${price} MAD`,
@@ -103,6 +118,43 @@ export default async function ProductPage({ params }: ProductPageProps) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      {relatedProducts.length > 0 && (
+        <section className="max-w-7xl mx-auto px-4 py-16 border-t border-gray-100">
+          <h2 className="text-xl font-light tracking-[0.2em] uppercase text-black text-center mb-12">
+            Recommandé pour vous
+          </h2>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10">
+            {relatedProducts.map((p: any) => (
+              <Link key={p.slug} href={`/product/${p.slug}`} className="group flex flex-col cursor-pointer">
+                <div className="relative aspect-[4/5] bg-gray-50 overflow-hidden rounded-sm mb-4">
+                  <Image
+                    src={p.images?.[0]?.url || p.image || 'https://placehold.co/400x500'}
+                    alt={p.images?.[0]?.alt || p.name || p.title || ''}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    unoptimized
+                  />
+                </div>
+                <div className="text-center">
+                  <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-black mb-2 line-clamp-2 leading-relaxed">
+                    {p.name || p.title}
+                  </h3>
+                  <div className="flex items-center justify-center gap-2">
+                    <span className="text-[12px] font-black text-black">
+                      {(p.price || 0).toLocaleString('fr-FR')} DH
+                    </span>
+                    {(p.oldPrice || 0) > 0 && (
+                      <span className="text-[10px] text-gray-400 line-through">
+                        {(p.oldPrice || 0).toLocaleString('fr-FR')} DH
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
       <ProductPageClient product={{
         ...product,
         name,
