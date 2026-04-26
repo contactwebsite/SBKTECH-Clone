@@ -23,7 +23,7 @@ export default function PolitiqueConfidentialitePage() {
             { title: '3. PROTECTION DES DONNÉES', content: 'Nous mettons en œuvre des mesures de sécurité techniques et organisationnelles pour protéger vos données contre tout accès non autorisé, modification, divulgation ou destruction.' },
             { title: '4. COOKIES', content: 'Notre site utilise des cookies pour améliorer votre expérience de navigation. Vous pouvez désactiver les cookies dans les paramètres de votre navigateur. Certaines fonctionnalités du site peuvent ne plus fonctionner correctement sans cookies.' },
             { title: '5. VOS DROITS', content: 'Conformément à la loi marocaine 09-08 relative à la protection des personnes physiques, vous disposez d\'un droit d\'accès, de rectification et de suppression de vos données personnelles. Pour exercer ces droits, contactez-nous à : contact@balencia.ma' },
-            { title: '6. CONTACT', content: 'Pour toute question relative à notre politique de confidentialité, contactez-nous : Email : contact@balencia.ma | Téléphone : +212 6XX XX XX XX' },
+            { title: '6. CONTACT', content: 'Pour toute question relative à notre politique de confidentialité, contactez-nous : Email : contact@balencia.ma | Téléphone : +212 687 01 43 98' },
           ].map((section, i) => (
             <div key={i}>
               <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-black mb-3 border-b border-gray-100 pb-2">{section.title}</h2>

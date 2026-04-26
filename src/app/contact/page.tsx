@@ -78,7 +78,7 @@ export default function ContactPage() {
                 <label className="block text-xs font-medium uppercase tracking-wider text-gray-500 mb-2">Téléphone</label>
                 <input type="tel" name="phone"
                   className="w-full border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:border-black transition-colors"
-                  placeholder="06XX XX XX XX" />
+                  placeholder="06 87 01 43 98" />
               </div>
               <div>
                 <label className="block text-xs font-medium uppercase tracking-wider text-gray-500 mb-2">Sujet</label>
