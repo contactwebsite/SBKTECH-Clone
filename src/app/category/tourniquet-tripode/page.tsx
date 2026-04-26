@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { products as localProducts } from '@/app/data/products';
 import { getProductsFromGitHub } from '@/lib/github';
+import AddToCartButton from '@/components/product/AddToCartButton';
 
 export const dynamic = 'force-dynamic';
 
@@ -35,9 +36,7 @@ export default async function CategoryPage() {
                   className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
                   unoptimized
                 />
-                <div className="absolute bottom-0 left-0 w-full bg-black text-white text-[10px] font-bold tracking-[0.3em] uppercase py-5 text-center transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 z-10">
-                  AJOUTER AU PANIER
-                </div>
+                <AddToCartButton slug={product.slug} />
               </div>
               <div className="mt-8 text-center px-2">
                 <h3 className="text-[11px] font-black uppercase tracking-[0.2em] text-black mb-2 leading-relaxed h-8 line-clamp-2">
