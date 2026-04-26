@@ -34,7 +34,7 @@ export default function ContactPage() {
                   <span className="text-black font-bold mt-0.5">📞</span>
                   <div>
                     <p className="font-medium text-black">Téléphone</p>
-                    <p>+212 6XX XX XX XX</p>
+                    <p>+212 687 01 43 98</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">

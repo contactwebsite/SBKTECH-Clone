@@ -25,7 +25,7 @@ export default function ConditionsUtilisationPage() {
             { title: '5. RETOURS ET REMBOURSEMENTS', content: 'Vous disposez de 14 jours à compter de la réception de votre commande pour retourner un produit. Le produit doit être dans son état d\'origine, non utilisé et dans son emballage d\'origine. Les frais de retour sont pris en charge par BALENCIA.' },
             { title: '6. GARANTIE', content: 'Tous nos produits bénéficient d\'une garantie de 2 ans contre les défauts de fabrication. La garantie ne couvre pas les dommages résultant d\'une mauvaise utilisation, d\'accidents ou de modifications non autorisées.' },
             { title: '7. PROPRIÉTÉ INTELLECTUELLE', content: 'Le contenu de ce site (textes, images, logos) est protégé par le droit marocain de la propriété intellectuelle. Toute reproduction non autorisée est interdite.' },
-            { title: '8. CONTACT', content: 'Pour toute question : Email : contact@balencia.ma | Téléphone : +212 6XX XX XX XX | Adresse : Casablanca, Maroc' },
+            { title: '8. CONTACT', content: 'Pour toute question : Email : contact@balencia.ma | Téléphone : +212 687 01 43 98 | Adresse : Casablanca, Maroc' },
           ].map((section, i) => (
             <div key={i}>
               <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-black mb-3 border-b border-gray-100 pb-2">{section.title}</h2>
