@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { getBlogsFromGitHub } from '@/lib/github';
 
 export const dynamic = 'force-dynamic';
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://balencia-pr.vercel.app'
 
 export default async function BlogPage() {
   const blogs = await getBlogsFromGitHub();
