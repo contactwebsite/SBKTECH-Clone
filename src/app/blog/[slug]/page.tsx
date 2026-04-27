@@ -5,6 +5,7 @@ import { getBlogBySlug, getBlogsFromGitHub } from '@/lib/github';
 import { Metadata } from 'next';
 
 export const dynamic = 'force-dynamic';
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://bywet.info'
 
 interface BlogPageProps {
   params: Promise<{ slug: string }>;
