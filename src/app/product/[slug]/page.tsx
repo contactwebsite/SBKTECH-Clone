@@ -114,6 +114,18 @@ export default async function ProductPage({ params }: ProductPageProps) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <ProductPageClient product={{
+        ...product,
+        name,
+        image,
+        images,
+        oldPrice,
+        rating: (product as any).rating || 4.8,
+        reviewCount: (product as any).reviewCount || 50,
+        detailedDescription: (product as any).detailedDescription || '',
+        features: (product as any).features || '',
+        benefits: (product as any).benefits || '',
+      } as any} />
       {relatedProducts.length > 0 && (
         <section className="max-w-7xl mx-auto px-4 py-16 border-t border-gray-100">
           <h2 className="text-xl font-light tracking-[0.2em] uppercase text-black text-center mb-12">
@@ -151,18 +163,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
           </div>
         </section>
       )}
-      <ProductPageClient product={{
-        ...product,
-        name,
-        image,
-        images,
-        oldPrice,
-        rating: (product as any).rating || 4.8,
-        reviewCount: (product as any).reviewCount || 50,
-        detailedDescription: (product as any).detailedDescription || '',
-        features: (product as any).features || '',
-        benefits: (product as any).benefits || '',
-      } as any} />
     </>
   );
 }
