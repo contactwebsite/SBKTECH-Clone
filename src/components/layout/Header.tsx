@@ -15,6 +15,17 @@ import { cn } from '@/lib/utils';
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [cartItems, setCartItems] = useState<any[]>([]);
+
+  useEffect(() => {
+    const readCart = () => {
+      const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+      setCartItems(cart);
+    };
+    readCart();
+    window.addEventListener('cart-updated', readCart);
+    return () => window.removeEventListener('cart-updated', readCart);
+  }, []);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -122,10 +133,11 @@ export default function Header() {
               onClick={() => setIsCartOpen(true)}
             >
               <ShoppingBag className="w-5 h-5 text-gray-800 transition-transform duration-300 group-hover:scale-110 group-hover:text-black" strokeWidth={1.5} />
-              <span className="absolute top-1 right-1 flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-500"></span>
-              </span>
+              {cartItems.length > 0 && (
+                <span className="absolute -top-1 -right-1 bg-black text-white text-[9px] font-black rounded-full w-4 h-4 flex items-center justify-center">
+                  {cartItems.reduce((s: number, i: any) => s + (i.quantity || 1), 0)}
+                </span>
+              )}
             </div>
 
             <Sheet>
@@ -183,19 +195,47 @@ export default function Header() {
             </button>
           </div>
 
-          {/* Cart Body (Empty State) */}
-          <div className="flex-1 flex flex-col items-center justify-center p-8 text-center">
-            <div className="w-16 h-16 mb-6 rounded-full bg-gray-50 flex items-center justify-center">
-              <ShoppingBag className="w-8 h-8 text-gray-300" strokeWidth={1} />
-            </div>
-            <p className="text-gray-500 mb-8 font-light">Votre panier est actuellement vide.</p>
-            <button 
-              onClick={() => setIsCartOpen(false)}
-              className="w-full bg-black text-white py-4 uppercase tracking-widest text-sm font-semibold hover:bg-gray-900 transition-colors"
-            >
-              Continuer vos achats
-            </button>
+          {/* Cart Body */}
+          <div className="flex-1 overflow-y-auto p-6">
+            {cartItems.length === 0 ? (
+              <div className="flex flex-col items-center justify-center h-full text-center">
+                <ShoppingBag className="w-12 h-12 text-gray-200 mb-4" strokeWidth={1} />
+                <p className="text-gray-400 font-light">Votre panier est vide.</p>
+              </div>
+            ) : (
+              <div className="flex flex-col gap-4">
+                {cartItems.map((item: any, idx: number) => (
+                  <div key={idx} className="flex gap-4 border-b border-gray-50 pb-4">
+                    <div className="w-16 h-16 bg-gray-50 rounded flex-shrink-0 overflow-hidden relative">
+                      <img src={item.images?.[0]?.url || item.image || 'https://placehold.co/64x64'} alt={item.name} className="w-full h-full object-cover" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-[10px] font-black uppercase tracking-wider text-black line-clamp-2">{item.name}</p>
+                      <p className="text-sm font-black text-black mt-1">{(item.price || 0).toLocaleString('fr-FR')} DH</p>
+                      <p className="text-[10px] text-gray-400">Qté: {item.quantity || 1}</p>
+                    </div>
+                    <button onClick={() => {
+                      const cart = cartItems.filter((_: any, i: number) => i !== idx);
+                      localStorage.setItem('cart', JSON.stringify(cart));
+                      setCartItems(cart);
+                      window.dispatchEvent(new Event('cart-updated'));
+                    }} className="text-gray-300 hover:text-black text-xs self-start">✕</button>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
+          {cartItems.length > 0 && (
+            <div className="p-6 border-t border-gray-100">
+              <div className="flex justify-between mb-4">
+                <span className="text-sm uppercase tracking-wider text-gray-500">Total</span>
+                <span className="font-black text-black">{cartItems.reduce((s: number, i: any) => s + (i.price || 0) * (i.quantity || 1), 0).toLocaleString('fr-FR')} DH</span>
+              </div>
+              <button className="w-full bg-black text-white py-4 uppercase tracking-widest text-sm font-semibold hover:bg-gray-900 transition-colors">
+                Commander
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </>
