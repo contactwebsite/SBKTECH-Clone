@@ -34,10 +34,25 @@ export default function ProductCard({ product }: ProductCardProps) {
           </span>
         </div>
 
-        {/* Hover Action Button (Slides up smoothly) */}
-        <div className="absolute bottom-4 left-4 right-4 bg-black text-white py-3.5 text-[10px] font-bold tracking-[0.25em] uppercase text-center opacity-0 translate-y-4 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:opacity-100 group-hover:translate-y-0 z-10">
-          Découvrir
-        </div>
+        {/* Hover Action Button */}
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            const exists = cart.find((i: any) => i.slug === product.slug);
+            if (exists) {
+              exists.quantity = (exists.quantity || 1) + 1;
+            } else {
+              cart.push({ ...product, quantity: 1 });
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            window.dispatchEvent(new Event('cart-updated'));
+          }}
+          className="absolute bottom-4 left-4 right-4 bg-black text-white py-3.5 text-[10px] font-bold tracking-[0.25em] uppercase text-center opacity-0 translate-y-4 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:opacity-100 group-hover:translate-y-0 z-10 cursor-pointer border-0"
+        >
+          Ajouter au panier
+        </button>
       </div>
 
       {/* Typography Area (Minimalist) */}
