@@ -231,9 +231,9 @@ export default function Header() {
                 <span className="text-sm uppercase tracking-wider text-gray-500">Total</span>
                 <span className="font-black text-black">{cartItems.reduce((s: number, i: any) => s + (i.price || 0) * (i.quantity || 1), 0).toLocaleString('fr-FR')} DH</span>
               </div>
-              <button className="w-full bg-black text-white py-4 uppercase tracking-widest text-sm font-semibold hover:bg-gray-900 transition-colors">
+              <a href="/commande" className="block w-full bg-black text-white py-4 uppercase tracking-widest text-sm font-semibold hover:bg-gray-900 transition-colors text-center">
                 Commander
-              </button>
+              </a>
             </div>
           )}
         </div>
