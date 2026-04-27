@@ -37,7 +37,12 @@ export default async function BlogPostPage({ params }: BlogPageProps) {
 
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'Article',
+    '@type': 'BlogPosting',
+    '@id': `${BASE_URL || 'https://balencia-pr.vercel.app'}/blog/${slug}`,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${BASE_URL || 'https://balencia-pr.vercel.app'}/blog/${slug}`
+    },
     headline: blog.title,
     description: blog.metaDescription,
     image: blog.images?.[0]?.url || '',

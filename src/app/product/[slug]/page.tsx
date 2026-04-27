@@ -63,6 +63,37 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const images = (product as any).images || (image ? [{ url: image, alt: name }] : []);
   const url = `${BASE_URL}/product/${product.slug}`;
 
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: `Comment acheter ${name} au Maroc ?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: `Commandez ${name} sur notre site. Livraison gratuite partout au Maroc en 24-48h. Paiement à la livraison.`
+        }
+      },
+      {
+        '@type': 'Question', 
+        name: `Quel est le prix de ${name} ?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: `${name} est disponible au prix de ${product.price} MAD avec livraison gratuite au Maroc.`
+        }
+      },
+      {
+        '@type': 'Question',
+        name: `${name} est-il disponible au Maroc ?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: `Oui, ${name} est disponible au Maroc chez BALENCIA Smart Security. Livraison en 24-48h partout au Maroc.`
+        }
+      }
+    ]
+  }
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Product',
@@ -114,6 +145,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <ProductPageClient product={{
         ...product,
         name,
