@@ -26,19 +26,6 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   const price = product.price;
   const url = `${BASE_URL}/product/${product.slug}`;
 
-  let relatedProducts: any[] = [];
-  try {
-    const allProducts = await getProductsFromGitHub();
-    const category = (product as any).category;
-    const sameCategory = allProducts.filter((p: any) =>
-      p.slug !== product.slug && p.category === category
-    );
-    const others = allProducts.filter((p: any) =>
-      p.slug !== product.slug && p.category !== category
-    );
-    relatedProducts = [...sameCategory, ...others].slice(0, 4);
-  } catch {}
-
   return {
     title: `${name} - Prix ${price} MAD`,
     description: `${description} - Achetez ${name} au Maroc. Livraison gratuite partout au Maroc. Paiement à la livraison.`,
@@ -114,6 +101,15 @@ export default async function ProductPage({ params }: ProductPageProps) {
       ],
     },
   };
+
+  let relatedProducts: any[] = [];
+  try {
+    const allProducts = await getProductsFromGitHub();
+    const category = (product as any).category;
+    const same = allProducts.filter((p: any) => p.slug !== product.slug && p.category === category);
+    const others = allProducts.filter((p: any) => p.slug !== product.slug && p.category !== category);
+    relatedProducts = [...same, ...others].slice(0, 4);
+  } catch {}
 
   return (
     <>
