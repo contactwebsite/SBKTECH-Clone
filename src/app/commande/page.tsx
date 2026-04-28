@@ -19,6 +19,13 @@ export default function CommandePage() {
     // Save order
     const order = { ...form, cart, total, date: new Date().toISOString() };
     console.log('Order:', order);
+    try {
+      await fetch('/api/sheet', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type: 'commande_panier', ...form, cart, total }),
+      });
+    } catch {}
     localStorage.removeItem('cart');
     window.dispatchEvent(new Event('cart-updated'));
     setSent(true);
