@@ -8,7 +8,7 @@ import ProductPageClient from '@/components/product/ProductPageClient';
 
 export const dynamic = 'force-dynamic';
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://balencia-pr.vercel.app'
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.bywet.info'
 
 interface ProductPageProps {
   params: Promise<{ slug: string }>;
@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 
   return {
     title: `${name} - Prix ${price} MAD`,
-    description: `${description} - Achetez ${name} au Maroc. Livraison gratuite partout au Maroc. Paiement à la livraison.`,
+    description: description.length > 155 ? description.substring(0, 155) + "..." : description,
     keywords: [name, 'serrure maroc', 'sécurité maroc', 'BALENCIA', (product as any).category || ''],
     openGraph: {
       type: 'website',
