@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: BlogPageProps): Promise<Metad
   const blog = await getBlogBySlug(slug);
   if (!blog) return { title: 'Article non trouvé - BALENCIA' };
   return {
-    title: `${blog.title} | BALENCIA Blog`,
+    title: blog.title,
     description: blog.metaDescription || blog.content?.substring(0, 160),
     openGraph: {
       title: blog.title,
@@ -39,10 +39,10 @@ export default async function BlogPostPage({ params }: BlogPageProps) {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
-    '@id': `${'https://balencia.ma'}/blog/${slug}`,
+    '@id': `${'https://www.bywet.info'}/blog/${slug}`,
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `${'https://balencia.ma'}/blog/${slug}`
+      '@id': `${'https://www.bywet.info'}/blog/${slug}`
     },
     headline: blog.title,
     description: blog.metaDescription,
@@ -109,7 +109,7 @@ export default async function BlogPostPage({ params }: BlogPageProps) {
           {blog.content && (
             <div 
               className="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-black prose-p:text-gray-700 prose-p:leading-relaxed prose-img:rounded-sm prose-a:text-black prose-a:underline"
-              dangerouslySetInnerHTML={{ __html: blog.content }}
+              dangerouslySetInnerHTML={{ __html: blog.content.replace(/<h1/gi, "<h2").replace(/</h1>/gi, "</h2>") }}
             />
           )}
 
