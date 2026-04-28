@@ -109,7 +109,7 @@ export default async function BlogPostPage({ params }: BlogPageProps) {
           {blog.content && (
             <div 
               className="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-black prose-p:text-gray-700 prose-p:leading-relaxed prose-img:rounded-sm prose-a:text-black prose-a:underline"
-              dangerouslySetInnerHTML={{ __html: blog.content.replace(/<h1/gi, "<h2").replace(/</h1>/gi, "</h2>") }}
+              dangerouslySetInnerHTML={{ __html: blog.content.split("<h1").join("<h2").split("</h1>").join("</h2>") }}
             />
           )}
 
