@@ -42,18 +42,25 @@ export default function CODForm({ productName, price }: CODFormProps) {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true);
-    // Simulate API call
-    setTimeout(() => {
-      console.log(values);
-      setIsSubmitting(false);
-      setIsSuccess(true);
-      toast({
-        title: "Commande reçue !",
-        description: "Nous vous contacterons dans quelques minutes pour confirmer.",
+    try {
+      await fetch('/api/sheet', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'commande_produit',
+          nom: values.firstName,
+          telephone: values.phone,
+          ville: values.city,
+          produit: productName,
+          prix: price,
+        }),
       });
-    }, 1500);
+    } catch {}
+    setIsSubmitting(false);
+    setIsSuccess(true);
+    toast({ title: "Commande reçue !", description: "Nous vous contacterons dans quelques minutes pour confirmer." });
   }
 
   if (isSuccess) {
