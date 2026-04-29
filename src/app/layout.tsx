@@ -3,6 +3,7 @@ import './globals.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { Toaster } from '@/components/ui/toaster';
+import LockMascot from '@/components/LockMascot';
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://balencia-pr.vercel.app'
 
@@ -79,6 +80,7 @@ export default function RootLayout({
         </main>
         <Footer />
         <Toaster />
+        <LockMascot />
       </body>
     </html>
   );
