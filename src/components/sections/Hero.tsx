@@ -1,4 +1,3 @@
-
 "use client";
 
 import Image from 'next/image';
@@ -18,7 +17,7 @@ export default function Hero() {
             className="w-full h-full"
           >
             <Image
-              src="https://i.ibb.co/GfYGQ9Gm/BALENCIA.jpg"
+              src="https://i.ibb.co/5W34CprR/A-professional-commercial-grade-banner-photograph-202606262009.jpg"
               alt="MegaDealTech Premium Smart Lock Desktop"
               fill
               priority
@@ -36,7 +35,7 @@ export default function Hero() {
             className="w-full h-full"
           >
             <Image
-              src="https://i.ibb.co/rfNLW2Qh/Image-fx-7.jpg"
+              src="https://i.ibb.co/4wQLgS9t/A-professional-commercial-grade-vertical-product-202606262015.jpg"
               alt="MegaDealTech Premium Smart Lock Mobile"
               fill
               priority

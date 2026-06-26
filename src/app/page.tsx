@@ -203,7 +203,7 @@ export default function Home() {
             className="w-full md:w-1/2 aspect-square relative bg-gray-50 overflow-hidden"
           >
             <Image
-              src="https://i.ibb.co/Mkb4rR03/balencia-photo.jpg"
+              src="https://i.ibb.co/0yCQhGfp/A-professional-cinematic-square-lifestyle-202606262033.jpg"
               alt="Votre maison sécurisée par MegaDealTech"
               fill
               className="object-cover transition-transform duration-1000 hover:scale-110"
@@ -241,7 +241,7 @@ export default function Home() {
             className="w-full md:w-1/2 aspect-square relative bg-gray-100 overflow-hidden"
           >
             <Image
-              src="https://i.ibb.co/N6D2bQQf/Image-fx-12.jpg"
+              src="https://i.ibb.co/Fkx6t4YP/A-professional-high-end-commercial-lifestyle-202606262043.jpg"
               alt="Technologie MegaDealTech"
               fill
               className="object-cover transition-transform duration-1000 hover:scale-110"
