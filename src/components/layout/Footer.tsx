@@ -48,7 +48,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
           <div className="space-y-6">
             <div className="flex flex-col">
-              <span className="font-sans font-black text-3xl md:text-4xl tracking-[0.25em] text-white uppercase leading-none">BALENCIA</span>
+              <span className="font-sans font-black text-3xl md:text-4xl tracking-[0.25em] text-white uppercase leading-none">MegaDealTech</span>
               <span className="font-sans font-medium text-[0.6rem] tracking-[0.4em] text-gray-400 uppercase mt-2 leading-none">L'ÉLÉGANCE DE LA SÉCURITÉ</span>
             </div>
             <p className="text-gray-400 text-sm max-w-xs leading-relaxed">Votre partenaire d'excellence pour la sécurité technologique au Maroc. Solutions de luxe pour résidences et entreprises.</p>
@@ -69,7 +69,7 @@ export default function Footer() {
           <div className="space-y-6"><NewsletterForm /></div>
         </div>
         <div className="mt-20 pt-8 border-t border-gray-800 text-center text-[9px] text-gray-500 uppercase tracking-[0.3em]">
-          <p>© 2026 BALENCIA SECURITY. Tous droits réservés.</p>
+          <p>© 2026 MegaDealTech SECURITY. Tous droits réservés.</p>
         </div>
       </div>
     </footer>

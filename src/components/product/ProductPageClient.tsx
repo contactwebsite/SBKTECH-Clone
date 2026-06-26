@@ -187,7 +187,7 @@ export default function ProductPageClient({ product }: ProductPageClientProps) {
             <div className="relative aspect-square rounded-3xl overflow-hidden bg-card border">
               <Image unoptimized
                 src={(product as any).images?.[0]?.url || (product as any).image || "https://placehold.co/600x600"}
-                alt={`Serrure intelligente ${product.name} - Vue principale Balencia`}
+                alt={`Serrure intelligente ${product.name} - Vue principale MegaDealTech`}
                 fill
                 priority
                 className="object-cover"

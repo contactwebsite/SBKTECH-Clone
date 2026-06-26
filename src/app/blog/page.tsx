@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { getBlogsFromGitHub } from '@/lib/github';
 
 export const dynamic = 'force-dynamic';
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://balencia.ma'
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://MegaDealTech.com'
 
 export default async function BlogPage() {
   const blogs = await getBlogsFromGitHub();

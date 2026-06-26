@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   const { slug } = await params;
   const githubProduct = await getProductBySlug(slug);
   const product = githubProduct || products.find((p) => p.slug === slug);
-  if (!product) return { title: 'Produit non trouvé - BALENCIA' };
+  if (!product) return { title: 'Produit non trouvé - MegaDealTech' };
 
   const name = (product as any).name || (product as any).title;
   const image = (product as any).images?.[0]?.url || (product as any).image || '';
@@ -29,14 +29,14 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   return {
     title: `${name} - Prix ${price} MAD`,
     description: description.length > 155 ? description.substring(0, 155) + "..." : description,
-    keywords: [name, 'serrure maroc', 'sécurité maroc', 'BALENCIA', (product as any).category || ''],
+    keywords: [name, 'serrure maroc', 'sécurité maroc', 'MegaDealTech', (product as any).category || ''],
     openGraph: {
       type: 'website',
       url,
-      title: `${name} | BALENCIA Smart Security`,
+      title: `${name} | MegaDealTech Smart Security`,
       description,
       images: [{ url: image, width: 800, height: 800, alt: name }],
-      siteName: 'BALENCIA Smart Security',
+      siteName: 'MegaDealTech Smart Security',
       locale: 'fr_MA',
     },
     twitter: {
@@ -88,7 +88,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
         name: `${name} est-il disponible au Maroc ?`,
         acceptedAnswer: {
           '@type': 'Answer',
-          text: `Oui, ${name} est disponible au Maroc chez BALENCIA Smart Security. Livraison en 24-48h partout au Maroc.`
+          text: `Oui, ${name} est disponible au Maroc chez MegaDealTech Smart Security. Livraison en 24-48h partout au Maroc.`
         }
       }
     ]
@@ -101,7 +101,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
     image: images.map((i: any) => i.url),
     description: (product as any).metaDescription || product.description,
     sku: product.slug,
-    brand: { '@type': 'Brand', name: 'BALENCIA' },
+    brand: { '@type': 'Brand', name: 'MegaDealTech' },
     offers: {
       '@type': 'Offer',
       url,
@@ -109,7 +109,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
       price: product.price,
       priceValidUntil: "2026-12-31",
       availability: 'https://schema.org/InStock',
-      seller: { '@type': 'Organization', name: 'BALENCIA Smart Security' },
+      seller: { '@type': 'Organization', name: 'MegaDealTech Smart Security' },
       shippingDetails: {
         '@type': 'OfferShippingDetails',
         shippingRate: { '@type': 'MonetaryAmount', value: '0', currency: 'MAD' },

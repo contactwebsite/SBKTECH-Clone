@@ -19,7 +19,7 @@ export default function Hero() {
           >
             <Image
               src="https://i.ibb.co/GfYGQ9Gm/BALENCIA.jpg"
-              alt="BALENCIA Premium Smart Lock Desktop"
+              alt="MegaDealTech Premium Smart Lock Desktop"
               fill
               priority
               className="object-cover"
@@ -37,7 +37,7 @@ export default function Hero() {
           >
             <Image
               src="https://i.ibb.co/rfNLW2Qh/Image-fx-7.jpg"
-              alt="BALENCIA Premium Smart Lock Mobile"
+              alt="MegaDealTech Premium Smart Lock Mobile"
               fill
               priority
               className="object-cover"
@@ -52,7 +52,7 @@ export default function Hero() {
         <div className="animate-marquee whitespace-nowrap">
           {Array.from({ length: 12 }).map((_, i) => (
             <span key={i} className="mx-8 font-bold tracking-[0.15em] text-[11px] uppercase">
-              BALENCIA SMART SECURITY
+              MegaDealTech SMART SECURITY
             </span>
           ))}
         </div>

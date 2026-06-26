@@ -78,7 +78,7 @@ export default function Header() {
 
               <div className="flex flex-col justify-center">
                 <span className="font-sans font-black text-xl md:text-2xl tracking-[0.25em] text-black uppercase leading-none">
-                  BALENCIA
+                MegaDealTech
                 </span>
                 <span className="font-sans font-medium text-[0.45rem] md:text-[0.6rem] tracking-[0.4em] text-gray-500 uppercase mt-1 leading-none">
                   Smart Security

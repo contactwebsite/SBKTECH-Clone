@@ -1,8 +1,8 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'À Propos | BALENCIA Smart Security',
-  description: 'BALENCIA Smart Security - Leader en solutions de sécurité intelligente au Maroc. Découvrez notre histoire et notre mission.',
+  title: 'À Propos | MegaDealTech Smart Security',
+  description: 'MegaDealTech Smart Security - Leader en solutions de sécurité intelligente au Maroc. Découvrez notre histoire et notre mission.',
 }
 
 export default function AProposPage() {
@@ -22,7 +22,7 @@ export default function AProposPage() {
           <div>
             <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-black mb-4 border-b border-gray-100 pb-3">NOTRE HISTOIRE</h2>
             <p className="text-gray-600 leading-relaxed text-sm">
-              BALENCIA Smart Security est née d'une vision simple : rendre la sécurité intelligente accessible à tous les foyers et entreprises marocains. Depuis notre création, nous nous sommes imposés comme le référentiel de confiance en matière de serrures digitales, pointeuses biométriques et coffres-forts au Maroc.
+            MegaDealTech Smart Security est née d'une vision simple : rendre la sécurité intelligente accessible à tous les foyers et entreprises marocains. Depuis notre création, nous nous sommes imposés comme le référentiel de confiance en matière de serrures digitales, pointeuses biométriques et coffres-forts au Maroc.
             </p>
           </div>
 

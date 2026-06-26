@@ -2,11 +2,11 @@ import { Check, X } from 'lucide-react';
 
 export default function TrustSection() {
   const comparison = [
-    { feature: 'Accès sans clé (Biométrie)', balencia: true, others: false },
-    { feature: 'Contrôle à distance via App', balencia: true, others: false },
-    { feature: 'Support technique 24/7 au Maroc', balencia: true, others: false },
-    { feature: 'GARANTIE', balencia: true, others: true },
-    { feature: 'Résistance aux intempéries IP65', balencia: true, others: false },
+    { feature: 'Accès sans clé (Biométrie)', MegaDealTech: true, others: false },
+    { feature: 'Contrôle à distance via App', MegaDealTech: true, others: false },
+    { feature: 'Support technique 24/7 au Maroc', MegaDealTech: true, others: false },
+    { feature: 'GARANTIE', MegaDealTech: true, others: true },
+    { feature: 'Résistance aux intempéries IP65', MegaDealTech: true, others: false },
   ];
 
   return (
@@ -18,7 +18,7 @@ export default function TrustSection() {
               Le standard du véritable haut de gamme
             </h2>
             <p className="text-xs text-gray-500 max-w-sm uppercase tracking-[0.2em] font-bold">
-              Pourquoi choisir BALENCIA ? Comparez et voyez la différence par vous-même.
+              Pourquoi choisir MegaDealTech ? Comparez et voyez la différence par vous-même.
             </p>
           </div>
 
@@ -27,7 +27,7 @@ export default function TrustSection() {
               <thead>
                 <tr>
                   <th className="p-4 bg-gray-50 text-[9px] font-black uppercase tracking-[0.2em]"></th>
-                  <th className="p-4 text-center bg-black text-white text-[10px] font-black uppercase tracking-[0.2em]">BALENCIA</th>
+                  <th className="p-4 text-center bg-black text-white text-[10px] font-black uppercase tracking-[0.2em]">MegaDealTech</th>
                   <th className="p-4 text-center bg-gray-50 text-gray-400 text-[10px] font-black uppercase tracking-[0.2em]">Autres</th>
                 </tr>
               </thead>

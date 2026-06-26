@@ -38,7 +38,7 @@ export default function ContactPage() {
             <div>
               <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-black mb-4">INFORMATIONS</h2>
               <div className="space-y-4 text-sm text-gray-600">
-                {[['📍','Adresse','Casablanca, Maroc'],['📞','Téléphone','+212 687 01 43 98'],['✉️','Email','contact@balencia.ma'],['🕐','Horaires','Lun - Sam: 9h00 - 18h00']].map(([icon,label,val])=>(
+                {[['📍','Adresse','Casablanca, Maroc'],['📞','Téléphone','+212 687 01 43 98'],['✉️','Email','contact@MegaDealTech.com'],['🕐','Horaires','Lun - Sam: 9h00 - 18h00']].map(([icon,label,val])=>(
                   <div key={String(label)} className="flex items-start gap-3">
                     <span className="mt-0.5">{icon}</span>
                     <div><p className="font-medium text-black">{label}</p><p>{val}</p></div>

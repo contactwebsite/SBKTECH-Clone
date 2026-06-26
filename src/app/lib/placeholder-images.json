@@ -2,14 +2,14 @@
 {
   "placeholderImages": [
     {
-      "id": "hero-balencia-desktop",
-      "description": "Serrure intelligente Balencia Desktop",
+      "id": "hero-MegaDealTech-desktop",
+      "description": "Serrure intelligente MegaDealTech Desktop",
       "imageUrl": "https://i.ibb.co/GfYGQ9Gm/BALENCIA.jpg",
       "imageHint": "smart lock desktop"
     },
     {
-      "id": "hero-balencia-mobile",
-      "description": "Serrure intelligente Balencia Mobile",
+      "id": "hero-MegaDealTech-mobile",
+      "description": "Serrure intelligente MegaDealTech Mobile",
       "imageUrl": "https://i.ibb.co/rfNLW2Qh/Image-fx-7.jpg",
       "imageHint": "smart lock mobile"
     },

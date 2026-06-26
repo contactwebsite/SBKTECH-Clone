@@ -14,7 +14,7 @@ interface BlogPageProps {
 export async function generateMetadata({ params }: BlogPageProps): Promise<Metadata> {
   const { slug } = await params;
   const blog = await getBlogBySlug(slug);
-  if (!blog) return { title: 'Article non trouvé - BALENCIA' };
+  if (!blog) return { title: 'Article non trouvé - MegaDealTech' };
   return {
     title: blog.title,
     description: blog.metaDescription || blog.content?.substring(0, 160),
@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: BlogPageProps): Promise<Metad
       description: blog.metaDescription,
       images: blog.images?.[0]?.url ? [blog.images[0].url] : [],
     },
-    alternates: { canonical: `https://balencia.ma/blog/${slug}` },
+    alternates: { canonical: `https://MegaDealTech.com/blog/${slug}` },
   };
 }
 
@@ -48,8 +48,8 @@ export default async function BlogPostPage({ params }: BlogPageProps) {
     description: blog.metaDescription,
     image: blog.images?.[0]?.url || '',
     datePublished: blog.publishedAt,
-    author: { '@type': 'Organization', name: 'BALENCIA Smart Security' },
-    publisher: { '@type': 'Organization', name: 'BALENCIA', logo: '' },
+    author: { '@type': 'Organization', name: 'MegaDealTech Smart Security' },
+    publisher: { '@type': 'Organization', name: 'MegaDealTech', logo: '' },
   };
 
   return (
@@ -86,7 +86,7 @@ export default async function BlogPostPage({ params }: BlogPageProps) {
 
           {/* Meta */}
           <div className="flex items-center gap-4 text-sm text-gray-400 mb-10 pb-6 border-b border-gray-100">
-            <span>BALENCIA Smart Security</span>
+            <span>MegaDealTech Smart Security</span>
             <span>•</span>
             <span>{new Date(blog.publishedAt).toLocaleDateString('fr-FR', {day:'numeric', month:'long', year:'numeric'})}</span>
           </div>

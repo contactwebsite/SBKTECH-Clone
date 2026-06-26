@@ -75,8 +75,8 @@ export default function Home() {
 
   const faqs = [
     {
-      q: "Pourquoi devrais-je acheter chez BALENCIA ?",
-      a: "BALENCIA propose des produits de haute sécurité certifiés, une installation professionnelle et un service après-vente d'excellence disponible 24/7 au Maroc."
+      q: "Pourquoi devrais-je acheter chez MegaDealTech ?",
+      a: "MegaDealTech propose des produits de haute sécurité certifiés, une installation professionnelle et un service après-vente d'excellence disponible 24/7 au Maroc."
     },
     {
       q: "Quels sont les modes de paiement acceptés ?",
@@ -84,7 +84,7 @@ export default function Home() {
     },
     {
       q: "Comment se passe l'installation de ma serrure ?",
-      a: "Dès réception de votre commande, un technicien expert BALENCIA vous contacte pour fixer un rendez-vous d'installation sous 48h."
+      a: "Dès réception de votre commande, un technicien expert MegaDealTech vous contacte pour fixer un rendez-vous d'installation sous 48h."
     },
     {
       q: "Quelle est la durée de la garantie ?",
@@ -204,7 +204,7 @@ export default function Home() {
           >
             <Image
               src="https://i.ibb.co/Mkb4rR03/balencia-photo.jpg"
-              alt="Votre maison sécurisée par BALENCIA"
+              alt="Votre maison sécurisée par MegaDealTech"
               fill
               className="object-cover transition-transform duration-1000 hover:scale-110"
               data-ai-hint="smart luxury"
@@ -221,7 +221,7 @@ export default function Home() {
               Votre maison. Votre sécurité. Votre tranquillité.
             </h2>
             <p className="text-gray-600 text-lg leading-relaxed">
-              Ouvrez, contrôlez et protégez votre maison en un seul geste. Nos solutions BALENCIA s'adaptent à votre style de vie pour vous offrir une sérénité totale, que vous soyez chez vous ou à l'autre bout du monde.
+              Ouvrez, contrôlez et protégez votre maison en un seul geste. Nos solutions MegaDealTech s'adaptent à votre style de vie pour vous offrir une sérénité totale, que vous soyez chez vous ou à l'autre bout du monde.
             </p>
             <Button className="bg-black hover:bg-gray-800 text-white px-10 py-5 rounded-none uppercase text-[10px] font-black tracking-[0.2em] h-auto transition-all duration-300 hover:scale-[1.05] active:scale-[0.98]">
               Découvrir nos produits
@@ -242,7 +242,7 @@ export default function Home() {
           >
             <Image
               src="https://i.ibb.co/N6D2bQQf/Image-fx-12.jpg"
-              alt="Technologie BALENCIA"
+              alt="Technologie MegaDealTech"
               fill
               className="object-cover transition-transform duration-1000 hover:scale-110"
               data-ai-hint="luxury security"
@@ -260,7 +260,7 @@ export default function Home() {
             </h2>
             <div className="space-y-4">
               {[
-                "Serrures digitales BALENCIA de dernière génération",
+                "Serrures digitales MegaDealTech de dernière génération",
                 "Accès biométrique ultra-rapide (0.3s)",
                 "Installation professionnelle certifiée par nos experts"
               ].map((item, i) => (
@@ -276,7 +276,7 @@ export default function Home() {
               Sécurité. Confort. Tranquillité.
             </p>
             <Button className="bg-black hover:bg-gray-800 text-white px-10 py-5 rounded-none uppercase text-[10px] font-black tracking-[0.2em] h-auto transition-all duration-300 hover:scale-[1.05] active:scale-[0.98]">
-              Découvrir les solutions BALENCIA
+              Découvrir les solutions MegaDealTech
             </Button>
           </motion.div>
         </div>
