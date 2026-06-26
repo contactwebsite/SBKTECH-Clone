@@ -159,6 +159,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
         benefits: (product as any).benefits || '',
         reviews: (product as any).reviews,     
         questions: (product as any).questions, 
+        badgeColor: (product as any).badgeColor || 'red', // تمرير متغير اللون إلى الكلاينت كومبوننت
       } as any} />
       {relatedProducts.length > 0 && (
         <section className="max-w-7xl mx-auto px-4 py-16 border-t border-gray-100">

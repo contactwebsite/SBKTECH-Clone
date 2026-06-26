@@ -49,7 +49,7 @@ const defaultFaqs = [
     a: "La livraison est entièrement gratuite partout au Maroc. Une fois votre commande confirmée par téléphone, vous recevrez votre produit sous 24 à 48 heures."
   },
   {
-    q: "Le paiement est-il sécurisé ?",
+    q: "Le paiement is-il sécurisé ?",
     a: "Nous utilisons exclusivement le paiement à la livraison (Cash on Delivery). Vous ne payez que lorsque vous recevez et vérifiez votre produit."
   },
   {
@@ -61,6 +61,14 @@ const defaultFaqs = [
     a: "Oui, nous disposons d'une équipe de techniciens experts dans les principales villes du Maroc pour assurer une installation professionnelle."
   }
 ];
+
+// مصفوفة ربط الألوان المخزنة بأكواد تصميم Tailwind الراقية جداً
+const badgeColorClasses: Record<string, string> = {
+  red: "bg-red-600 hover:bg-red-700",
+  black: "bg-zinc-900 hover:bg-black",
+  amber: "bg-amber-600 hover:bg-amber-700",
+  green: "bg-emerald-600 hover:bg-emerald-700"
+};
 
 export default function ProductPageClient({ product }: ProductPageClientProps) {
   const [aiDescription, setAiDescription] = useState("");
@@ -133,6 +141,9 @@ export default function ProductPageClient({ product }: ProductPageClientProps) {
   const customReviews = Array.isArray((product as any).reviews) ? (product as any).reviews : null;
   const reviewsToDisplay = customReviews !== null ? customReviews : defaultReviews;
 
+  // جلب تنسيق اللون المخصص أو الرجوع للأحمر تلقائياً
+  const currentBadgeColor = badgeColorClasses[(product as any).badgeColor] || "bg-red-600 hover:bg-red-700";
+
   const renderStars = (rating: number) => {
     return (
       <div className="flex items-center text-yellow-400">
@@ -181,7 +192,8 @@ export default function ProductPageClient({ product }: ProductPageClientProps) {
                 priority
                 className="object-cover"
               />
-              <Badge className="absolute top-6 left-6 bg-red-600 hover:bg-red-700 font-bold px-4 py-1.5 text-lg">
+              {/* 🌟 شارة الخصم أو الحالة الملونة ديناميكياً بناءً على اختيار لوحة التحكم */}
+              <Badge className={cn("absolute top-6 left-6 font-bold px-4 py-1.5 text-lg text-white border-none select-none", currentBadgeColor)}>
                 {product.discountPercentage}
               </Badge>
             </div>
