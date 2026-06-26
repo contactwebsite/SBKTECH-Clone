@@ -15,6 +15,53 @@ interface ProductPageClientProps {
   product: Product;
 }
 
+// دالة تنسيق الأسعار لمنع خطأ الـ Hydration نهائياً وتوحيد المسافات
+const formatPrice = (num: number) => {
+  if (num === null || num === undefined) return '';
+  return Math.round(num).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+};
+
+// الثوابت لـ fallback في الواجهة في حال عدم وجود بيانات مخصصة على الإطلاق
+const defaultReviews = [
+  {
+    name: "Youssef M.",
+    rating: 5,
+    comment: "Produit d'une qualité exceptionnelle. L'installation a été rapide et le design est magnifique sur ma porte.",
+    date: "Il y a 2 semaines"
+  },
+  {
+    name: "Hassan B.",
+    rating: 5,
+    comment: "Saraha top ! Khedma mzyana bzaf o theknit men lswaret. Recommandé 100%.",
+    date: "Il y a 1 mois"
+  },
+  {
+    name: "Amine T.",
+    rating: 4,
+    comment: "Très satisfait de cet achat. L'application est fluide et la serrure est très réactive.",
+    date: "Il y a 3 semaines"
+  }
+];
+
+const defaultFaqs = [
+  {
+    q: "Comment fonctionne la livraison ?",
+    a: "La livraison est entièrement gratuite partout au Maroc. Une fois votre commande confirmée par téléphone, vous recevrez votre produit sous 24 à 48 heures."
+  },
+  {
+    q: "Le paiement est-il sécurisé ?",
+    a: "Nous utilisons exclusivement le paiement à la livraison (Cash on Delivery). Vous ne payez que lorsque vous recevez et vérifiez votre produit."
+  },
+  {
+    q: "Puis-je retourner le produit ?",
+    a: "Oui, vous disposez d'un délai de 14 jours pour retourner le produit s'il ne vous satisfait pas, à condition qu'il soit dans son emballage d'origine."
+  },
+  {
+    q: "Proposez-vous l'installation ?",
+    a: "Oui, nous disposons d'une équipe de techniciens experts dans les principales villes du Maroc pour assurer une installation professionnelle."
+  }
+];
+
 export default function ProductPageClient({ product }: ProductPageClientProps) {
   const [aiDescription, setAiDescription] = useState("");
   const [isLoadingAi, setIsLoadingAi] = useState(true);
@@ -38,7 +85,6 @@ export default function ProductPageClient({ product }: ProductPageClientProps) {
   };
 
   useEffect(() => {
-    // تحديد التقييم وعدد المراجعات بشكل مستقر من لوحة التحكم لتجنب خطأ الـ Hydration
     const savedRating = (product as any).rating ? parseFloat((product as any).rating) : null;
     const savedCount = (product as any).reviewCount ? parseInt((product as any).reviewCount) : null;
 
@@ -73,57 +119,19 @@ export default function ProductPageClient({ product }: ProductPageClientProps) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [product]);
 
-  // دمج الأسئلة المخصصة مع الأسئلة الافتراضية
+  // منع التكرار: إذا تم حفظ الأسئلة من لوحة التحكم، نعرضها هي فقط. وإذا لم تكن موجودة، نعرض الافتراضية.
   const customFaqs = Array.isArray((product as any).questions) 
     ? (product as any).questions.map((q: any) => ({
         q: q.question,
         a: q.answer
       })) 
-    : [];
+    : null;
 
-  const defaultFaqs = [
-    {
-      q: "Comment fonctionne la livraison ?",
-      a: "La livraison est entièrement gratuite partout au Maroc. Une fois votre commande confirmée par téléphone, vous recevrez votre produit sous 24 à 48 heures."
-    },
-    {
-      q: "Le paiement est-il sécurisé ?",
-      a: "Nous utilisons exclusivement le paiement à la livraison (Cash on Delivery). Vous ne payez que lorsque vous recevez et vérifiez votre produit."
-    },
-    {
-      q: "Puis-je retourner le produit ?",
-      a: "Oui, vous disposez d'un délai de 14 jours pour retourner le produit s'il ne vous satisfait pas, à condition qu'il soit dans son emballage d'origine."
-    },
-    {
-      q: "Proposez-vous l'installation ?",
-      a: "Oui, nous disposons d'une équipe de techniciens experts dans les principales villes du Maroc pour assurer une installation professionnelle."
-    }
-  ];
+  const faqs = customFaqs !== null ? customFaqs : defaultFaqs;
 
-  const faqs = [...customFaqs, ...defaultFaqs];
-
-  // تجهيز وعرض التقييمات بنظام Fallback إن لم تكن هناك تقييمات مضافة
-  const customReviews = Array.isArray((product as any).reviews) ? (product as any).reviews : [];
-  const reviewsToDisplay = customReviews.length > 0 ? customReviews : [
-    {
-      name: "Youssef M.",
-      rating: 5,
-      comment: "Produit d'une qualité exceptionnelle. L'installation a été rapide et le design est magnifique sur ma porte.",
-      date: "Il y a 2 semaines"
-    },
-    {
-      name: "Hassan B.",
-      rating: 5,
-      comment: "Saraha top ! Khedma mzyana bzaf o theknit men lswaret. Recommandé 100%.",
-      date: "Il y a 1 mois"
-    },
-    {
-      name: "Amine T.",
-      rating: 4,
-      comment: "Très satisfait de cet achat. L'application est fluide et la serrure est très réactive.",
-      date: "Il y a 3 semaines"
-    }
-  ];
+  // منع التكرار للتقييمات أيضاً بنفس الطريقة الفائقة الذكاء
+  const customReviews = Array.isArray((product as any).reviews) ? (product as any).reviews : null;
+  const reviewsToDisplay = customReviews !== null ? customReviews : defaultReviews;
 
   const renderStars = (rating: number) => {
     return (
@@ -216,9 +224,9 @@ export default function ProductPageClient({ product }: ProductPageClientProps) {
               </div>
 
               <div className="flex items-baseline gap-4">
-                <span className="text-4xl font-bold text-primary">{product.price.toLocaleString()} MAD</span>
+                <span className="text-4xl font-bold text-primary">{formatPrice(product.price)} MAD</span>
                 <span className="text-xl text-muted-foreground line-through decoration-red-500/50">
-                  {product.oldPrice.toLocaleString()} MAD
+                  {formatPrice(product.oldPrice)} MAD
                 </span>
               </div>
             </div>
@@ -352,7 +360,7 @@ export default function ProductPageClient({ product }: ProductPageClientProps) {
               Vos questions, nos réponses
             </h2>
             <div className="space-y-0">
-              {faqs.map((faq, i) => (
+              {faqs.map((faq: { q: string; a: string }, i: number) => (
                 <div key={i} className="border-b border-gray-100 overflow-hidden">
                   <button 
                     onClick={() => setOpenFaq(openFaq === i ? null : i)}
@@ -397,8 +405,8 @@ export default function ProductPageClient({ product }: ProductPageClientProps) {
             <div className="flex flex-col">
               <span className="text-sm font-bold text-black truncate max-w-[150px] md:max-w-none hidden sm:block">{product.name}</span>
               <div className="flex items-center gap-2">
-                <span className="text-xs font-medium text-muted-foreground line-through decoration-red-500/50">{product.oldPrice.toLocaleString()} MAD</span>
-                <span className="text-sm sm:text-lg font-bold text-primary">{product.price.toLocaleString()} MAD</span>
+                <span className="text-xs font-medium text-muted-foreground line-through decoration-red-500/50">{formatPrice(product.oldPrice)} MAD</span>
+                <span className="text-sm sm:text-lg font-bold text-primary">{formatPrice(product.price)} MAD</span>
                 <span className="text-[9px] sm:text-xs font-black bg-amber-100 text-amber-700 px-2 py-0.5 rounded ml-1 uppercase">RÉDUCTION {product.discountPercentage}</span>
               </div>
             </div>
