@@ -38,11 +38,15 @@ export default function ProductPageClient({ product }: ProductPageClientProps) {
   };
 
   useEffect(() => {
-    // Generate dynamic values only on client-side to prevent hydration errors
+    // تحديد التقييم وعدد المراجعات بشكل مستقر من لوحة التحكم لتجنب خطأ الـ Hydration
+    const savedRating = (product as any).rating ? parseFloat((product as any).rating) : null;
+    const savedCount = (product as any).reviewCount ? parseInt((product as any).reviewCount) : null;
+
     const randomRating = parseFloat((Math.random() * (5.0 - 4.6) + 4.6).toFixed(1));
     const randomCount = Math.floor(Math.random() * (72 - 12 + 1) + 12);
-    setDynamicRating(randomRating);
-    setDynamicReviewCount(randomCount);
+
+    setDynamicRating(savedRating || randomRating);
+    setDynamicReviewCount(savedCount || randomCount);
 
     async function loadAiDescription() {
       try {
@@ -69,7 +73,15 @@ export default function ProductPageClient({ product }: ProductPageClientProps) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [product]);
 
-  const faqs = [
+  // دمج الأسئلة المخصصة مع الأسئلة الافتراضية
+  const customFaqs = Array.isArray((product as any).questions) 
+    ? (product as any).questions.map((q: any) => ({
+        q: q.question,
+        a: q.answer
+      })) 
+    : [];
+
+  const defaultFaqs = [
     {
       q: "Comment fonctionne la livraison ?",
       a: "La livraison est entièrement gratuite partout au Maroc. Une fois votre commande confirmée par téléphone, vous recevrez votre produit sous 24 à 48 heures."
@@ -88,6 +100,31 @@ export default function ProductPageClient({ product }: ProductPageClientProps) {
     }
   ];
 
+  const faqs = [...customFaqs, ...defaultFaqs];
+
+  // تجهيز وعرض التقييمات بنظام Fallback إن لم تكن هناك تقييمات مضافة
+  const customReviews = Array.isArray((product as any).reviews) ? (product as any).reviews : [];
+  const reviewsToDisplay = customReviews.length > 0 ? customReviews : [
+    {
+      name: "Youssef M.",
+      rating: 5,
+      comment: "Produit d'une qualité exceptionnelle. L'installation a été rapide et le design est magnifique sur ma porte.",
+      date: "Il y a 2 semaines"
+    },
+    {
+      name: "Hassan B.",
+      rating: 5,
+      comment: "Saraha top ! Khedma mzyana bzaf o theknit men lswaret. Recommandé 100%.",
+      date: "Il y a 1 mois"
+    },
+    {
+      name: "Amine T.",
+      rating: 4,
+      comment: "Très satisfait de cet achat. L'application est fluide et la serrure est très réactive.",
+      date: "Il y a 3 semaines"
+    }
+  ];
+
   const renderStars = (rating: number) => {
     return (
       <div className="flex items-center text-yellow-400">
@@ -99,6 +136,23 @@ export default function ProductPageClient({ product }: ProductPageClientProps) {
             return <StarHalf key={i} className="h-5 w-5 fill-current" />;
           } else {
             return <Star key={i} className="h-5 w-5 text-gray-200" />;
+          }
+        })}
+      </div>
+    );
+  };
+
+  const renderReviewStars = (rating: number) => {
+    return (
+      <div className="flex items-center text-amber-400 gap-0.5">
+        {Array.from({ length: 5 }).map((_, i) => {
+          const starValue = i + 1;
+          if (starValue <= Math.floor(rating)) {
+            return <Star key={i} className="h-3.5 w-3.5 fill-current" />;
+          } else if (starValue - 0.5 <= rating) {
+            return <StarHalf key={i} className="h-3.5 w-3.5 fill-current" />;
+          } else {
+            return <Star key={i} className="h-3.5 w-3.5 text-gray-200" />;
           }
         })}
       </div>
@@ -199,42 +253,34 @@ export default function ProductPageClient({ product }: ProductPageClientProps) {
                   </div>
                 </div>
                 
+                {/* عرض التقييمات الديناميكية المستوردة من لوحة التحكم */}
                 <div 
                   ref={scrollRef} 
                   className="flex overflow-x-auto gap-4 pb-4 snap-x snap-mandatory flex-nowrap w-full [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
                 >
-                  <div className="w-[85%] sm:w-[320px] flex-shrink-0 snap-center bg-gray-50 p-5 rounded-2xl border border-gray-100 flex flex-col justify-between">
-                    <div>
-                      <div className="flex justify-between items-center mb-3">
-                        <span className="text-sm font-bold text-gray-900">Youssef M.</span>
-                        <div className="flex text-amber-400 text-xs">★★★★★</div>
+                  {reviewsToDisplay.map((rev: any, index: number) => {
+                    let formattedDate = rev.date;
+                    if (formattedDate && formattedDate.includes('-')) {
+                      try {
+                        const dateObj = new Date(formattedDate);
+                        formattedDate = dateObj.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+                      } catch {}
+                    }
+                    return (
+                      <div key={index} className="w-[85%] sm:w-[320px] flex-shrink-0 snap-center bg-gray-50 p-5 rounded-2xl border border-gray-100 flex flex-col justify-between">
+                        <div>
+                          <div className="flex justify-between items-center mb-3">
+                            <span className="text-sm font-bold text-gray-900">{rev.name}</span>
+                            {renderReviewStars(parseFloat(rev.rating) || 5)}
+                          </div>
+                          <p className="text-sm text-gray-600 italic">"{rev.comment}"</p>
+                        </div>
+                        <span className="text-[10px] text-gray-400 uppercase tracking-wider mt-4">
+                          {formattedDate || "Avis vérifié"}
+                        </span>
                       </div>
-                      <p className="text-sm text-gray-600 italic">"Produit d'une qualité exceptionnelle. L'installation a été rapide et le design est magnifique sur ma porte."</p>
-                    </div>
-                    <span className="text-[10px] text-gray-400 uppercase tracking-wider mt-4">Il y a 2 semaines</span>
-                  </div>
-
-                  <div className="w-[85%] sm:w-[320px] flex-shrink-0 snap-center bg-gray-50 p-5 rounded-2xl border border-gray-100 flex flex-col justify-between">
-                    <div>
-                      <div className="flex justify-between items-center mb-3">
-                        <span className="text-sm font-bold text-gray-900">Hassan B.</span>
-                        <div className="flex text-amber-400 text-xs">★★★★★</div>
-                      </div>
-                      <p className="text-sm text-gray-600 italic">"Saraha top ! Khedma mzyana bzaf o theknit men lswaret. Recommandé 100%."</p>
-                    </div>
-                    <span className="text-[10px] text-gray-400 uppercase tracking-wider mt-4">Il y a 1 mois</span>
-                  </div>
-
-                  <div className="w-[85%] sm:w-[320px] flex-shrink-0 snap-center bg-gray-50 p-5 rounded-2xl border border-gray-100 flex flex-col justify-between">
-                    <div>
-                      <div className="flex justify-between items-center mb-3">
-                        <span className="text-sm font-bold text-gray-900">Amine T.</span>
-                        <div className="flex text-amber-400 text-xs">★★★★☆</div>
-                      </div>
-                      <p className="text-sm text-gray-600 italic">"Très satisfait de cet achat. L'application est fluide et la serrure est très réactive."</p>
-                    </div>
-                    <span className="text-[10px] text-gray-400 uppercase tracking-wider mt-4">Il y a 3 semaines</span>
-                  </div>
+                    );
+                  })}
                 </div>
               </div>
             </div>
