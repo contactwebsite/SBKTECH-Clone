@@ -13,7 +13,7 @@ import Image from 'next/image';
 import { Check, ChevronDown, ArrowUpRight, Volume2, VolumeX } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-// Sub-component for individual video state management
+// المكون الفرعي لإدارة تشغيل الفيديوهات
 const VideoTestimonial = ({ url }: { url: string }) => {
   const [isMuted, setIsMuted] = useState(true);
 
@@ -29,19 +29,19 @@ const VideoTestimonial = ({ url }: { url: string }) => {
         className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
       />
 
-      {/* Volume Toggle - High-end Glassmorphism */}
       <button
+        type="button"
         onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();
           setIsMuted(!isMuted);
         }}
-        className="absolute top-4 right-4 z-40 p-2.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-white/20 active:scale-90"
+        className="absolute top-4 right-4 z-40 p-2.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-white/20 active:scale-90 cursor-pointer"
+        aria-label="Toggle sound"
       >
         {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
       </button>
       
-      {/* EXPLORE UI - Bottom Center */}
       <div className="absolute inset-x-0 bottom-8 z-30 flex flex-col items-center gap-2 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-out pointer-events-none">
         <span className="text-[9px] font-black tracking-[0.3em] text-amber-500 uppercase">
           EXPLORE
@@ -58,7 +58,6 @@ const VideoTestimonial = ({ url }: { url: string }) => {
 
 export default function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-
   const [githubProducts, setGithubProducts] = useState<any[]>([]);
   
   useEffect(() => {
@@ -130,8 +129,8 @@ export default function Home() {
             Serrure intelligente
           </h2>
           <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 px-4 md:px-0">
-            {serrures.map((product) => (
-              <ProductCard key={product.id} product={product} />
+            {serrures.map((product, idx) => (
+              <ProductCard key={product.id ? `${product.id}-${idx}` : idx} product={product} />
             ))}
           </div>
           <div className="flex justify-center mt-12">
@@ -155,8 +154,8 @@ export default function Home() {
             Pointeuse biométrique
           </h2>
           <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 px-4 md:px-0">
-            {pointeuses.map((product) => (
-              <ProductCard key={product.id} product={product} />
+            {pointeuses.map((product, idx) => (
+              <ProductCard key={product.id ? `${product.id}-${idx}` : idx} product={product} />
             ))}
           </div>
           <div className="flex justify-center mt-12">
@@ -180,8 +179,8 @@ export default function Home() {
             Tourniquet tripode
           </h2>
           <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 px-4 md:px-0">
-            {tourniquets.map((product) => (
-              <ProductCard key={product.id} product={product} />
+            {tourniquets.map((product, idx) => (
+              <ProductCard key={product.id ? `${product.id}-${idx}` : idx} product={product} />
             ))}
           </div>
           <div className="flex justify-center mt-12">
@@ -200,15 +199,18 @@ export default function Home() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="w-full md:w-1/2 aspect-square relative bg-gray-50 overflow-hidden"
+            className="w-full md:w-1/2 aspect-square bg-gray-50 overflow-hidden"
           >
-            <Image
-              src="https://i.ibb.co/0yCQhGfp/A-professional-cinematic-square-lifestyle-202606262033.jpg"
-              alt="Votre maison sécurisée par MegaDealTech"
-              fill
-              className="object-cover transition-transform duration-1000 hover:scale-110"
-              data-ai-hint="smart luxury"
-            />
+            {/* تلفيف متناسق للصورة الممتلئة */}
+            <div className="relative w-full h-full">
+              <Image
+                src="https://i.ibb.co/0yCQhGfp/A-professional-cinematic-square-lifestyle-202606262033.jpg"
+                alt="Votre maison sécurisée par MegaDealTech"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover transition-transform duration-1000 hover:scale-110"
+              />
+            </div>
           </motion.div>
           <motion.div 
             initial={{ opacity: 0, x: 50 }}
@@ -223,8 +225,8 @@ export default function Home() {
             <p className="text-gray-600 text-lg leading-relaxed">
               Ouvrez, contrôlez et protégez votre maison en un seul geste. Nos solutions MegaDealTech s'adaptent à votre style de vie pour vous offrir une sérénité totale, que vous soyez chez vous ou à l'autre bout du monde.
             </p>
-            <Button className="bg-black hover:bg-gray-800 text-white px-10 py-5 rounded-none uppercase text-[10px] font-black tracking-[0.2em] h-auto transition-all duration-300 hover:scale-[1.05] active:scale-[0.98]">
-              Découvrir nos produits
+            <Button asChild className="bg-black hover:bg-gray-800 text-white px-10 py-5 rounded-none uppercase text-[10px] font-black tracking-[0.2em] h-auto transition-all duration-300 hover:scale-[1.05] active:scale-[0.98]">
+              <Link href="/catalogue">Découvrir nos produits</Link>
             </Button>
           </motion.div>
         </div>
@@ -238,15 +240,17 @@ export default function Home() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="w-full md:w-1/2 aspect-square relative bg-gray-100 overflow-hidden"
+            className="w-full md:w-1/2 aspect-square bg-gray-100 overflow-hidden"
           >
-            <Image
-              src="https://i.ibb.co/Fkx6t4YP/A-professional-high-end-commercial-lifestyle-202606262043.jpg"
-              alt="Technologie MegaDealTech"
-              fill
-              className="object-cover transition-transform duration-1000 hover:scale-110"
-              data-ai-hint="luxury security"
-            />
+            <div className="relative w-full h-full">
+              <Image
+                src="https://i.ibb.co/Fkx6t4YP/A-professional-high-end-commercial-lifestyle-202606262043.jpg"
+                alt="Technologie MegaDealTech"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover transition-transform duration-1000 hover:scale-110"
+              />
+            </div>
           </motion.div>
           <motion.div 
             initial={{ opacity: 0, x: -50 }}
@@ -275,14 +279,14 @@ export default function Home() {
             <p className="text-xl font-black text-black border-l-4 border-black pl-6 uppercase tracking-widest py-2">
               Sécurité. Confort. Tranquillité.
             </p>
-            <Button className="bg-black hover:bg-gray-800 text-white px-10 py-5 rounded-none uppercase text-[10px] font-black tracking-[0.2em] h-auto transition-all duration-300 hover:scale-[1.05] active:scale-[0.98]">
-              Découvrir les solutions MegaDealTech
+            <Button asChild className="bg-black hover:bg-gray-800 text-white px-10 py-5 rounded-none uppercase text-[10px] font-black tracking-[0.2em] h-auto transition-all duration-300 hover:scale-[1.05] active:scale-[0.98]">
+              <Link href="/catalogue">Découvrir les solutions MegaDealTech</Link>
             </Button>
           </motion.div>
         </div>
       </section>
 
-      {/* VIDEO TESTIMONIALS - FIXED PREMIUM GRID */}
+      {/* VIDEO TESTIMONIALS */}
       <motion.section 
         initial="hidden"
         whileInView="visible"

@@ -15,13 +15,12 @@ interface ProductPageClientProps {
   product: Product;
 }
 
-// دالة تنسيق الأسعار لمنع خطأ الـ Hydration نهائياً وتوحيد المسافات
+// دالة تنسيق الأسعار
 const formatPrice = (num: number) => {
   if (num === null || num === undefined) return '';
   return Math.round(num).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 };
 
-// الثوابت لـ fallback في الواجهة في حال عدم وجود بيانات مخصصة على الإطلاق
 const defaultReviews = [
   {
     name: "Youssef M.",
@@ -49,7 +48,7 @@ const defaultFaqs = [
     a: "La livraison est entièrement gratuite partout au Maroc. Une fois votre commande confirmée par téléphone, vous recevrez votre produit sous 24 à 48 heures."
   },
   {
-    q: "Le paiement is-il sécurisé ?",
+    q: "Le paiement est-il sécurisé ?",
     a: "Nous utilisons exclusivement le paiement à la livraison (Cash on Delivery). Vous ne payez que lorsque vous recevez et vérifiez votre produit."
   },
   {
@@ -62,7 +61,6 @@ const defaultFaqs = [
   }
 ];
 
-// مصفوفة ربط الألوان المخزنة بأكواد تصميم Tailwind الراقية جداً
 const badgeColorClasses: Record<string, string> = {
   red: "bg-red-600 hover:bg-red-700",
   black: "bg-zinc-900 hover:bg-black",
@@ -71,12 +69,14 @@ const badgeColorClasses: Record<string, string> = {
 };
 
 export default function ProductPageClient({ product }: ProductPageClientProps) {
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [aiDescription, setAiDescription] = useState("");
   const [isLoadingAi, setIsLoadingAi] = useState(true);
   const [showSticky, setShowSticky] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   
-  // Dynamic social proof states to avoid hydration mismatch
+  // Hydration fix flag
+  const [isMounted, setIsMounted] = useState(false);
   const [dynamicRating, setDynamicRating] = useState<number | null>(null);
   const [dynamicReviewCount, setDynamicReviewCount] = useState<number | null>(null);
 
@@ -93,16 +93,22 @@ export default function ProductPageClient({ product }: ProductPageClientProps) {
   };
 
   useEffect(() => {
+    setIsMounted(true);
+    setSelectedImageIndex(0);
+
     const savedRating = (product as any).rating ? parseFloat((product as any).rating) : null;
     const savedCount = (product as any).reviewCount ? parseInt((product as any).reviewCount) : null;
 
-    const randomRating = parseFloat((Math.random() * (5.0 - 4.6) + 4.6).toFixed(1));
-    const randomCount = Math.floor(Math.random() * (72 - 12 + 1) + 12);
-
-    setDynamicRating(savedRating || randomRating);
-    setDynamicReviewCount(savedCount || randomCount);
+    // استخدام قيم ثابتة أو توليدها فقط بعد اكتمال التحميل لمنع خطأ Hydration
+    setDynamicRating(savedRating || 4.8);
+    setDynamicReviewCount(savedCount || 48);
 
     async function loadAiDescription() {
+      if ((product as any).detailedDescription) {
+        setAiDescription((product as any).detailedDescription);
+        setIsLoadingAi(false);
+        return;
+      }
       try {
         const result = await enhanceProductDescription({
           productName: product.name,
@@ -110,10 +116,10 @@ export default function ProductPageClient({ product }: ProductPageClientProps) {
           features: product.features,
           benefits: product.benefits,
         });
-        setAiDescription((product as any).detailedDescription || result.enhancedDescription);
-      } catch (error) {
-        console.error("AI description failed", error);
-        setAiDescription((product as any).detailedDescription || product.description);
+        setAiDescription(result?.enhancedDescription || product.description);
+      } catch {
+        // حماية مسبقة لمنع ظهور خطأ AI GenkitError في الكونسول
+        setAiDescription(product.description);
       } finally {
         setIsLoadingAi(false);
       }
@@ -127,7 +133,12 @@ export default function ProductPageClient({ product }: ProductPageClientProps) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [product]);
 
-  // منع التكرار: إذا تم حفظ الأسئلة من لوحة التحكم، نعرضها هي فقط. وإذا لم تكن موجودة، نعرض الافتراضية.
+  const imagesList = ((product as any).images?.length > 0 
+    ? (product as any).images 
+    : [{ url: (product as any).image, alt: product.name }]);
+
+  const currentMainImage = imagesList[selectedImageIndex]?.url || (product as any).image || "https://placehold.co/600x600";
+
   const customFaqs = Array.isArray((product as any).questions) 
     ? (product as any).questions.map((q: any) => ({
         q: q.question,
@@ -136,12 +147,8 @@ export default function ProductPageClient({ product }: ProductPageClientProps) {
     : null;
 
   const faqs = customFaqs !== null ? customFaqs : defaultFaqs;
-
-  // منع التكرار للتقييمات أيضاً بنفس الطريقة الفائقة الذكاء
   const customReviews = Array.isArray((product as any).reviews) ? (product as any).reviews : null;
   const reviewsToDisplay = customReviews !== null ? customReviews : defaultReviews;
-
-  // جلب تنسيق اللون المخصص أو الرجوع للأحمر تلقائياً
   const currentBadgeColor = badgeColorClasses[(product as any).badgeColor] || "bg-red-600 hover:bg-red-700";
 
   const renderStars = (rating: number) => {
@@ -182,32 +189,45 @@ export default function ProductPageClient({ product }: ProductPageClientProps) {
     <div className="bg-white min-h-screen pb-20 lg:pb-0">
       <div className="container mx-auto px-4 py-12 lg:py-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+          
           {/* Left Gallery */}
           <section className="space-y-4">
-            <div className="relative aspect-square rounded-3xl overflow-hidden bg-card border">
+            <div className="relative aspect-square rounded-3xl overflow-hidden bg-card border shadow-sm">
               <Image unoptimized
-                src={(product as any).images?.[0]?.url || (product as any).image || "https://placehold.co/600x600"}
+                src={currentMainImage}
                 alt={`Serrure intelligente ${product.name} - Vue principale MegaDealTech`}
                 fill
                 priority
-                className="object-cover"
+                className="object-cover transition-all duration-300"
               />
-              {/* 🌟 شارة الخصم أو الحالة الملونة ديناميكياً بناءً على اختيار لوحة التحكم */}
               <Badge className={cn("absolute top-6 left-6 font-bold px-4 py-1.5 text-lg text-white border-none select-none", currentBadgeColor)}>
                 {product.discountPercentage}
               </Badge>
             </div>
+
             <div className="grid grid-cols-4 gap-4">
-              {((product as any).images?.length > 0 ? (product as any).images : [{url: (product as any).image, alt: product.name}]).map((img: any, i: number) => (
-                <div key={i} className="aspect-square relative rounded-xl overflow-hidden bg-muted border hover:border-primary cursor-pointer transition-colors">
-                  <Image unoptimized
-                    src={img.url || "https://placehold.co/200x200"}
-                    alt={img.alt || product.name}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-              ))}
+              {imagesList.map((img: any, i: number) => {
+                const isSelected = i === selectedImageIndex;
+                return (
+                  <div 
+                    key={i} 
+                    onClick={() => setSelectedImageIndex(i)}
+                    className={cn(
+                      "aspect-square relative rounded-xl overflow-hidden bg-muted border cursor-pointer transition-all duration-200",
+                      isSelected 
+                        ? "border-amber-500 ring-2 ring-amber-500/50 scale-95 shadow-md" 
+                        : "border-gray-200 opacity-70 hover:opacity-100 hover:border-gray-400"
+                    )}
+                  >
+                    <Image unoptimized
+                      src={img.url || "https://placehold.co/200x200"}
+                      alt={img.alt || product.name}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                );
+              })}
             </div>
           </section>
 
@@ -217,7 +237,7 @@ export default function ProductPageClient({ product }: ProductPageClientProps) {
               <h1 className="text-3xl lg:text-5xl font-bold leading-tight">{product.name}</h1>
               
               <div className="flex items-center gap-4">
-                {dynamicRating !== null ? (
+                {isMounted && dynamicRating !== null ? (
                   <div className="flex items-center gap-2">
                     {renderStars(dynamicRating)}
                     <span className="text-foreground font-bold">{dynamicRating}/5</span>
@@ -227,7 +247,7 @@ export default function ProductPageClient({ product }: ProductPageClientProps) {
                 )}
                 <div className="h-4 w-px bg-gray-200" />
                 <div className="text-muted-foreground text-sm font-medium">
-                  {dynamicReviewCount !== null ? (
+                  {isMounted && dynamicReviewCount !== null ? (
                     `${dynamicReviewCount} avis clients`
                   ) : (
                     <div className="h-4 w-24 bg-gray-100 animate-pulse rounded" />
@@ -273,7 +293,6 @@ export default function ProductPageClient({ product }: ProductPageClientProps) {
                   </div>
                 </div>
                 
-                {/* عرض التقييمات الديناميكية المستوردة من لوحة التحكم */}
                 <div 
                   ref={scrollRef} 
                   className="flex overflow-x-auto gap-4 pb-4 snap-x snap-mandatory flex-nowrap w-full [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
