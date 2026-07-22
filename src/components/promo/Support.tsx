@@ -3,7 +3,7 @@ import { Lock, Play, ChevronDown, Key, AlertCircle, X } from 'lucide-react';
 import { useI18n } from './i18n';
 
 const Support: React.FC = () => {
-  const { t, language } = useI18n();
+  const { t } = useI18n();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
@@ -24,30 +24,23 @@ const Support: React.FC = () => {
     setActiveAccordion(activeAccordion === index ? null : index);
   };
 
+  // الفيديوهات العريضة (16:9) مع العناوين الجديدة المباشرة
   const videos = [
     { 
-      title: t.support.videos.v1, 
-      img: "https://images.unsplash.com/photo-1558002038-1091a1661116?w=600&h=1066&fit=crop&q=80",
-      preview: "https://res.cloudinary.com/dwn1omfyl/video/upload/1222_1_k642zn.mp4",
-      url: "https://player.cloudinary.com/embed/?cloud_name=dwn1omfyl&public_id=1222_1_k642zn&profile=cld-default" 
+      title: "Réglage distance de détection visage", 
+      url: "https://res.cloudinary.com/dwn1omfyl/video/upload/v1784727219/Reglage_distance_de_detection_visage_agvyik.mp4" 
     },
     { 
-      title: t.support.videos.v2, 
-      img: "https://imgur.com/ERedxXn",
-      preview: "https://res.cloudinary.com/dwn1omfyl/video/upload/1222_2_xnoplf.mp4",
-      url: "https://player.cloudinary.com/embed/?cloud_name=dwn1omfyl&public_id=1222_2_xnoplf&profile=cld-looping" 
+      title: "Diminuer le volume de la serrure", 
+      url: "https://res.cloudinary.com/dwn1omfyl/video/upload/v1784727443/Diminuer_le_volume_de_la_serrure_ybflrt.mp4" 
     },
     { 
-      title: t.support.videos.v3, 
-      img: "https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?w=600&h=1066&fit=crop&q=80",
-      preview: "https://res.cloudinary.com/dwn1omfyl/video/upload/1222_d1adt9.mp4",
-      url: "https://player.cloudinary.com/embed/?cloud_name=dwn1omfyl&public_id=1222_d1adt9&profile=cld-default" 
+      title: "Ajout mot de passe Administrateur première utilisation", 
+      url: "https://res.cloudinary.com/dwn1omfyl/video/upload/v1784727542/Ajout_mot_de_passe_Administrateur_premiere_utilisation_v3goqr.mp4" 
     },
     { 
-      title: t.support.videos.v4, 
-      img: "https://images.unsplash.com/photo-1616400619175-5beda3a17896?w=600&h=1066&fit=crop&q=80",
-      preview: null,
-      url: null 
+      title: "Ajout administrateur empreinte", 
+      url: "https://res.cloudinary.com/dwn1omfyl/video/upload/v1784727566/ajout_administrateur_empreinte_wc7d9v.mp4" 
     },
   ];
 
@@ -124,71 +117,75 @@ const Support: React.FC = () => {
           </p>
         </header>
 
-        <section className="mb-20">
+        {/* قسم الفيديوهات العريضة 16:9 بالنصوص الجديدة */}
+        <section className="mb-20 max-w-6xl mx-auto">
           <div className="flex items-center gap-3 mb-8">
             <Play className="w-6 h-6 text-brand-gold fill-current" />
             <h2 className="text-2xl font-bold text-white">{t.support.videos.title}</h2>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             {videos.map((video, idx) => (
               <div 
                 key={idx} 
-                onClick={() => video.url && setSelectedVideo(video.url)}
-                className={`group relative aspect-[9/16] bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 shadow-xl transition-all duration-300 hover:-translate-y-1 ${video.url ? 'cursor-pointer hover:border-brand-gold/50' : 'cursor-default opacity-70'}`}
+                onClick={() => setSelectedVideo(video.url)}
+                className="group relative aspect-video bg-slate-900 rounded-2xl overflow-hidden border border-slate-800/80 shadow-xl transition-all duration-300 hover:-translate-y-1.5 cursor-pointer hover:border-brand-gold/60 hover:shadow-2xl hover:shadow-brand-gold/5"
               >
-                {video.preview ? (
-                  <video 
-                    src={video.preview}
-                    poster={video.img}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
-                  />
-                ) : (
-                  <img 
-                    src={video.img} 
-                    alt={video.title} 
-                    className="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-500 group-hover:scale-105" 
-                  />
-                )}
-                
-                {video.url && (
-                  <div className="absolute inset-0 flex flex-col items-center justify-center p-4 z-10 pointer-events-none">
-                    <div className="w-14 h-14 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center mb-4 group-hover:bg-brand-gold group-hover:text-brand-dark group-hover:border-brand-gold transition-all duration-300 shadow-lg">
-                      <Play className="w-6 h-6 fill-current ml-1" />
-                    </div>
-                  </div>
-                )}
+                {/* فيديو معاينة متكرر خفيف بدون صوت */}
+                <video 
+                  src={video.url}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="w-full h-full object-cover opacity-75 group-hover:opacity-95 group-hover:scale-105 transition-all duration-500"
+                />
 
-                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 via-black/50 to-transparent pt-12 z-20">
-                  <p className="text-white font-medium text-sm md:text-base leading-tight group-hover:text-brand-gold transition-colors">
-                    {video.title}
-                  </p>
+                {/* طبقة تظليل متدرجة وزر تشغيل فاخر */}
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent flex flex-col justify-between p-5 z-10 pointer-events-none">
+                  
+                  {/* زر Play العائم */}
+                  <div className="self-end w-12 h-12 bg-black/40 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center group-hover:bg-brand-gold group-hover:text-brand-dark group-hover:border-brand-gold transition-all duration-300 shadow-lg">
+                    <Play className="w-5 h-5 fill-current ml-0.5 text-white group-hover:text-brand-dark transition-colors" />
+                  </div>
+
+                  {/* عنوان الفيديو الجديد المحدث */}
+                  <div>
+                    <h3 className="text-white font-semibold text-base md:text-lg leading-snug group-hover:text-brand-gold transition-colors drop-shadow-md">
+                      {video.title}
+                    </h3>
+                  </div>
+
                 </div>
               </div>
             ))}
           </div>
         </section>
 
+        {/* مشغل الفيديو الشامل عند الضغط */}
         {selectedVideo && (
-           <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm p-4 animate-in fade-in duration-200" onClick={() => setSelectedVideo(null)}>
+           <div 
+             className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-md p-4 animate-in fade-in duration-200" 
+             onClick={() => setSelectedVideo(null)}
+           >
               <button 
-                  onClick={() => setSelectedVideo(null)}
-                  className="absolute top-4 right-4 p-2 bg-slate-800 rounded-full text-slate-400 hover:text-white transition-colors z-50"
+                onClick={() => setSelectedVideo(null)}
+                className="absolute top-6 right-6 p-3 bg-slate-800/80 hover:bg-slate-700 rounded-full text-slate-300 hover:text-white transition-all z-50 border border-slate-700 shadow-lg"
+                aria-label="Close"
               >
-                  <X className="w-6 h-6" />
+                <X className="w-6 h-6" />
               </button>
-              <div className="relative w-full max-w-sm aspect-[9/16] bg-black rounded-2xl overflow-hidden shadow-2xl border border-slate-800" onClick={(e) => e.stopPropagation()}>
-                  <iframe 
-                      src={selectedVideo}
-                      className="w-full h-full"
-                      allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-                      allowFullScreen
-                      frameBorder="0"
-                  ></iframe>
+              
+              <div 
+                className="relative w-full max-w-4xl aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl border border-slate-800" 
+                onClick={(e) => e.stopPropagation()}
+              >
+                <video 
+                  src={selectedVideo}
+                  controls
+                  autoPlay
+                  className="w-full h-full object-contain bg-black"
+                />
               </div>
            </div>
         )}
