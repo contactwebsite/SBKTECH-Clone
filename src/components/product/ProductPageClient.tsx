@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { Star, ShieldCheck, Truck, RefreshCcw, Headset, ChevronDown, StarHalf, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Star, ShieldCheck, Truck, Headset, ChevronDown, StarHalf, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import CODForm from '@/components/product/CODForm';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -99,7 +99,6 @@ export default function ProductPageClient({ product }: ProductPageClientProps) {
     const savedRating = (product as any).rating ? parseFloat((product as any).rating) : null;
     const savedCount = (product as any).reviewCount ? parseInt((product as any).reviewCount) : null;
 
-    // استخدام قيم ثابتة أو توليدها فقط بعد اكتمال التحميل لمنع خطأ Hydration
     setDynamicRating(savedRating || 4.8);
     setDynamicReviewCount(savedCount || 48);
 
@@ -118,7 +117,6 @@ export default function ProductPageClient({ product }: ProductPageClientProps) {
         });
         setAiDescription(result?.enhancedDescription || product.description);
       } catch {
-        // حماية مسبقة لمنع ظهور خطأ AI GenkitError في الكونسول
         setAiDescription(product.description);
       } finally {
         setIsLoadingAi(false);
@@ -324,7 +322,8 @@ export default function ProductPageClient({ product }: ProductPageClientProps) {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 py-8 border-t">
+            {/* الشريط الثلاثي المحدث والموزع بانتظام (3 عناصر متناسقة) */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 py-8 border-t">
               <div className="flex items-start gap-3">
                 <Truck className="h-6 w-6 text-primary shrink-0" />
                 <div>
@@ -337,13 +336,6 @@ export default function ProductPageClient({ product }: ProductPageClientProps) {
                 <div>
                   <p className="font-bold text-sm">Garantie 2 Ans</p>
                   <p className="text-xs text-muted-foreground">Remplacement immédiat</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <RefreshCcw className="h-6 w-6 text-primary shrink-0" />
-                <div>
-                  <p className="font-bold text-sm">Satisfait ou Remboursé</p>
-                  <p className="text-xs text-muted-foreground">Retours gratuits sous 14 jours</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
