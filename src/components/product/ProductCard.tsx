@@ -46,12 +46,14 @@ export default function ProductCard({ product }: ProductCardProps) {
           />
         </div>
 
-        {/* Discount Badge */}
-        <div className="absolute top-4 left-4 bg-white/70 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/50 shadow-sm z-10 pointer-events-none">
-          <span className="text-[9px] font-black tracking-[0.2em] text-black uppercase">
-            Economisez {product.discountPercentage}
-          </span>
-        </div>
+        {/* Discount Badge - يعرض النص المكتوب في لوحة التحكم بدقة وبدون كلمات إضافية */}
+        {product.discountPercentage && (
+          <div className="absolute top-4 left-4 bg-white/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/60 shadow-sm z-10 pointer-events-none">
+            <span className="text-[9px] font-black tracking-[0.2em] text-black uppercase">
+              {product.discountPercentage}
+            </span>
+          </div>
+        )}
 
         {/* Add to Cart Button */}
         <button
@@ -70,11 +72,13 @@ export default function ProductCard({ product }: ProductCardProps) {
         </h3>
         <div className="flex items-center gap-3">
           <span className="text-black font-black text-sm tracking-widest">
-            {product.price.toLocaleString('fr-FR')} dh
+            {product.price ? product.price.toLocaleString('fr-FR') : ''} dh
           </span>
-          <span className="text-gray-400 text-xs font-medium line-through tracking-wider">
-            {product.oldPrice.toLocaleString('fr-FR')} dh
-          </span>
+          {product.oldPrice && (
+            <span className="text-gray-400 text-xs font-medium line-through tracking-wider">
+              {product.oldPrice.toLocaleString('fr-FR')} dh
+            </span>
+          )}
         </div>
       </Link>
     </div>
