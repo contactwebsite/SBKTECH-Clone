@@ -1,9 +1,11 @@
 "use client";
 
-import { Fingerprint, Key, Hash, CreditCard, Smartphone } from 'lucide-react';
+import { ScanFace, Hand, Fingerprint, Key, Hash, CreditCard, Smartphone } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const features = [
+  { icon: ScanFace, label: 'Visage' },
+  { icon: Hand, label: 'Palmaire' },
   { icon: Fingerprint, label: 'Empreinte' },
   { icon: Key, label: 'Clé' },
   { icon: Hash, label: 'Code' },
@@ -28,14 +30,14 @@ export default function FeaturesBar() {
   };
 
   return (
-    <div className="bg-white py-8 md:py-16">
+    <div className="bg-white py-8 md:py-16 overflow-hidden">
       <div className="container mx-auto px-4">
         <motion.div 
           variants={container}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="flex flex-wrap justify-center gap-6 md:gap-12"
+          className="flex flex-wrap justify-center items-center gap-4 sm:gap-6 md:gap-10 lg:gap-12"
         >
           {features.map((feature, i) => (
             <motion.div 
@@ -43,8 +45,8 @@ export default function FeaturesBar() {
               variants={item}
               className="flex flex-col items-center group cursor-pointer"
             >
-              <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border border-gray-300 flex items-center justify-center text-black mb-3 transition-all duration-500 ease-out group-hover:border-black group-hover:-translate-y-2">
-                <feature.icon className="w-8 h-8 md:w-10 md:h-10 stroke-[1.5px] transition-transform duration-500 group-hover:scale-110" />
+              <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full border border-gray-300 flex items-center justify-center text-black mb-3 transition-all duration-500 ease-out group-hover:border-black group-hover:-translate-y-2 group-hover:shadow-lg">
+                <feature.icon className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 stroke-[1.5px] transition-transform duration-500 group-hover:scale-110" />
               </div>
               <span className="font-bold text-[10px] md:text-xs uppercase tracking-wider text-center transition-colors duration-300 group-hover:text-black">
                 {feature.label}
