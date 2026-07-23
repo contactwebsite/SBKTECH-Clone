@@ -3,14 +3,13 @@ import { useEffect } from 'react'
 
 export default function LockMascot() {
   useEffect(() => {
+    // قائمة الرسائل العائمة (تمت إزالة الجملتين بنجاح)
     const MSGS = [
       "Livraison <b>gratuite</b><br>partout au Maroc",
       "Paiement à la livraison<br><b>Zéro risque</b>",
       "<b>Garantie 2 ans</b><br>sur tous nos produits",
       "Livraison en <b>24–48h</b><br>partout au Maroc",
       "<b>+10 000</b> foyers<br>sécurisés",
-      "Satisfait ou<br><b>remboursé 14j</b>",
-      "Serrures digitales<br><b>BALENCIA Luxe</b>",
     ]
 
     const css = `
@@ -39,7 +38,7 @@ export default function LockMascot() {
     const html = `
     <div id="blc-root">
       <div id="blc-bubble"><span id="blc-txt"></span></div>
-      <button id="blc-btn" aria-label="BALENCIA assistant">
+      <button id="blc-btn" aria-label="MegaDealTech assistant">
         <div class="blc-ring"></div><div class="blc-ring"></div>
         <div id="blc-notif"></div>
         <div id="blc-shadow"></div>
