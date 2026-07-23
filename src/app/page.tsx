@@ -72,26 +72,62 @@ export default function Home() {
   const pointeuses = allProducts.filter((p:any) => p.category === 'Pointeuse biométrique').slice(0, 4);
   const tourniquets = allProducts.filter((p:any) => p.category === 'Tourniquet tripode').slice(0, 4);
 
+  // قائمة الأسئلة الشائعة الجديدة الشاملة والكاملة 100%
   const faqs = [
     {
       q: "Pourquoi devrais-je acheter chez MegaDealTech ?",
-      a: "MegaDealTech propose des produits de haute sécurité certifiés, une installation professionnelle et un service après-vente d'excellence disponible 24/7 au Maroc."
+      a: `Chez MegaDealTech, vous bénéficiez de produits authentiques et soigneusement sélectionnés, d'une livraison rapide partout au Maroc, d'une garantie de 2 ans, ainsi que d'un support technique réactif avant et après votre achat.
+
+En tant que client, vous profitez également d'un Espace Client privé, donnant accès à des tutoriels vidéo, des guides d'installation, des conseils d'experts et les meilleures pratiques pour exploiter pleinement votre serrure intelligente.`
     },
     {
       q: "Quels sont les modes de paiement acceptés ?",
-      a: "Nous acceptons le paiement à la livraison (Cash on Delivery) partout au Maroc, ainsi que les virements bancaires pour plus de flexibilité."
+      a: `Nous acceptons le paiement à la livraison (Cash on Delivery) partout au Maroc.`
     },
     {
       q: "Comment se passe l'installation de ma serrure ?",
-      a: "Dès réception de votre commande, un technicien expert MegaDealTech vous contacte pour fixer un rendez-vous d'installation sous 48h."
+      a: `Nos serrures sont conçues pour être installées facilement sur la plupart des portes. Chaque produit est livré avec une notice détaillée.
+
+Vous bénéficiez également d'un accès exclusif à notre Espace Client, où vous trouverez des vidéos d'installation, de configuration et de paramétrage étape par étape.
+
+Si vous préférez confier l'installation à un professionnel, nous mettons gratuitement à votre disposition une liste d'installateurs partenaires expérimentés, sélectionnés pour leur sérieux et leur expertise.
+
+En cas de besoin, notre support technique reste disponible pour vous accompagner.`
     },
     {
       q: "Quelle est la durée de la garantie ?",
-      a: "Tous nos produits bénéficient d'une garantie constructeur de 2 ans minimum avec remplacement immédiat en cas de défaut."
+      a: `Toutes nos serrures intelligentes sont couvertes par une garantie de 2 ans.
+
+En cas de défaut de fabrication, nous procédons rapidement au remplacement du produit conformément à nos conditions de garantie.`
     },
     {
       q: "Livrez-vous partout au Maroc ?",
-      a: "Oui, nous livrons gratuitement dans toutes les villes du Royaume (Casablanca, Rabat, Marrakech, Tanger, Agadir, etc.)."
+      a: `Oui. Nous assurons une livraison rapide sur l'ensemble du territoire marocain.
+
+Toutes les commandes sont soigneusement emballées et expédiées avec un numéro de suivi afin que vous puissiez suivre votre colis jusqu'à sa livraison.`
+    },
+    {
+      q: "Qu'est-ce qui différencie vos serrures des autres modèles du marché ?",
+      a: `Nos serrures intelligentes ne se limitent pas aux fonctions classiques telles que l'empreinte digitale, le code PIN, le badge RFID, reconnaissance faciale ou l'application mobile. Nous sélectionnons des modèles intégrant des technologies avancées rarement réunies sur un même produit :
+
+• Batterie haute capacité 5 000 mAh pour une autonomie longue durée.
+• Interface et assistant vocal entièrement en français pour une utilisation simple et intuitive.
+• Déverrouillage biométrique par reconnaissance palmaire, une technologie de nouvelle génération offrant davantage de confort et de sécurité.
+• Caméra HD avec surveillance à distance et interphone vidéo intégré.
+• Contrôle des ouvertures à distance via TUYA (selon le modèle et si la fonctionnalité est activée).
+• Double authentification (2FA) pour renforcer la sécurité de votre compte.
+
+Chez MegaDealTech, nous privilégions la qualité, l'innovation et la sécurité afin de vous proposer des serrures intelligentes alliant performance, fiabilité et technologies de dernière génération.`
+    },
+    {
+      q: "Un accompagnement est-il inclus après mon achat ?",
+      a: `Oui. Chez MegaDealTech, notre accompagnement ne s'arrête pas à la livraison.
+
+Vous profitez d'un Espace Client privé regroupant des tutoriels vidéo, des guides d'installation, des conseils d'experts et des astuces pour exploiter pleinement votre serrure intelligente.
+
+Si vous souhaitez confier l'installation à un professionnel, nous mettons également à votre disposition une liste d'installateurs partenaires expérimentés, sélectionnés pour leur sérieux et leur expertise.
+
+Notre équipe reste enfin disponible pour répondre à vos questions et vous accompagner à chaque étape de votre expérience.`
     }
   ];
 
@@ -285,7 +321,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* VIDEO TESTIMONIALS - مع العنوان والوصف الفرعي الجديدين */}
+      {/* VIDEO TESTIMONIALS */}
       <motion.section 
         initial="hidden"
         whileInView="visible"
@@ -294,7 +330,6 @@ export default function Home() {
         className="py-16 bg-white"
       >
         <div className="max-w-7xl mx-auto px-4">
-          
           <div className="text-center mb-12 space-y-2">
             <h2 className="text-2xl md:text-3xl font-bold text-black tracking-tight">
               Le confort au quotidien
@@ -312,7 +347,7 @@ export default function Home() {
         </div>
       </motion.section>
 
-      {/* FAQ SECTION */}
+      {/* FAQ SECTION - الأسئلة الشائعة الجديدة المعالجة بالكامل */}
       <motion.section 
         initial="hidden"
         whileInView="visible"
@@ -331,9 +366,9 @@ export default function Home() {
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
                   className="w-full py-8 flex justify-between items-center group cursor-pointer hover:bg-gray-50 px-6 transition-colors text-left"
                 >
-                  <span className="text-[11px] font-black text-black uppercase tracking-[0.15em]">{faq.q}</span>
+                  <span className="text-xs md:text-sm font-black text-black uppercase tracking-[0.12em] pr-4">{faq.q}</span>
                   <ChevronDown className={cn(
-                    "w-5 h-5 text-gray-400 group-hover:text-black transition-all duration-300",
+                    "w-5 h-5 text-gray-400 group-hover:text-black transition-all duration-300 shrink-0",
                     openFaq === i && "rotate-180 text-black"
                   )} />
                 </button>
@@ -346,7 +381,9 @@ export default function Home() {
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                     >
                       <div className="px-6 pb-8 bg-gray-50/50">
-                        <p className="text-gray-600 text-sm leading-relaxed max-w-2xl">{faq.a}</p>
+                        <p className="text-gray-700 text-sm leading-relaxed max-w-3xl whitespace-pre-line font-medium">
+                          {faq.a}
+                        </p>
                       </div>
                     </motion.div>
                   )}

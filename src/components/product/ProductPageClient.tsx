@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { Star, ShieldCheck, Truck, Headset, ChevronDown, StarHalf, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Star, ShieldCheck, Truck, Headset, ChevronDown, StarHalf, ChevronLeft, ChevronRight, Wrench } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import CODForm from '@/components/product/CODForm';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -322,29 +322,49 @@ export default function ProductPageClient({ product }: ProductPageClientProps) {
               </div>
             </div>
 
-            {/* الشريط الثلاثي المحدث والموزع بانتظام (3 عناصر متناسقة) */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 py-8 border-t">
-              <div className="flex items-start gap-3">
-                <Truck className="h-6 w-6 text-primary shrink-0" />
+            {/* التصميم الفاخر والمستريح 2x2 للبطاقات الأربعة */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 py-8 border-t">
+              
+              <div className="flex items-start gap-3.5 bg-slate-50/80 p-4 rounded-2xl border border-slate-100 hover:border-slate-200 transition-colors">
+                <div className="p-2.5 rounded-xl bg-white shadow-sm text-primary shrink-0 border border-slate-100">
+                  <Truck className="h-5 w-5" />
+                </div>
                 <div>
-                  <p className="font-bold text-sm">Livraison Rapide</p>
-                  <p className="text-xs text-muted-foreground">Gratuite partout au Maroc</p>
+                  <p className="font-bold text-sm text-gray-900">Livraison Rapide</p>
+                  <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">Gratuite partout au Maroc</p>
                 </div>
               </div>
-              <div className="flex items-start gap-3">
-                <ShieldCheck className="h-6 w-6 text-primary shrink-0" />
+
+              <div className="flex items-start gap-3.5 bg-slate-50/80 p-4 rounded-2xl border border-slate-100 hover:border-slate-200 transition-colors">
+                <div className="p-2.5 rounded-xl bg-white shadow-sm text-primary shrink-0 border border-slate-100">
+                  <ShieldCheck className="h-5 w-5" />
+                </div>
                 <div>
-                  <p className="font-bold text-sm">Garantie 2 Ans</p>
-                  <p className="text-xs text-muted-foreground">Remplacement immédiat</p>
+                  <p className="font-bold text-sm text-gray-900">Garantie 2 Ans</p>
+                  <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">Remplacement immédiat</p>
                 </div>
               </div>
-              <div className="flex items-start gap-3">
-                <Headset className="h-6 w-6 text-primary shrink-0" />
+
+              <div className="flex items-start gap-3.5 bg-slate-50/80 p-4 rounded-2xl border border-slate-100 hover:border-slate-200 transition-colors">
+                <div className="p-2.5 rounded-xl bg-white shadow-sm text-primary shrink-0 border border-slate-100">
+                  <Headset className="h-5 w-5" />
+                </div>
                 <div>
-                  <p className="font-bold text-sm">Support 24/7</p>
-                  <p className="text-xs text-muted-foreground">Assistance technique incluse</p>
+                  <p className="font-bold text-sm text-gray-900">Support 24/7</p>
+                  <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">Assistance technique incluse</p>
                 </div>
               </div>
+
+              <div className="flex items-start gap-3.5 bg-slate-50/80 p-4 rounded-2xl border border-slate-100 hover:border-slate-200 transition-colors">
+                <div className="p-2.5 rounded-xl bg-white shadow-sm text-primary shrink-0 border border-slate-100">
+                  <Wrench className="h-5 w-5" />
+                </div>
+                <div>
+                  <p className="font-bold text-sm text-gray-900">Espace Client</p>
+                  <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">Guides vidéo & astuces d'experts exclusifs à nos clients</p>
+                </div>
+              </div>
+
             </div>
           </section>
         </div>
