@@ -71,26 +71,27 @@ const Hero: React.FC<HeroProps> = ({ onOrderClick }) => {
           
         </div>
 
-        {/* Visual Content */}
+        {/* Visual Content - تم تحديث الصورة بالرابط الجديد */}
         <div className="order-1 md:order-2 relative group w-full max-w-lg mx-auto md:max-w-none">
           <div className="absolute inset-0 bg-brand-gold/20 blur-[100px] rounded-full opacity-50 group-hover:opacity-70 transition-opacity duration-700"></div>
           <div className="relative z-10 transform transition-transform duration-500 hover:scale-105">
-            <div className="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-black/40 backdrop-blur-sm mx-auto max-w-[350px]">
+            <div className="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-black/40 backdrop-blur-sm mx-auto max-w-[380px]">
                <img 
-                src="https://i.imgur.com/cmTkqZt.png" 
-                alt="Tuya Smart Lock" 
+                src="https://i.ibb.co/RTxrH3F0/F27-Livreur-smartlock.png" 
+                alt="Tuya Smart Lock F27 Pro" 
                 className="w-full h-auto object-cover"
               />
               
               {/* Overlay UI mockup */}
-              <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-3/4 p-4 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 text-center">
-                 <ShieldCheck className="w-10 h-10 text-brand-gold mx-auto mb-2" />
-                 <p className="text-white font-bold">{t.hero.secure}</p>
-                 <p className="text-slate-400 text-xs">{t.hero.locked}</p>
+              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-3/4 p-3.5 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 text-center shadow-2xl">
+                 <ShieldCheck className="w-8 h-8 text-brand-gold mx-auto mb-1.5" />
+                 <p className="text-white font-bold text-sm">{t.hero.secure}</p>
+                 <p className="text-slate-300 text-[11px]">{t.hero.locked}</p>
               </div>
             </div>
           </div>
         </div>
+
       </div>
     </section>
   );
