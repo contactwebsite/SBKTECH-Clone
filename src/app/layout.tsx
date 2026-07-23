@@ -10,7 +10,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://balencia-pr.vercel
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "MegaDealTech - L'Élégance de la Sécurité Intelligente au Maroc",
+    default: "MegaDealTech - Premium Smart Security",
     template: '%s | MegaDealTech',
   },
   description: 'Leader en solutions de sécurité de luxe au Maroc : serrures digitales, pointeuses biométriques, coffres-forts et contrôle d\'accès. Livraison gratuite partout au Maroc.',
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     locale: 'fr_FR',
     url: BASE_URL,
     siteName: 'MegaDealTech Smart Security',
-    title: "MegaDealTech - L'Élégance de la Sécurité Intelligente",
+    title: "MegaDealTech - Premium Smart Security",
     description: 'Solutions de sécurité de luxe au Maroc. Serrures digitales, pointeuses biométriques et coffres-forts.',
     images: [{
       url: '/og-image.jpg',
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: "MegaDealTech - Sécurité Intelligente au Maroc",
+    title: "MegaDealTech - Premium Smart Security",
     description: 'Solutions de sécurité de luxe : serrures digitales, pointeuses biométriques au Maroc.',
     images: ['/og-image.jpg'],
   },
@@ -85,4 +85,3 @@ export default function RootLayout({
     </html>
   );
 }
-// Add to head section

@@ -201,7 +201,6 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="w-full md:w-1/2 aspect-square bg-gray-50 overflow-hidden"
           >
-            {/* تلفيف متناسق للصورة الممتلئة */}
             <div className="relative w-full h-full">
               <Image
                 src="https://i.ibb.co/0yCQhGfp/A-professional-cinematic-square-lifestyle-202606262033.jpg"
@@ -286,7 +285,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* VIDEO TESTIMONIALS */}
+      {/* VIDEO TESTIMONIALS - مع العنوان والوصف الفرعي الجديدين */}
       <motion.section 
         initial="hidden"
         whileInView="visible"
@@ -295,9 +294,16 @@ export default function Home() {
         className="py-16 bg-white"
       >
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-[10px] font-black text-center mb-12 text-gray-400 uppercase tracking-[0.4em]">
-            ILS NOUS FONT CONFIANCE
-          </h2>
+          
+          <div className="text-center mb-12 space-y-2">
+            <h2 className="text-2xl md:text-3xl font-bold text-black tracking-tight">
+              Le confort au quotidien
+            </h2>
+            <p className="text-gray-500 italic text-base md:text-lg font-light">
+              Une nouvelle expérience d'accès à votre domicile.
+            </p>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-7xl mx-auto">
             {videoTestimonials.map((url, i) => (
               <VideoTestimonial key={i} url={url} />
