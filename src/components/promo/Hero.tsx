@@ -71,24 +71,30 @@ const Hero: React.FC<HeroProps> = ({ onOrderClick }) => {
           
         </div>
 
-        {/* Visual Content - تم تحديث الصورة بالرابط الجديد */}
-        <div className="order-1 md:order-2 relative group w-full max-w-lg mx-auto md:max-w-none">
-          <div className="absolute inset-0 bg-brand-gold/20 blur-[100px] rounded-full opacity-50 group-hover:opacity-70 transition-opacity duration-700"></div>
-          <div className="relative z-10 transform transition-transform duration-500 hover:scale-105">
-            <div className="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-black/40 backdrop-blur-sm mx-auto max-w-[380px]">
-               <img 
-                src="https://i.ibb.co/RTxrH3F0/F27-Livreur-smartlock.png" 
-                alt="Tuya Smart Lock F27 Pro" 
-                className="w-full h-auto object-cover"
+        {/* Visual Content - صورة مفرغة وكبيرة بدون أي صندوق أو إطار داكن */}
+        <div className="order-1 md:order-2 relative group w-full max-w-lg mx-auto md:max-w-none flex justify-center items-center">
+          
+          {/* إضاءة خلفية ناعمة خلف القفل */}
+          <div className="absolute inset-0 bg-brand-gold/20 blur-[100px] rounded-full opacity-50 group-hover:opacity-70 transition-opacity duration-700 pointer-events-none"></div>
+          
+          <div className="relative z-10 w-full flex justify-center items-center transform transition-transform duration-500 hover:scale-[1.02]">
+            
+            {/* لوغو Tuya المفرغ في أعلى اليمين */}
+            <div className="absolute -top-2 right-2 md:right-6 z-20">
+              <img 
+                src="https://i.ibb.co/SXqdHqHX/tuya-logo-frontpage-removebg-preview.png" 
+                alt="Tuya Logo" 
+                className="h-9 md:h-11 w-auto object-contain drop-shadow-lg"
               />
-              
-              {/* Overlay UI mockup */}
-              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-3/4 p-3.5 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 text-center shadow-2xl">
-                 <ShieldCheck className="w-8 h-8 text-brand-gold mx-auto mb-1.5" />
-                 <p className="text-white font-bold text-sm">{t.hero.secure}</p>
-                 <p className="text-slate-300 text-[11px]">{t.hero.locked}</p>
-              </div>
             </div>
+
+            {/* صورة المنتج المفرغة بحجمها الكامل والبارز */}
+            <img 
+              src="https://i.ibb.co/Rk41X2Kf/F27-Livreur-smartlock-1-removebg-preview.png" 
+              alt="Tuya Smart Lock F27 Pro" 
+              className="w-full max-w-[420px] md:max-w-[480px] h-auto object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)]"
+            />
+
           </div>
         </div>
 
