@@ -71,29 +71,36 @@ const Hero: React.FC<HeroProps> = ({ onOrderClick }) => {
           
         </div>
 
-        {/* Visual Content - صورة مفرغة وكبيرة بدون أي صندوق أو إطار داكن */}
+        {/* Visual Content - Luxury White Showcase Card */}
         <div className="order-1 md:order-2 relative group w-full max-w-lg mx-auto md:max-w-none flex justify-center items-center">
           
-          {/* إضاءة خلفية ناعمة خلف القفل */}
-          <div className="absolute inset-0 bg-brand-gold/20 blur-[100px] rounded-full opacity-50 group-hover:opacity-70 transition-opacity duration-700 pointer-events-none"></div>
+          {/* Subtle Ambient Backlight Glow */}
+          <div className="absolute inset-0 bg-brand-gold/20 blur-[100px] rounded-full opacity-60 group-hover:opacity-80 transition-opacity duration-700 pointer-events-none"></div>
           
-          <div className="relative z-10 w-full flex justify-center items-center transform transition-transform duration-500 hover:scale-[1.02]">
+          <div className="relative z-10 w-full max-w-[420px] mx-auto transform transition-transform duration-500 hover:scale-[1.02]">
             
-            {/* لوغو Tuya المفرغ في أعلى اليمين */}
-            <div className="absolute -top-2 right-2 md:right-6 z-20">
-              <img 
-                src="https://i.ibb.co/SXqdHqHX/tuya-logo-frontpage-removebg-preview.png" 
-                alt="Tuya Logo" 
-                className="h-9 md:h-11 w-auto object-contain drop-shadow-lg"
-              />
-            </div>
+            {/* Luxury White Background Container */}
+            <div className="relative rounded-3xl overflow-hidden bg-white p-6 md:p-8 shadow-[0_30px_70px_rgba(0,0,0,0.7)] border-2 border-brand-gold/40 ring-1 ring-amber-500/20">
+              
+              {/* شعار Tuya المكبر بشكل واضح في أعلى اليمين */}
+              <div className="absolute top-4 right-4 md:top-5 md:right-6 z-20">
+                <img 
+                  src="https://i.ibb.co/SXqdHqHX/tuya-logo-frontpage-removebg-preview.png" 
+                  alt="Tuya Logo" 
+                  className="h-14 md:h-20 w-auto object-contain drop-shadow-sm"
+                />
+              </div>
 
-            {/* صورة المنتج المفرغة بحجمها الكامل والبارز */}
-            <img 
-              src="https://i.ibb.co/Rk41X2Kf/F27-Livreur-smartlock-1-removebg-preview.png" 
-              alt="Tuya Smart Lock F27 Pro" 
-              className="w-full max-w-[420px] md:max-w-[480px] h-auto object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)]"
-            />
+              {/* صورة القفل فوق الخلفية البيضاء */}
+              <div className="pt-8 pb-2 flex items-center justify-center">
+                <img 
+                  src="https://i.ibb.co/Rk41X2Kf/F27-Livreur-smartlock-1-removebg-preview.png" 
+                  alt="Tuya Smart Lock F27 Pro" 
+                  className="w-full h-auto object-contain max-h-[420px] drop-shadow-[0_20px_30px_rgba(0,0,0,0.18)]"
+                />
+              </div>
+
+            </div>
 
           </div>
         </div>
