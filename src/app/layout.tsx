@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     default: "MegaDealTech - Premium Smart Security",
     template: '%s | MegaDealTech',
   },
-  description: 'Leader en solutions de sécurité de luxe au Maroc : serrures digitales, pointeuses biométriques, coffres-forts et contrôle d\'accès. Livraison gratuite partout au Maroc.',
+  description: 'Leader en solutions de sécurité premium au Maroc : serrures digitales, pointeuses biométriques, coffres-forts et contrôle d\'accès. Livraison gratuite partout au Maroc.',
   keywords: ['serrure digitale maroc', 'serrure intelligente', 'pointeuse biométrique', 'coffre fort maroc', 'contrôle accès', 'sécurité maroc', 'MegaDealTech'],
   authors: [{ name: 'MegaDealTech Smart Security' }],
   creator: 'MegaDealTechA',
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     url: BASE_URL,
     siteName: 'MegaDealTech Smart Security',
     title: "MegaDealTech - Premium Smart Security",
-    description: 'Solutions de sécurité de luxe au Maroc. Serrures digitales, pointeuses biométriques et coffres-forts.',
+    description: 'Solutions de sécurité premium au Maroc. Serrures digitales, pointeuses biométriques et coffres-forts.',
     images: [{
       url: '/og-image.jpg',
       width: 1200,
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: "MegaDealTech - Premium Smart Security",
-    description: 'Solutions de sécurité de luxe : serrures digitales, pointeuses biométriques au Maroc.',
+    description: 'Solutions de sécurité premium : serrures digitales, pointeuses biométriques au Maroc.',
     images: ['/og-image.jpg'],
   },
   alternates: {
