@@ -133,9 +133,9 @@ Notre équipe reste enfin disponible pour répondre à vos questions et vous acc
 
   const videoTestimonials = [
     "https://res.cloudinary.com/dwn1omfyl/video/upload/v1766365949/1222_d1adt9.mp4",
-    "https://res.cloudinary.com/dwn1omfyl/video/upload/v1766365943/1222_2_xnoplf.mp4",
-    "https://res.cloudinary.com/dwn1omfyl/video/upload/v1776612315/0418_ksj9zt.mp4",
-    "https://res.cloudinary.com/dwn1omfyl/video/upload/v1766365943/1222_1_k642zn.mp4"
+    "https://res.cloudinary.com/dwn1omfyl/video/upload/v1785862931/WhatsApp_Video_2026-08-04_at_16.04.31_kzudrt.mp4",
+    "https://res.cloudinary.com/dwn1omfyl/video/upload/v1766365943/1222_1_k642zn.mp4",
+    "https://res.cloudinary.com/dwn1omfyl/video/upload/v1785863115/WhatsApp_Video_2026-08-04_at_16.04.31_1_c3g2i6.mp4"
   ];
 
   const sectionVariants = {
